@@ -71,7 +71,7 @@ int main(){
 	}while(opc!=11);
 }
 void menuinsertar(){
-	cout<<endl<<"***MENU INSERTAR***"<<endl<<endl<<"1. Insertar adelante"<<endl<<"2. Insertar Final"<<endl<<"3. Salir"<<endl;
+	cout<<endl<<endl<<"***MENU INSERTAR***"<<endl<<endl<<"1. Insertar adelante"<<endl<<"2. Insertar Final"<<endl<<"3. Salir"<<endl;
 }
 void menuprincipal(){
 	cout<<endl<<endl<<"***MENU PRINCIPAL***"<<endl<<endl<<"1. Insertar datos"<<endl<<"2. Mostrar elementos"<<endl<<"3. Cantidad de elementos"<<endl<<"4. Maximo"<<endl<<"5. Minimo"
