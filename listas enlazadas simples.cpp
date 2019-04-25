@@ -74,7 +74,7 @@ void menuinsertar(){
 	cout<<endl<<"***MENU INSERTAR***"<<endl<<endl<<"1. Insertar adelante"<<endl<<"2. Insertar Final"<<endl<<"3. Salir"<<endl;
 }
 void menuprincipal(){
-	cout<<endl<<"***MENU PRINCIPAL***"<<endl<<endl<<"1. Insertar datos"<<endl<<"2. Mostrar elementos"<<endl<<"3. Cantidad de elementos"<<endl<<"4. Maximo"<<endl<<"5. Minimo"
+	cout<<endl<<endl<<"***MENU PRINCIPAL***"<<endl<<endl<<"1. Insertar datos"<<endl<<"2. Mostrar elementos"<<endl<<"3. Cantidad de elementos"<<endl<<"4. Maximo"<<endl<<"5. Minimo"
 	<<endl<<"6. Buscar"<<endl<<"7. Eliminar "<<endl<<"8. Eliminar elemento duplicado"<<endl<<"9. Insertar antes"<<endl<<"10. Insertar despues"<<endl<<"11.Salir"<<endl;
 }
 void InsertarAdelante(){
