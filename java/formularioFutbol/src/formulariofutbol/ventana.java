@@ -19,18 +19,35 @@ public class ventana extends javax.swing.JFrame {
      */
     
     DefaultListModel lstmodel;
-    
+    Futbolista Fut;
+    Masajista Mas;
+    Entrenador ent;
     public ventana() {
         initComponents();
         
         lstmodel = new DefaultListModel();
         
-        txtAgregarJugador.setBorder(javax.swing.BorderFactory.createTitledBorder("INSERTE JUGADOR"));
-        txtAgregarEntrenador.setBorder(javax.swing.BorderFactory.createTitledBorder("INSERTE ENTRENADOR"));
-        txtAgregarMasajista.setBorder(javax.swing.BorderFactory.createTitledBorder("INSERTE MASAJISTA"));
+        txtNombreFutbolista.setBorder(javax.swing.BorderFactory.createTitledBorder("NOMBRE"));
+        txtApellidoFutbolista.setBorder(javax.swing.BorderFactory.createTitledBorder("APELLIDO"));
+        txtEdadFutbolista.setBorder(javax.swing.BorderFactory.createTitledBorder("EDAD"));
+        txtDorsalFutbolista.setBorder(javax.swing.BorderFactory.createTitledBorder("DORSAL"));
+        txtDemarcacionFutbolista.setBorder(javax.swing.BorderFactory.createTitledBorder("DEMARCACION"));
+        txtAJugador.setBorder(javax.swing.BorderFactory.createTitledBorder("LISTA DE JUGADORES"));
+        
+        txtNombreEntrenador.setBorder(javax.swing.BorderFactory.createTitledBorder("NOMBRE"));
+        txtApellidoEntrenador.setBorder(javax.swing.BorderFactory.createTitledBorder("APELLIDO"));
+        txtEdadEntrenador.setBorder(javax.swing.BorderFactory.createTitledBorder("EDAD"));
+        txtIdFederacion.setBorder(javax.swing.BorderFactory.createTitledBorder("ID FEDERACIÓN"));
+        
+        txtNombreMasajista.setBorder(javax.swing.BorderFactory.createTitledBorder("NOMBRE"));
+        txtApellidoMasajista.setBorder(javax.swing.BorderFactory.createTitledBorder("APELLIDO"));
+        txtEdadMasajista.setBorder(javax.swing.BorderFactory.createTitledBorder("EDAD"));
+        txtTituloMasajista.setBorder(javax.swing.BorderFactory.createTitledBorder("TITULACIÓN"));
+        txtAniosExperiencia.setBorder(javax.swing.BorderFactory.createTitledBorder("AÑOS EXP."));
+        
         txtAgregarViaje.setBorder(javax.swing.BorderFactory.createTitledBorder("INSERTE VIAJE"));
         
-        lstJugadores.setModel(lstmodel);
+        txtAJugador.setModel(lstmodel);
         
     }
 
@@ -43,82 +60,81 @@ public class ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtAgregarJugador = new javax.swing.JTextField();
+        txtNombreFutbolista = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstJugadores = new javax.swing.JList<>();
+        txtAJugador = new javax.swing.JList<>();
         btnAgregarJugador = new javax.swing.JButton();
         btnEliminarJugador = new javax.swing.JButton();
         btnModificarJugador = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        txtAgregarEntrenador = new javax.swing.JTextField();
+        txtNombreEntrenador = new javax.swing.JTextField();
         cbEntrenador = new javax.swing.JComboBox<>();
-        btnEntrenador = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        txtAgregarMasajista = new javax.swing.JTextField();
-        btnMasajista = new javax.swing.JButton();
         cbMasajista = new javax.swing.JComboBox<>();
         jSeparator3 = new javax.swing.JSeparator();
         txtAgregarViaje = new javax.swing.JTextField();
         cbViajes = new javax.swing.JComboBox<>();
         btnViaje = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
         btnExit = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
+        txtApellidoFutbolista = new javax.swing.JTextField();
+        txtEdadFutbolista = new javax.swing.JTextField();
+        txtDemarcacionFutbolista = new javax.swing.JTextField();
+        txtDorsalFutbolista = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtNombreMasajista = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtApellidoEntrenador = new javax.swing.JTextField();
+        txtEdadEntrenador = new javax.swing.JTextField();
+        txtIdFederacion = new javax.swing.JTextField();
+        btnModificarEntrenador = new javax.swing.JButton();
+        btnAgregarEntrenador = new javax.swing.JButton();
+        btnEliminarEntrenador = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        txtApellidoMasajista = new javax.swing.JTextField();
+        txtEdadMasajista = new javax.swing.JTextField();
+        txtTituloMasajista = new javax.swing.JTextField();
+        txtAniosExperiencia = new javax.swing.JTextField();
+        btnModificarMasajista = new javax.swing.JButton();
+        btnAgregarMasajista = new javax.swing.JButton();
+        btnEliminarMasajista = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtAgregarJugador.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreFutbolista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgregarJugadorActionPerformed(evt);
+                txtNombreFutbolistaActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setViewportView(lstJugadores);
+        txtAJugador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jScrollPane1.setViewportView(txtAJugador);
 
-        btnAgregarJugador.setText("Agregar Jugador");
+        btnAgregarJugador.setText("AGREGAR");
         btnAgregarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarJugadorActionPerformed(evt);
             }
         });
 
-        btnEliminarJugador.setText("Eliminar Jugador");
+        btnEliminarJugador.setText("ELIMINAR");
         btnEliminarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarJugadorActionPerformed(evt);
             }
         });
 
-        btnModificarJugador.setText("Modificar Jugador");
+        btnModificarJugador.setText("MODIFICAR");
         btnModificarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarJugadorActionPerformed(evt);
             }
         });
 
-        txtAgregarEntrenador.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreEntrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgregarEntrenadorActionPerformed(evt);
-            }
-        });
-
-        btnEntrenador.setText("Agregar Entrenador");
-        btnEntrenador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrenadorActionPerformed(evt);
-            }
-        });
-
-        txtAgregarMasajista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgregarMasajistaActionPerformed(evt);
-            }
-        });
-
-        btnMasajista.setText("Agregar Masajista");
-        btnMasajista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasajistaActionPerformed(evt);
+                txtNombreEntrenadorActionPerformed(evt);
             }
         });
 
@@ -149,120 +165,293 @@ public class ventana extends javax.swing.JFrame {
             }
         });
 
+        txtApellidoFutbolista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoFutbolistaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("DATOS DEL ENTRENADOR");
+
+        txtNombreMasajista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreMasajistaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("DATOS DEL JUGADOR");
+
+        txtApellidoEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoEntrenadorActionPerformed(evt);
+            }
+        });
+
+        btnModificarEntrenador.setText("MODIFICAR");
+        btnModificarEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarEntrenadorActionPerformed(evt);
+            }
+        });
+
+        btnAgregarEntrenador.setText("AGREGAR");
+        btnAgregarEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEntrenadorActionPerformed(evt);
+            }
+        });
+
+        btnEliminarEntrenador.setText("ELIMINAR");
+        btnEliminarEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarEntrenadorActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("DATOS DE LA MASAJISTA");
+
+        txtApellidoMasajista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoMasajistaActionPerformed(evt);
+            }
+        });
+
+        txtAniosExperiencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAniosExperienciaActionPerformed(evt);
+            }
+        });
+
+        btnModificarMasajista.setText("MODIFICAR");
+        btnModificarMasajista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarMasajistaActionPerformed(evt);
+            }
+        });
+
+        btnAgregarMasajista.setText("AGREGAR");
+        btnAgregarMasajista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarMasajistaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarMasajista.setText("ELIMINAR");
+        btnEliminarMasajista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMasajistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtEdadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDorsalFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDemarcacionFutbolista))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtNombreFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtApellidoFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnAgregarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                .addComponent(btnModificarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jSeparator5))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtApellidoEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNombreEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtEdadEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtIdFederacion)))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnModificarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnAgregarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cbEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAgregarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnExit))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtAgregarJugador)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(btnAgregarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnEliminarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnModificarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnViaje))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(258, 258, 258))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbEntrenador, 0, 259, Short.MAX_VALUE)
-                                            .addComponent(txtAgregarEntrenador))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnEntrenador))))
-                            .addComponent(cbViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(txtAgregarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnViaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(txtAgregarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnMasajista)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExit)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                            .addComponent(txtApellidoMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNombreMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtEdadMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtTituloMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtAniosExperiencia)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnModificarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnEliminarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnAgregarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(cbMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 9, Short.MAX_VALUE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(249, 249, 249))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(255, 255, 255)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregarJugador)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombreFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminarJugador))
-                    .addComponent(txtAgregarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificarJugador)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtApellidoFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnModificarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                                .addGap(7, 7, 7)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEdadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDorsalFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDemarcacionFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellidoEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEdadEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdFederacion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtAgregarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnEntrenador))
-                .addGap(18, 18, 18)
+                    .addComponent(txtNombreMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cbMasajista, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAgregarMasajista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellidoMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEdadMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTituloMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAniosExperiencia, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAgregarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMasajista))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAgregarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnViaje))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExit))
-                    .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMostrar)
+                    .addComponent(btnExit))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtAgregarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgregarJugadorActionPerformed
+    private void txtNombreFutbolistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreFutbolistaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgregarJugadorActionPerformed
+    }//GEN-LAST:event_txtNombreFutbolistaActionPerformed
 
+    
+    public void insertarFutbolista(){
+        Fut = new Futbolista(1, txtNombreFutbolista.getText(), txtApellidoFutbolista.getText(), Integer.parseInt(txtEdadFutbolista.getText()), Integer.parseInt(txtDorsalFutbolista.getText()), txtDemarcacionFutbolista.getText());
+        
+    }
     
     private void btnAgregarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarJugadorActionPerformed
         // TODO add your handling code here:
+        insertarFutbolista();
+        lstmodel.addElement(Fut.getApellido()+", "+Fut.getNombre());
         
-        lstmodel.addElement(txtAgregarJugador.getText());
-        
-        txtAgregarJugador.setText("");
-        txtAgregarJugador.requestFocus();
+        txtNombreFutbolista.setText("");
+        txtApellidoFutbolista.setText("");
+        txtEdadFutbolista.setText("");
+        txtDorsalFutbolista.setText("");
+        txtDemarcacionFutbolista.setText("");
+        txtNombreFutbolista.requestFocus();
         
     }//GEN-LAST:event_btnAgregarJugadorActionPerformed
 
@@ -276,27 +465,9 @@ public class ventana extends javax.swing.JFrame {
         lstmodel.remove(Integer.parseInt(JOptionPane.showInputDialog("¿ingrese el numero de orden que quiere eliminar?"))-1);
     }//GEN-LAST:event_btnEliminarJugadorActionPerformed
 
-    private void txtAgregarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgregarEntrenadorActionPerformed
+    private void txtNombreEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreEntrenadorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgregarEntrenadorActionPerformed
-
-    private void btnEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenadorActionPerformed
-        // TODO add your handling code here:
-        cbEntrenador.addItem(txtAgregarEntrenador.getText());
-        txtAgregarEntrenador.setText("");
-        txtAgregarEntrenador.requestFocus();
-    }//GEN-LAST:event_btnEntrenadorActionPerformed
-
-    private void txtAgregarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgregarMasajistaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgregarMasajistaActionPerformed
-
-    private void btnMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasajistaActionPerformed
-        // TODO add your handling code here:
-        cbMasajista.addItem(txtAgregarMasajista.getText());
-        txtAgregarMasajista.setText("");
-        txtAgregarMasajista.requestFocus();
-    }//GEN-LAST:event_btnMasajistaActionPerformed
+    }//GEN-LAST:event_txtNombreEntrenadorActionPerformed
 
     private void txtAgregarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgregarViajeActionPerformed
         // TODO add your handling code here:
@@ -317,11 +488,78 @@ public class ventana extends javax.swing.JFrame {
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
         String mensaje = String.format( "el jugador %s, tiene como entrenador a %s, "
-                + "le toca el masaje con %s y debe viajar a %s", lstmodel.getElementAt(lstJugadores.getSelectedIndex()), 
+                + "le toca el masaje con %s y debe viajar a %s", lstmodel.getElementAt(txtAJugador.getSelectedIndex()), 
                 cbEntrenador.getSelectedItem(), cbMasajista.getSelectedItem(), cbViajes.getSelectedItem());
         
         JOptionPane.showMessageDialog(ventana.this, mensaje);
     }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void txtApellidoFutbolistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoFutbolistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoFutbolistaActionPerformed
+
+    private void txtNombreMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMasajistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreMasajistaActionPerformed
+
+    private void txtApellidoEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoEntrenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoEntrenadorActionPerformed
+
+    private void btnModificarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEntrenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarEntrenadorActionPerformed
+
+    public void datosEntrenador(){
+        ent = new Entrenador(txtIdFederacion.getText(), 1, txtNombreEntrenador.getText(), txtApellidoEntrenador.getText(), Integer.parseInt(txtEdadEntrenador.getText()));
+       
+    }
+    private void btnAgregarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEntrenadorActionPerformed
+        // TODO add your handling code here:
+        datosEntrenador();
+        cbEntrenador.addItem(ent.getApellido()+", "+ent.getNombre());
+        txtNombreEntrenador.setText("");
+        txtApellidoEntrenador.setText("");
+        txtEdadEntrenador.setText("");
+        txtIdFederacion.setText("");
+        txtNombreEntrenador.requestFocus();
+    }//GEN-LAST:event_btnAgregarEntrenadorActionPerformed
+
+    private void btnEliminarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEntrenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEntrenadorActionPerformed
+
+    private void txtApellidoMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMasajistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoMasajistaActionPerformed
+
+    private void btnModificarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMasajistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarMasajistaActionPerformed
+
+    public void datosMasajista(){
+        Mas = new Masajista(txtTituloMasajista.getText(), Integer.parseInt(txtAniosExperiencia.getText()), 1, txtNombreMasajista.getText(), txtApellidoMasajista.getText(), Integer.parseInt(txtEdadMasajista.getText()));
+    } 
+            
+    private void btnAgregarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMasajistaActionPerformed
+        // TODO add your handling code here:
+        datosMasajista();
+        cbMasajista.addItem(Mas.getApellido()+", "+Mas.getNombre());
+        txtNombreMasajista.setText("");
+        txtApellidoMasajista.setText("");
+        txtEdadMasajista.setText("");
+        txtTituloMasajista.setText("");
+        txtAniosExperiencia.setText("");
+        txtNombreEntrenador.requestFocus();
+    }//GEN-LAST:event_btnAgregarMasajistaActionPerformed
+
+    private void btnEliminarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMasajistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarMasajistaActionPerformed
+
+    private void txtAniosExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAniosExperienciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAniosExperienciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,26 +567,44 @@ public class ventana extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarEntrenador;
     private javax.swing.JButton btnAgregarJugador;
+    private javax.swing.JButton btnAgregarMasajista;
+    private javax.swing.JButton btnEliminarEntrenador;
     private javax.swing.JButton btnEliminarJugador;
-    private javax.swing.JButton btnEntrenador;
+    private javax.swing.JButton btnEliminarMasajista;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnMasajista;
+    private javax.swing.JButton btnModificarEntrenador;
     private javax.swing.JButton btnModificarJugador;
+    private javax.swing.JButton btnModificarMasajista;
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnViaje;
     private javax.swing.JComboBox<String> cbEntrenador;
     private javax.swing.JComboBox<String> cbMasajista;
     private javax.swing.JComboBox<String> cbViajes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JList<String> lstJugadores;
-    private javax.swing.JTextField txtAgregarEntrenador;
-    private javax.swing.JTextField txtAgregarJugador;
-    private javax.swing.JTextField txtAgregarMasajista;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JList<String> txtAJugador;
     private javax.swing.JTextField txtAgregarViaje;
+    private javax.swing.JTextField txtAniosExperiencia;
+    private javax.swing.JTextField txtApellidoEntrenador;
+    private javax.swing.JTextField txtApellidoFutbolista;
+    private javax.swing.JTextField txtApellidoMasajista;
+    private javax.swing.JTextField txtDemarcacionFutbolista;
+    private javax.swing.JTextField txtDorsalFutbolista;
+    private javax.swing.JTextField txtEdadEntrenador;
+    private javax.swing.JTextField txtEdadFutbolista;
+    private javax.swing.JTextField txtEdadMasajista;
+    private javax.swing.JTextField txtIdFederacion;
+    private javax.swing.JTextField txtNombreEntrenador;
+    private javax.swing.JTextField txtNombreFutbolista;
+    private javax.swing.JTextField txtNombreMasajista;
+    private javax.swing.JTextField txtTituloMasajista;
     // End of variables declaration//GEN-END:variables
 }
