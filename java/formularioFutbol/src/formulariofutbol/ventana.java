@@ -25,6 +25,25 @@ public class ventana extends javax.swing.JFrame {
     public ventana() {
         initComponents();
         
+        btnModificarJugador.setEnabled(false);
+        btnEliminarJugador.setEnabled(false);
+        
+        txtAgregarViaje.setEditable(false);
+        txtAniosExperiencia.setEditable(false);
+        txtApellidoEntrenador.setEditable(false);
+        txtApellidoFutbolista.setEditable(false);
+        txtApellidoMasajista.setEditable(false);
+        txtDemarcacionFutbolista.setEditable(false);
+        txtDorsalFutbolista.setEditable(false);
+        txtEdadEntrenador.setEditable(false);
+        txtEdadFutbolista.setEditable(false);
+        txtEdadMasajista.setEditable(false);
+        txtIdFederacion.setEditable(false);
+        txtNombreEntrenador.setEditable(false);
+        txtNombreFutbolista.setEditable(false);
+        txtNombreMasajista.setEditable(false);
+        txtTituloMasajista.setEditable(false);
+        
         lstmodel = new DefaultListModel();
         
         txtNombreFutbolista.setBorder(javax.swing.BorderFactory.createTitledBorder("NOMBRE"));
@@ -181,7 +200,7 @@ public class ventana extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("DATOS DEL JUGADOR");
+        jLabel2.setText("DATOS DEL FUTBOLISTA");
 
         txtApellidoEntrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,14 +358,14 @@ public class ventana extends javax.swing.JFrame {
                                     .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 9, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(249, 249, 249))
             .addGroup(layout.createSequentialGroup()
                 .addGap(255, 255, 255)
                 .addComponent(jLabel3)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(235, 235, 235))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,27 +456,102 @@ public class ventana extends javax.swing.JFrame {
 
     
     public void insertarFutbolista(){
-        Fut = new Futbolista(1, txtNombreFutbolista.getText(), txtApellidoFutbolista.getText(), Integer.parseInt(txtEdadFutbolista.getText()), Integer.parseInt(txtDorsalFutbolista.getText()), txtDemarcacionFutbolista.getText());
+        Fut = new Futbolista(Futbolista.id+1, txtNombreFutbolista.getText(), txtApellidoFutbolista.getText(), Integer.parseInt(txtEdadFutbolista.getText()), Integer.parseInt(txtDorsalFutbolista.getText()), txtDemarcacionFutbolista.getText());
+        
+    }
+    
+    public boolean vacioTxtfutbolista(){
+        boolean booleano = true;
+        if(  txtNombreFutbolista.getText().equals("") ||
+            txtApellidoFutbolista.getText().equals("") ||
+            txtEdadFutbolista.getText().equals("") ||
+            txtDorsalFutbolista.getText().equals("") ||
+            txtDemarcacionFutbolista.getText().equals("")){
+            
+            if ( txtNombreFutbolista.getText().equals("")) txtNombreFutbolista.requestFocus();
+            else if ( txtApellidoFutbolista.getText().equals("")) txtApellidoFutbolista.requestFocus();
+            else if ( txtEdadFutbolista.getText().equals("")) txtEdadFutbolista.requestFocus();
+            else if ( txtDemarcacionFutbolista.getText().equals("")) txtDemarcacionFutbolista.requestFocus();
+            else if ( txtDorsalFutbolista.getText().equals("")) txtDorsalFutbolista.requestFocus();
+            
+            JOptionPane.showMessageDialog(ventana.this, "FALTO RELLENAR UN CAMPO", "CAMPO VACIO", JOptionPane.ERROR_MESSAGE);
+            booleano = false;
+        }
+        
+        return booleano;
         
     }
     
     private void btnAgregarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarJugadorActionPerformed
         // TODO add your handling code here:
-        insertarFutbolista();
-        lstmodel.addElement(Fut.getApellido()+", "+Fut.getNombre());
         
-        txtNombreFutbolista.setText("");
-        txtApellidoFutbolista.setText("");
-        txtEdadFutbolista.setText("");
-        txtDorsalFutbolista.setText("");
-        txtDemarcacionFutbolista.setText("");
-        txtNombreFutbolista.requestFocus();
+        if ( btnAgregarJugador.getText().equals("GUARDAR")){
+            
+            if ( vacioTxtfutbolista() ){
+                insertarFutbolista();
+                lstmodel.addElement(Fut.getApellido()+", "+Fut.getNombre());
+
+                txtNombreFutbolista.setText("");
+                txtApellidoFutbolista.setText("");
+                txtEdadFutbolista.setText("");
+                txtDorsalFutbolista.setText("");
+                txtDemarcacionFutbolista.setText("");
+            
+                txtNombreFutbolista.setEditable(false);
+                txtApellidoFutbolista.setEditable(false);
+                txtEdadFutbolista.setEditable(false);
+                txtDorsalFutbolista.setEditable(false);
+                txtDemarcacionFutbolista.setEditable(false);
+                txtNombreFutbolista.setEditable(false);
+                
+                
+                btnModificarJugador.setEnabled(true);
+                btnEliminarJugador.setEnabled(true);
+                
+                btnAgregarJugador.setText("AGREGAR");
+                
+            }
+            
+        }else{
+            
+            btnAgregarJugador.setText("GUARDAR");
+            txtNombreFutbolista.setEditable(true);
+            txtApellidoFutbolista.setEditable(true);
+            txtEdadFutbolista.setEditable(true);
+            txtDorsalFutbolista.setEditable(true);
+            txtDemarcacionFutbolista.setEditable(true);
+            txtNombreFutbolista.setEditable(true);
+            txtNombreFutbolista.requestFocus();
+            
+            btnModificarJugador.setEnabled(false);
+            btnEliminarJugador.setEnabled(false);
+        }
         
     }//GEN-LAST:event_btnAgregarJugadorActionPerformed
 
     private void btnModificarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarJugadorActionPerformed
         // TODO add your handling code here:
-        lstmodel.setElementAt(JOptionPane.showInputDialog("¿Inserte el nombre?"), Integer.parseInt(JOptionPane.showInputDialog("¿ingrese el numero de orden que quiere eliminar?"))-1);
+        
+        txtNombreFutbolista.setEditable(true);
+        txtApellidoFutbolista.setEditable(true);
+        txtEdadFutbolista.setEditable(true);
+        txtDorsalFutbolista.setEditable(true);
+        txtDemarcacionFutbolista.setEditable(true);
+        txtNombreFutbolista.setEditable(true);
+        txtNombreFutbolista.requestFocus();
+        
+        if ( btnModificarJugador.getText().equals("GUARDAR") ){
+            
+            Futbolista futbolista_modificado = new Futbolista(Futbolista.id+1, txtNombreFutbolista.getText(), txtApellidoFutbolista.getText(), Integer.parseInt(txtEdadFutbolista.getText()), Integer.parseInt(txtDorsalFutbolista.getText()), txtDemarcacionFutbolista.getText());
+        
+            lstmodel.setElementAt(futbolista_modificado, Integer.parseInt(JOptionPane.showInputDialog("¿ingrese el numero de orden que quiere modificar?"))-1);
+            
+            btnModificarJugador.setText("MODIFICAR");
+           
+        }else {
+            btnModificarJugador.setText("GUARDAR");
+        }
+        
     }//GEN-LAST:event_btnModificarJugadorActionPerformed
 
     private void btnEliminarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarJugadorActionPerformed
@@ -516,6 +610,13 @@ public class ventana extends javax.swing.JFrame {
     }
     private void btnAgregarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEntrenadorActionPerformed
         // TODO add your handling code here:
+        txtNombreEntrenador.setEditable(true);
+        txtNombreEntrenador.setEditable(true);
+        txtApellidoEntrenador.setEditable(true);
+        txtEdadEntrenador.setEditable(true);
+        txtIdFederacion.setEditable(true);
+        txtNombreEntrenador.setEditable(true);
+        
         datosEntrenador();
         cbEntrenador.addItem(ent.getApellido()+", "+ent.getNombre());
         txtNombreEntrenador.setText("");
