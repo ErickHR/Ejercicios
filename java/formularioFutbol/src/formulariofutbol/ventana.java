@@ -28,6 +28,12 @@ public class ventana extends javax.swing.JFrame {
         btnModificarJugador.setEnabled(false);
         btnEliminarJugador.setEnabled(false);
         
+        btnModificarEntrenador.setEnabled(false);
+        btnEliminarEntrenador.setEnabled(false);
+        
+        btnModificarMasajista.setEnabled(false);
+        btnEliminarMasajista.setEnabled(false);
+        
         txtAgregarViaje.setEditable(false);
         txtAniosExperiencia.setEditable(false);
         txtApellidoEntrenador.setEditable(false);
@@ -163,14 +169,14 @@ public class ventana extends javax.swing.JFrame {
             }
         });
 
-        btnViaje.setText("Agregar Viaje");
+        btnViaje.setText("AGREGAR VIAJE");
         btnViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViajeActionPerformed(evt);
             }
         });
 
-        btnExit.setText("Salir");
+        btnExit.setText("SALIR");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -272,69 +278,73 @@ public class ventana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtEdadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDorsalFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDemarcacionFutbolista))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNombreFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtApellidoFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnAgregarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                                .addComponent(btnModificarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jSeparator5))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtApellidoEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNombreEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtEdadEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtIdFederacion)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnModificarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEliminarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnAgregarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cbEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAgregarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnViaje)
+                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(cbViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(258, 258, 258))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAgregarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnExit))
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtEdadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDorsalFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDemarcacionFutbolista))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtNombreFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtApellidoFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnViaje))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(258, 258, 258))))
+                                    .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnAgregarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                        .addComponent(btnModificarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(254, 254, 254)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jSeparator5))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtApellidoEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNombreEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtEdadEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtIdFederacion)))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnModificarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnEliminarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnAgregarEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(cbEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -354,10 +364,9 @@ public class ventana extends javax.swing.JFrame {
                                                 .addComponent(btnAgregarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(27, 27, 27)
                                                 .addComponent(cbMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 9, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 8, Short.MAX_VALUE)))
+                .addContainerGap(2, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(255, 255, 255)
                 .addComponent(jLabel3)
@@ -370,7 +379,7 @@ public class ventana extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -430,21 +439,17 @@ public class ventana extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAgregarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnViaje))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbViajes))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMostrar)
-                    .addComponent(btnExit))
-                .addContainerGap())
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -484,11 +489,20 @@ public class ventana extends javax.swing.JFrame {
     
     private void btnAgregarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarJugadorActionPerformed
         // TODO add your handling code here:
-        
         if ( btnAgregarJugador.getText().equals("GUARDAR")){
             
             if ( vacioTxtfutbolista() ){
                 insertarFutbolista();
+                for ( int i = 0; i < lstmodel.getSize(); i++ ){
+                
+                    if ( (Fut.getApellido().trim()+", "+ Fut.getNombre().trim()).equals(lstmodel.getElementAt( i ))){
+
+                        JOptionPane.showMessageDialog(ventana.this, "Nombres y apellidos iguales, ingrese de otros datos");
+                        return;
+
+                    }
+
+                }
                 lstmodel.addElement(Fut.getApellido()+", "+Fut.getNombre());
 
                 txtNombreFutbolista.setText("");
@@ -532,23 +546,38 @@ public class ventana extends javax.swing.JFrame {
     private void btnModificarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarJugadorActionPerformed
         // TODO add your handling code here:
         
-        txtNombreFutbolista.setEditable(true);
-        txtApellidoFutbolista.setEditable(true);
-        txtEdadFutbolista.setEditable(true);
-        txtDorsalFutbolista.setEditable(true);
-        txtDemarcacionFutbolista.setEditable(true);
-        txtNombreFutbolista.setEditable(true);
-        txtNombreFutbolista.requestFocus();
+        Futbolista futbolista_modificado;
         
         if ( btnModificarJugador.getText().equals("GUARDAR") ){
+            futbolista_modificado = new Futbolista(Futbolista.id+1, txtNombreFutbolista.getText(), txtApellidoFutbolista.getText(), Integer.parseInt(txtEdadFutbolista.getText()), Integer.parseInt(txtDorsalFutbolista.getText()), txtDemarcacionFutbolista.getText());
             
-            Futbolista futbolista_modificado = new Futbolista(Futbolista.id+1, txtNombreFutbolista.getText(), txtApellidoFutbolista.getText(), Integer.parseInt(txtEdadFutbolista.getText()), Integer.parseInt(txtDorsalFutbolista.getText()), txtDemarcacionFutbolista.getText());
-        
-            lstmodel.setElementAt(futbolista_modificado, Integer.parseInt(JOptionPane.showInputDialog("¿ingrese el numero de orden que quiere modificar?"))-1);
+            lstmodel.setElementAt(futbolista_modificado.getApellido()+", "+futbolista_modificado.getNombre(), Integer.parseInt(JOptionPane.showInputDialog("¿ingrese el numero de orden que quiere modificar?"))-1);
+            
+            txtNombreFutbolista.setText("");
+            txtApellidoFutbolista.setText("");
+            txtEdadFutbolista.setText("");
+            txtDorsalFutbolista.setText("");
+            txtDemarcacionFutbolista.setText("");
+            
+            txtApellidoFutbolista.setEditable(false);
+            txtEdadFutbolista.setEditable(false);
+            txtDorsalFutbolista.setEditable(false);
+            txtDemarcacionFutbolista.setEditable(false);
+            txtNombreFutbolista.setEditable(false);
+            btnAgregarJugador.setEnabled(true);
+            btnEliminarJugador.setEnabled(true);
             
             btnModificarJugador.setText("MODIFICAR");
            
         }else {
+            btnAgregarJugador.setEnabled(false);
+            btnEliminarJugador.setEnabled(false);
+            txtNombreFutbolista.setEditable(true);
+            txtApellidoFutbolista.setEditable(true);
+            txtEdadFutbolista.setEditable(true);
+            txtDorsalFutbolista.setEditable(true);
+            txtDemarcacionFutbolista.setEditable(true);
+            txtNombreFutbolista.setEditable(true);
             btnModificarJugador.setText("GUARDAR");
         }
         
@@ -569,9 +598,24 @@ public class ventana extends javax.swing.JFrame {
 
     private void btnViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajeActionPerformed
         // TODO add your handling code here:
-        cbViajes.addItem(txtAgregarViaje.getText());
-        txtAgregarViaje.setText("");
-        txtAgregarViaje.requestFocus();
+        if ( btnViaje.getText().equals("GUARDAR") ){
+            
+            cbViajes.addItem(txtAgregarViaje.getText());
+            txtAgregarViaje.setText("");
+
+            txtAgregarViaje.setEditable(false);
+            
+            btnViaje.setText("AGREGAR VIAJE");
+            
+        }else {
+            
+            txtAgregarViaje.setEditable(true);
+            
+            txtAgregarViaje.requestFocus();
+            
+            btnViaje.setText("GUARDAR");
+            
+        }
     }//GEN-LAST:event_btnViajeActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -600,34 +644,168 @@ public class ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoEntrenadorActionPerformed
 
+    
+    
     private void btnModificarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEntrenadorActionPerformed
         // TODO add your handling code here:
+        String listaEntrenador [ ] = new String[cbEntrenador.getItemCount()];;
+        if ( btnModificarEntrenador.getText().equals("GUARDAR")){
+            
+            Entrenador entrenador_modificar = new Entrenador(txtIdFederacion.getText(), 1, txtNombreEntrenador.getText(), txtApellidoEntrenador.getText(), Integer.parseInt(txtEdadEntrenador.getText()));
+            
+            for(int i = 0; i < cbEntrenador.getItemCount(); i++){
+                
+                listaEntrenador[i]=cbEntrenador.getItemAt(i).toString();
+                
+            }
+           
+            listaEntrenador[Integer.parseInt(JOptionPane.showInputDialog("Ingrese el orden a modificar"))-1]=entrenador_modificar.getApellido()+", "+entrenador_modificar.getNombre();
+            
+            cbEntrenador.removeAllItems();
+            
+            for(int i = 0; i < listaEntrenador.length; i++){
+                
+                cbEntrenador.addItem(listaEntrenador[i]);
+                
+            }
+            
+            txtNombreEntrenador.setText("");
+            txtNombreEntrenador.setText("");
+            txtApellidoEntrenador.setText("");
+            txtEdadEntrenador.setText("");
+            txtIdFederacion.setText("");
+            
+            txtNombreEntrenador.setEditable(false);
+            txtNombreEntrenador.setEditable(false);
+            txtNombreEntrenador.setEditable(false);
+            txtApellidoEntrenador.setEditable(false);
+            txtEdadEntrenador.setEditable(false);
+            txtIdFederacion.setEditable(false);
+            txtNombreEntrenador.setEditable(false);
+            txtNombreEntrenador.requestFocus();
+            
+            btnAgregarEntrenador.setEnabled(true);
+            btnEliminarEntrenador.setEnabled(true);
+            
+            btnModificarEntrenador.setText("MODIFICAR");
+            
+        }else {
+            
+            btnModificarEntrenador.setText("GUARDAR");
+            
+            txtNombreEntrenador.setEditable(true);
+            txtNombreEntrenador.setEditable(true);
+            txtApellidoEntrenador.setEditable(true);
+            txtEdadEntrenador.setEditable(true);
+            txtIdFederacion.setEditable(true);
+            txtNombreEntrenador.setEditable(true);
+            txtNombreEntrenador.requestFocus();
+            
+            btnAgregarEntrenador.setEnabled(false);
+            btnEliminarEntrenador.setEnabled(false);
+            
+        }
+        
     }//GEN-LAST:event_btnModificarEntrenadorActionPerformed
 
-    public void datosEntrenador(){
+    public void insertarEntrenador(){
+        
         ent = new Entrenador(txtIdFederacion.getText(), 1, txtNombreEntrenador.getText(), txtApellidoEntrenador.getText(), Integer.parseInt(txtEdadEntrenador.getText()));
        
     }
+    public boolean vacioEntrenador(){
+        boolean booleano = true;
+        if ( txtNombreEntrenador.getText().equals("")|| 
+             txtApellidoEntrenador.getText().equals("") || 
+             txtEdadEntrenador.getText().equals("") || 
+             txtIdFederacion.getText().equals("")){
+            
+            if( txtNombreEntrenador.getText().equals("") ) txtNombreEntrenador.requestFocus();
+            else if( txtApellidoEntrenador.getText().equals("") ) txtApellidoEntrenador.requestFocus();
+            else if( txtEdadEntrenador.getText().equals("") ) txtEdadEntrenador.requestFocus();
+            else if( txtIdFederacion.getText().equals("") ) txtIdFederacion.requestFocus();
+            
+            JOptionPane.showMessageDialog(ventana.this, "FALTA LLENAR ALGUNOS CAMPOS" ,"CAMPO VACÍO", JOptionPane.ERROR_MESSAGE);
+            booleano = false;
+        }
+        return booleano;
+        
+    }
     private void btnAgregarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEntrenadorActionPerformed
         // TODO add your handling code here:
-        txtNombreEntrenador.setEditable(true);
-        txtNombreEntrenador.setEditable(true);
-        txtApellidoEntrenador.setEditable(true);
-        txtEdadEntrenador.setEditable(true);
-        txtIdFederacion.setEditable(true);
-        txtNombreEntrenador.setEditable(true);
         
-        datosEntrenador();
-        cbEntrenador.addItem(ent.getApellido()+", "+ent.getNombre());
-        txtNombreEntrenador.setText("");
-        txtApellidoEntrenador.setText("");
-        txtEdadEntrenador.setText("");
-        txtIdFederacion.setText("");
-        txtNombreEntrenador.requestFocus();
+        if ( btnAgregarEntrenador.getText().equals("GUARDAR") ){
+            
+            if( vacioEntrenador() ){
+                insertarEntrenador();
+                for ( int i = 0; i < cbEntrenador.getItemCount(); i++ ){
+                    if ( cbEntrenador.getItemAt(i).equals((ent.getApellido().trim()+", "+ent.getNombre().trim())) ){
+                        
+                        JOptionPane.showMessageDialog(ventana.this, "NOMBRE Y APELLIDOS IGUALES, RELLENE OTROS CAMPOS");
+                        return ;
+                        
+                    }
+                }
+                cbEntrenador.addItem(ent.getApellido()+", "+ent.getNombre());
+
+                txtNombreEntrenador.setText("");
+                txtApellidoEntrenador.setText("");
+                txtEdadEntrenador.setText("");
+                txtIdFederacion.setText("");
+
+                txtNombreEntrenador.setEditable(false);
+                txtNombreEntrenador.setEditable(false);
+                txtApellidoEntrenador.setEditable(false);
+                txtEdadEntrenador.setEditable(false);
+                txtIdFederacion.setEditable(false);
+                txtNombreEntrenador.setEditable(false);
+
+                btnModificarEntrenador.setEnabled(true);
+                btnEliminarEntrenador.setEnabled(true);
+                btnAgregarEntrenador.setText("AGREGAR");
+                
+            }
+            
+        } else {
+            
+            btnAgregarEntrenador.setText("GUARDAR");
+            
+            txtNombreEntrenador.setEditable(true);
+            txtNombreEntrenador.setEditable(true);
+            txtApellidoEntrenador.setEditable(true);
+            txtEdadEntrenador.setEditable(true);
+            txtIdFederacion.setEditable(true);
+            txtNombreEntrenador.setEditable(true);
+            txtNombreEntrenador.requestFocus();
+            
+            btnModificarEntrenador.setEnabled(false);
+            btnEliminarEntrenador.setEnabled(false);
+            
+        }
     }//GEN-LAST:event_btnAgregarEntrenadorActionPerformed
 
     private void btnEliminarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEntrenadorActionPerformed
         // TODO add your handling code here:
+        
+        String Nombre[ ] = new String[cbEntrenador.getItemCount()-1];
+        
+        int numero  = Integer.parseInt(JOptionPane.showInputDialog("ingrese orden a eliminar"));
+        
+        for ( int i = 0; i < Nombre.length ; i++ ){
+            
+            if ( (numero)-1 > i ) Nombre[i] = cbEntrenador.getItemAt(i);
+            else Nombre[i] = cbEntrenador.getItemAt(i+1);
+            
+        }
+        
+        cbEntrenador.removeAllItems();
+        
+        for ( int i = 0; i < Nombre.length ; i++ ){
+            
+            cbEntrenador.addItem(Nombre[i]);
+            
+        }
+        
     }//GEN-LAST:event_btnEliminarEntrenadorActionPerformed
 
     private void txtApellidoMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMasajistaActionPerformed
@@ -636,26 +814,151 @@ public class ventana extends javax.swing.JFrame {
 
     private void btnModificarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMasajistaActionPerformed
         // TODO add your handling code here:
+        String nombres_masajista[] = new String[cbMasajista.getItemCount()];
+        
+        if (btnModificarMasajista.getText().equals("GUARDAR")){
+            
+            Masajista modificar_masajista = new Masajista(txtTituloMasajista.getText(), Integer.parseInt(txtAniosExperiencia.getText()), 1, txtNombreMasajista.getText(), txtApellidoMasajista.getText(), Integer.parseInt(txtEdadMasajista.getText()));
+            
+            for (int i = 0; i < cbMasajista.getItemCount(); i++){
+
+                nombres_masajista[i] = cbMasajista.getItemAt(i);
+
+            } 
+            int numero = Integer.parseInt(JOptionPane.showInputDialog("introduzca el numero a modificar"));
+            
+            nombres_masajista[numero-1] = modificar_masajista.getApellido().trim()+", "+modificar_masajista.getNombre().trim();
+        
+            cbMasajista.removeAllItems();
+            
+            for (String nombres_masajista1 : nombres_masajista) {
+                cbMasajista.addItem(nombres_masajista1);
+            }
+            txtNombreMasajista.setText("");
+            txtApellidoMasajista.setText("");
+            txtEdadMasajista.setText("");
+            txtTituloMasajista.setText("");
+            txtAniosExperiencia.setText("");
+            
+            txtNombreMasajista.setEditable(false);
+            txtApellidoMasajista.setEditable(false);
+            txtEdadMasajista.setEditable(false);
+            txtTituloMasajista.setEditable(false);
+            txtAniosExperiencia.setEditable(false);
+            
+            btnEliminarMasajista.setEnabled(true);
+            btnAgregarMasajista.setEnabled(true);
+            btnModificarMasajista.setText("MODIFICAR");
+        }else {
+            
+            txtNombreMasajista.setEditable(true);
+            txtApellidoMasajista.setEditable(true);
+            txtEdadMasajista.setEditable(true);
+            txtTituloMasajista.setEditable(true);
+            txtAniosExperiencia.setEditable(true);
+            
+            btnAgregarMasajista.setEnabled(false);
+            btnEliminarMasajista.setEnabled(false);
+            btnModificarMasajista.setText("GUARDAR");
+            
+        }
+        
     }//GEN-LAST:event_btnModificarMasajistaActionPerformed
 
     public void datosMasajista(){
         Mas = new Masajista(txtTituloMasajista.getText(), Integer.parseInt(txtAniosExperiencia.getText()), 1, txtNombreMasajista.getText(), txtApellidoMasajista.getText(), Integer.parseInt(txtEdadMasajista.getText()));
     } 
+    public boolean vacioMasajista(){
+        
+        if( txtNombreMasajista.getText().equals("") ||
+            txtApellidoMasajista.getText().equals("")||
+            txtEdadMasajista.getText().equals("") ||
+            txtTituloMasajista.getText().equals("") ||
+            txtAniosExperiencia.getText().equals("") ){
+            
+            if(txtNombreMasajista.getText().equals("")) txtNombreMasajista.requestFocus();
+            else if(txtApellidoMasajista.getText().equals("")) txtApellidoMasajista.requestFocus();
+            else if(txtEdadMasajista.getText().equals("")) txtEdadMasajista.requestFocus();
+            else if(txtTituloMasajista.getText().equals("")) txtTituloMasajista.requestFocus();
+            else if(txtAniosExperiencia.getText().equals("")) txtAniosExperiencia.requestFocus();
+            
+            JOptionPane.showMessageDialog(ventana.this, "FALTA INTRODUCIR ALGUNOS DATOS", "CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        return false;
+    }
             
     private void btnAgregarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMasajistaActionPerformed
         // TODO add your handling code here:
-        datosMasajista();
-        cbMasajista.addItem(Mas.getApellido()+", "+Mas.getNombre());
-        txtNombreMasajista.setText("");
-        txtApellidoMasajista.setText("");
-        txtEdadMasajista.setText("");
-        txtTituloMasajista.setText("");
-        txtAniosExperiencia.setText("");
-        txtNombreEntrenador.requestFocus();
+        if ( btnAgregarMasajista.getText().equals("GUARDAR") ){
+            
+            if(vacioMasajista()) return;
+            datosMasajista();
+            for ( int i = 0; i < cbMasajista.getItemCount(); i++){
+                
+                if ( cbMasajista.getItemAt(i).equals(Mas.getApellido().trim()+", "+Mas.getNombre().trim()) ){
+                    
+                    JOptionPane.showMessageDialog(ventana.this, "INGRESE OTROS DATOS", "DATOS EXISTENTES", JOptionPane.ERROR_MESSAGE);
+                    return;
+                    
+                }
+                
+            }
+            
+            txtNombreMasajista.setText("");
+            txtApellidoMasajista.setText("");
+            txtEdadMasajista.setText("");
+            txtTituloMasajista.setText("");
+            txtAniosExperiencia.setText("");
+            
+            txtNombreMasajista.setEditable(false);
+            txtApellidoMasajista.setEditable(false);
+            txtEdadMasajista.setEditable(false);
+            txtTituloMasajista.setEditable(false);
+            txtAniosExperiencia.setEditable(false);
+            
+            btnModificarMasajista.setEnabled(true);
+            btnEliminarMasajista.setEnabled(true);
+            btnAgregarMasajista.setText("AGREGAR");
+            
+            cbMasajista.addItem(Mas.getApellido()+", "+Mas.getNombre());
+            
+        }else {
+            
+            txtNombreMasajista.setEditable(true);
+            txtApellidoMasajista.setEditable(true);
+            txtEdadMasajista.setEditable(true);
+            txtTituloMasajista.setEditable(true);
+            txtAniosExperiencia.setEditable(true);
+            txtNombreMasajista.requestFocus();
+            
+            btnAgregarMasajista.setText("GUARDAR");
+            
+            btnEliminarMasajista.setEnabled(false);
+            btnModificarMasajista.setEnabled(false);
+            
+        }
+        
     }//GEN-LAST:event_btnAgregarMasajistaActionPerformed
 
     private void btnEliminarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMasajistaActionPerformed
         // TODO add your handling code here:
+        
+        String eliminar[] = new String[cbMasajista.getItemCount()-1];
+        int numero = Integer.parseInt(JOptionPane.showInputDialog(ventana.this, "INTRODUZCA EL ORDEN")) - 1;
+        for ( int i = 0; i < eliminar.length; i++ ){
+            
+            if ( numero > i ) eliminar[i] = cbMasajista.getItemAt(i);
+            else eliminar[i] = cbMasajista.getItemAt(i+1);
+            
+        }
+        
+        cbMasajista.removeAllItems();
+        
+        for (String eliminar1 : eliminar) {
+            cbMasajista.addItem(eliminar1);
+        }
+        
     }//GEN-LAST:event_btnEliminarMasajistaActionPerformed
 
     private void txtAniosExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAniosExperienciaActionPerformed
