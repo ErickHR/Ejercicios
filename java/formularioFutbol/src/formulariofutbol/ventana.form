@@ -312,6 +312,7 @@
     <Component class="javax.swing.JTextField" name="txtNombreEntrenador">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreEntrenadorActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreEntrenadorKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbEntrenador">
@@ -339,6 +340,7 @@
     <Component class="javax.swing.JTextField" name="txtAgregarViaje">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAgregarViajeActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAgregarViajeKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbViajes">
@@ -407,6 +409,7 @@
     <Component class="javax.swing.JTextField" name="txtNombreMasajista">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreMasajistaActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreMasajistaKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -420,11 +423,18 @@
     <Component class="javax.swing.JTextField" name="txtApellidoEntrenador">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoEntrenadorActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApellidoEntrenadorKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEdadEntrenador">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEdadEntrenadorKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIdFederacion">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdFederacionKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnModificarEntrenador">
       <Properties>
@@ -463,15 +473,23 @@
     <Component class="javax.swing.JTextField" name="txtApellidoMasajista">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoMasajistaActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApellidoMasajistaKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEdadMasajista">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEdadMasajistaKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTituloMasajista">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTituloMasajistaKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAniosExperiencia">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAniosExperienciaActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAniosExperienciaKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnModificarMasajista">

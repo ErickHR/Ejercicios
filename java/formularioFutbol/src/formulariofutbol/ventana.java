@@ -167,10 +167,20 @@ public class ventana extends javax.swing.JFrame {
                 txtNombreEntrenadorActionPerformed(evt);
             }
         });
+        txtNombreEntrenador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEntrenadorKeyTyped(evt);
+            }
+        });
 
         txtAgregarViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAgregarViajeActionPerformed(evt);
+            }
+        });
+        txtAgregarViaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgregarViajeKeyTyped(evt);
             }
         });
 
@@ -232,6 +242,11 @@ public class ventana extends javax.swing.JFrame {
                 txtNombreMasajistaActionPerformed(evt);
             }
         });
+        txtNombreMasajista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreMasajistaKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("DATOS DEL FUTBOLISTA");
@@ -239,6 +254,23 @@ public class ventana extends javax.swing.JFrame {
         txtApellidoEntrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoEntrenadorActionPerformed(evt);
+            }
+        });
+        txtApellidoEntrenador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoEntrenadorKeyTyped(evt);
+            }
+        });
+
+        txtEdadEntrenador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadEntrenadorKeyTyped(evt);
+            }
+        });
+
+        txtIdFederacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdFederacionKeyTyped(evt);
             }
         });
 
@@ -271,10 +303,32 @@ public class ventana extends javax.swing.JFrame {
                 txtApellidoMasajistaActionPerformed(evt);
             }
         });
+        txtApellidoMasajista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoMasajistaKeyTyped(evt);
+            }
+        });
+
+        txtEdadMasajista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadMasajistaKeyTyped(evt);
+            }
+        });
+
+        txtTituloMasajista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTituloMasajistaKeyTyped(evt);
+            }
+        });
 
         txtAniosExperiencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAniosExperienciaActionPerformed(evt);
+            }
+        });
+        txtAniosExperiencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAniosExperienciaKeyTyped(evt);
             }
         });
 
@@ -1047,6 +1101,89 @@ public class ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Solo letras");
         }
     }//GEN-LAST:event_txtDemarcacionFutbolistaKeyTyped
+
+    private void txtNombreEntrenadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEntrenadorKeyTyped
+        // TODO add your handling code here:
+        char evento = evt.getKeyChar();
+        if(Character.isDigit(evento)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo letras");
+        }
+    }//GEN-LAST:event_txtNombreEntrenadorKeyTyped
+
+    private void sololetras(java.awt.event.KeyEvent evt){
+        char evento = evt.getKeyChar();
+        if(Character.isDigit(evento)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo letras");
+        }
+    }
+    private void solonumeros(java.awt.event.KeyEvent evt){
+        char evento = evt.getKeyChar();
+        if(Character.isLetter(evento)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }
+    
+    private void txtApellidoEntrenadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoEntrenadorKeyTyped
+        // TODO add your handling code here:
+        char evento = evt.getKeyChar();
+        if(Character.isDigit(evento)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo letras");
+        }
+    }//GEN-LAST:event_txtApellidoEntrenadorKeyTyped
+
+    private void txtEdadEntrenadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadEntrenadorKeyTyped
+        // TODO add your handling code here:
+        solonumeros(evt);
+    }//GEN-LAST:event_txtEdadEntrenadorKeyTyped
+
+    private void txtIdFederacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdFederacionKeyTyped
+        // TODO add your handling code here:
+        solonumeros(evt);
+    }//GEN-LAST:event_txtIdFederacionKeyTyped
+
+    private void txtNombreMasajistaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMasajistaKeyTyped
+        // TODO add your handling code here:
+        sololetras(evt);
+
+    }//GEN-LAST:event_txtNombreMasajistaKeyTyped
+
+    private void txtApellidoMasajistaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoMasajistaKeyTyped
+        // TODO add your handling code here:
+        sololetras(evt);
+
+    }//GEN-LAST:event_txtApellidoMasajistaKeyTyped
+
+    private void txtEdadMasajistaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadMasajistaKeyTyped
+        // TODO add your handling code here:
+        solonumeros(evt);
+
+    }//GEN-LAST:event_txtEdadMasajistaKeyTyped
+
+    private void txtTituloMasajistaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloMasajistaKeyTyped
+        // TODO add your handling code here:
+        sololetras(evt);
+
+    }//GEN-LAST:event_txtTituloMasajistaKeyTyped
+
+    private void txtAniosExperienciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAniosExperienciaKeyTyped
+        // TODO add your handling code here:
+        solonumeros(evt);
+
+    }//GEN-LAST:event_txtAniosExperienciaKeyTyped
+
+    private void txtAgregarViajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgregarViajeKeyTyped
+        // TODO add your handling code here:
+        sololetras(evt);
+
+    }//GEN-LAST:event_txtAgregarViajeKeyTyped
 
     /**
      * @param args the command line arguments
