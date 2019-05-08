@@ -17,7 +17,7 @@ public class FormularioFutbol {
     public static void main(String[] args) {
         // TODO code application logic here
         ventana ven = new ventana();
-        ven.setTitle("JUEGOS PANAMERICANOS");
+        ven.setTitle("JUEGOS PANAMERICANOS 2019");
         ven.setVisible(true);
     }
     
