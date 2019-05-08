@@ -16,10 +16,9 @@ public class FormularioFutbol {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ventana vtn = new ventana();
-        vtn.setTitle("LOS JUEGOS PANAMERICANOS");
-        vtn.setVisible(true);
-        
+        ventana ven = new ventana();
+        ven.setTitle("JUEGOS PANAMERICANOS");
+        ven.setVisible(true);
     }
     
 }
