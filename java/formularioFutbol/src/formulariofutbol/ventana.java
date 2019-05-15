@@ -586,6 +586,8 @@ public class ventana extends javax.swing.JFrame {
                     }
 
                 }
+                
+                        
                 lstmodel.addElement(Fut.getApellido()+", "+Fut.getNombre());
 
                 txtNombreFutbolista.setText("");
@@ -1108,7 +1110,6 @@ public class ventana extends javax.swing.JFrame {
         if(Character.isDigit(evento)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo letras");
         }
     }//GEN-LAST:event_txtNombreEntrenadorKeyTyped
 
@@ -1125,7 +1126,6 @@ public class ventana extends javax.swing.JFrame {
         if(Character.isLetter(evento)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }
     }
     
@@ -1135,7 +1135,6 @@ public class ventana extends javax.swing.JFrame {
         if(Character.isDigit(evento)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo letras");
         }
     }//GEN-LAST:event_txtApellidoEntrenadorKeyTyped
 
