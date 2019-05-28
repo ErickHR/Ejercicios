@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class arrayProducto {
-    ArrayList<producto> listaProducto;
+    static ArrayList<producto> listaProducto;
     public arrayProducto(){
         listaProducto = new ArrayList<>();
     }
