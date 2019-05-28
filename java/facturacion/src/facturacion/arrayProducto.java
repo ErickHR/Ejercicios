@@ -23,8 +23,11 @@ public class arrayProducto {
     public void eliminar(int i){
         listaProducto.remove(i);
     }
+    public void modificar(int i, producto producto){
+        listaProducto.set(i, producto);
+    }
     public producto consultar(int i){
-        return listaProducto.get(i-1);
+        return listaProducto.get(i);
     }
     public producto consultarCodigo(String codigo){
         for(int i = 0; i < listaProducto.size(); i++){
@@ -34,11 +37,12 @@ public class arrayProducto {
         }
         return null;
     }
+    
     public int cantidadProducto(){
         return listaProducto.size();
     }
     
-    public producto Caro(String produc){
+    public producto Caro(){
         float masCaro= listaProducto.get(0).getPrecio();
         int j=0;
         for(int i = 1; i < listaProducto.size(); i++){
@@ -49,7 +53,7 @@ public class arrayProducto {
         }
         return listaProducto.get(j);
     }
-    public producto barato(String produc){
+    public producto barato(){
         float masBarato= listaProducto.get(0).getPrecio();
         int j=0;
         for(int i = 1; i < listaProducto.size(); i++){
