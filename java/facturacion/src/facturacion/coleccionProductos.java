@@ -5,6 +5,7 @@
  */
 package facturacion;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +29,8 @@ public class coleccionProductos extends javax.swing.JFrame {
     public coleccionProductos() {
         initComponents();
         
+        desactivarTextos();
+        
         modelo =  new DefaultTableModel();
         
         modelo.addColumn("CODIGO");
@@ -38,6 +41,83 @@ public class coleccionProductos extends javax.swing.JFrame {
         tablaFacturacion.setModel(modelo);
     }
 
+    public void desactivarBotones(String btn){
+        switch (btn) {
+            case "AGREGAR":
+                btnConsultar.setEnabled(false);
+                btnEliminar.setEnabled(false);
+                btnLimpiar.setEnabled(false);
+                btnModificar.setEnabled(false);
+                break;
+            case "MODIFICAR":
+                btnAgregar.setEnabled(false);
+                btnConsultar.setEnabled(false);
+                btnEliminar.setEnabled(false);
+                btnLimpiar.setEnabled(false);
+                break;
+        }
+    }
+    public void activarBotones(String btn){
+        switch (btn) {
+            case "MODIFICAR":
+                btnAgregar.setEnabled(true);
+                btnConsultar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                btnLimpiar.setEnabled(true);
+                break;
+            case "AGREGAR":
+                btnConsultar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                btnLimpiar.setEnabled(true);
+                btnModificar.setEnabled(true);
+            
+        }
+    }
+    public boolean unicoCodigo(){
+        for (int i = 0; i < modelo.getRowCount(); i++){
+            
+            if(modelo.getValueAt(i, 0).equals(txtcodigo.getText())){
+                return false;
+            }
+            
+        }
+        return true;
+    }
+    public boolean unicoCodigo(int j){
+        for (int i = 0; i < modelo.getRowCount(); i++){
+            
+            if(i!=j){
+                if(modelo.getValueAt(i, 0).equals(txtcodigo.getText())){
+                    return false;
+                }
+            }
+            
+        }
+        return true;
+    }
+    public boolean estaVacio(){
+        return modelo.getRowCount() == 0;
+    }
+    public void desactivarTextos(){
+        
+        txtPrecio.setEditable(false);
+        txtStock.setEditable(false);
+        txtcodigo.setEditable(false);
+        txtdescripcion.setEditable(false);
+    }
+    public void activarTextos(){
+        
+        txtPrecio.setEditable(true);
+        txtStock.setEditable(true);
+        txtcodigo.setEditable(true);
+        txtdescripcion.setEditable(true);
+    }
+    public void limpiarTextos(){
+        txtPrecio.setText("");
+        txtStock.setText("");
+        txtcodigo.setText("");
+        txtdescripcion.setText("");
+    }
     public void crearProducto(){
         
         producto = new producto(txtcodigo.getText(), txtdescripcion.getText(), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(txtStock.getText()));
@@ -224,26 +304,47 @@ public class coleccionProductos extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         
-        crearProducto();
+        if ( btnAgregar.getText().equals("AGREGAR")){
+            activarTextos();
+            desactivarBotones(btnAgregar.getText());
+            btnAgregar.setText("GUARDAR");
+        } else {
+            
+            if(!unicoCodigo()){
+                JOptionPane.showMessageDialog(this, "inserte otro codigo");
+                return;
+            }
+            
+            crearProducto();
         
-        lista.adicionar(producto);
-        
-        datos[0] = txtcodigo.getText();
-        datos[1] = txtdescripcion.getText();
-        datos[2] = txtPrecio.getText();
-        datos[3] = txtStock.getText();
-        
-        modelo.addRow(datos);
-        
-        /*txtPrecio.setText("");
-        txtStock.setText("");
-        txtcodigo.setText("");
-        txtdescripcion.setText("");*/
+            lista.adicionar(producto);
+
+            datos[0] = txtcodigo.getText();
+            datos[1] = txtdescripcion.getText();
+            datos[2] = txtPrecio.getText();
+            datos[3] = txtStock.getText();
+
+            modelo.addRow(datos);
+            
+            txtPrecio.setText("");
+            txtStock.setText("");
+            txtcodigo.setText("");
+            txtdescripcion.setText("");
+            
+            btnAgregar.setText("AGREGAR");
+            
+            desactivarTextos();
+            activarBotones(btnAgregar.getText());
+        }
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        if(estaVacio()) {
+            JOptionPane.showMessageDialog(this, "esta vacio");
+            return;
+        }
         int i = Integer.parseInt(JOptionPane.showInputDialog("inserte la fila a eliminar")) - 1;
         lista.eliminar(i);
         modelo.removeRow(i);
@@ -252,8 +353,12 @@ public class coleccionProductos extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-         
+        if(estaVacio()) {
+            JOptionPane.showMessageDialog(this, "esta vacio");
+            return;
+        }
         if( btnModificar.getText().equals("MODIFICAR")){
+            activarTextos();
             fila = Integer.parseInt(JOptionPane.showInputDialog("inserte la fila a modificar")) - 1;
             producto = lista.consultar(fila);
         
@@ -262,10 +367,14 @@ public class coleccionProductos extends javax.swing.JFrame {
             txtcodigo.setText(producto.getCodigo());
             txtdescripcion.setText(producto.getDescripcion());
             
+            desactivarBotones(btnModificar.getText());
             btnModificar.setText("GUARDAR");
             
         } else {
-            
+            if(!unicoCodigo(fila)){
+                JOptionPane.showMessageDialog(this, "inserte otro codigo");
+                return;
+            }
             crearProducto();
             crearArrayProducto(producto);
             
@@ -276,14 +385,22 @@ public class coleccionProductos extends javax.swing.JFrame {
             modelo.setValueAt(datos[2], fila, 2);
             modelo.setValueAt(datos[3], fila, 3);
             
+            desactivarTextos();
+            limpiarTextos();
+            
             btnModificar.setText("MODIFICAR");
+            
+            activarBotones(btnModificar.getText());
         }
         
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        
+        if(estaVacio()) {
+            JOptionPane.showMessageDialog(this, "esta vacio");
+            return;
+        }
         String consultar = (String) JOptionPane.showInputDialog(null, "seleccione categoria", "sistema de control de personal",JOptionPane.QUESTION_MESSAGE, null, new Object[]{"consultar","consultar por codigo", "cantidad producto","Mas caro","Mas barato"}, "1");
         
         switch (consultar) {
@@ -294,9 +411,9 @@ public class coleccionProductos extends javax.swing.JFrame {
                 String codigo = JOptionPane.showInputDialog("Escriba el codigo: ");
                 producto = lista.consultarCodigo(codigo);
                 JOptionPane.showMessageDialog(this, "Codigo: " + producto.getCodigo()+
-                        "Descripcion: " + producto.getDescripcion()+
-                        "Precio: " + producto.getPrecio()+
-                        "Stock: " + producto.getStock());
+                        "\nDescripcion: " + producto.getDescripcion()+
+                        "\nPrecio: " + producto.getPrecio()+
+                        "\nStock: " + producto.getStock());
                 break;
             case "cantidad producto":
                 JOptionPane.showMessageDialog(this, lista.cantidadProducto());
@@ -304,16 +421,16 @@ public class coleccionProductos extends javax.swing.JFrame {
             case "Mas caro":
                 producto = lista.Caro();
                 JOptionPane.showMessageDialog(this, "Codigo: " + producto.getCodigo()+
-                        "Descripcion: " + producto.getDescripcion()+
-                        "Precio: " + producto.getPrecio()+
-                        "Stock: " + producto.getStock());
+                        "\nDescripcion: " + producto.getDescripcion()+
+                        "\nPrecio: " + producto.getPrecio()+
+                        "\nStock: " + producto.getStock());
                 break;
             case "Mas barato":
                 producto = lista.barato();
                 JOptionPane.showMessageDialog(this, "Codigo: " + producto.getCodigo()+
-                        "Descripcion: " + producto.getDescripcion()+
-                        "Precio: " + producto.getPrecio()+
-                        "Stock: " + producto.getStock());
+                        "\nDescripcion: " + producto.getDescripcion()+
+                        "\nPrecio: " + producto.getPrecio()+
+                        "\nStock: " + producto.getStock());
                 break;
         }
         
