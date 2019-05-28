@@ -5,7 +5,6 @@
  */
 package facturacion;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +28,7 @@ public class coleccionProductos extends javax.swing.JFrame {
     public coleccionProductos() {
         initComponents();
         
-        desactivarTextos();
+        estadoTextos(false);
         
         modelo =  new DefaultTableModel();
         
@@ -41,36 +40,20 @@ public class coleccionProductos extends javax.swing.JFrame {
         tablaFacturacion.setModel(modelo);
     }
 
-    public void desactivarBotones(String btn){
+    public void estadoBotones(String btn, boolean valor){
         switch (btn) {
             case "AGREGAR":
-                btnConsultar.setEnabled(false);
-                btnEliminar.setEnabled(false);
-                btnLimpiar.setEnabled(false);
-                btnModificar.setEnabled(false);
+                btnConsultar.setEnabled(valor);
+                btnEliminar.setEnabled(valor);
+                btnLimpiar.setEnabled(valor);
+                btnModificar.setEnabled(valor);
                 break;
             case "MODIFICAR":
-                btnAgregar.setEnabled(false);
-                btnConsultar.setEnabled(false);
-                btnEliminar.setEnabled(false);
-                btnLimpiar.setEnabled(false);
+                btnAgregar.setEnabled(valor);
+                btnConsultar.setEnabled(valor);
+                btnEliminar.setEnabled(valor);
+                btnLimpiar.setEnabled(valor);
                 break;
-        }
-    }
-    public void activarBotones(String btn){
-        switch (btn) {
-            case "MODIFICAR":
-                btnAgregar.setEnabled(true);
-                btnConsultar.setEnabled(true);
-                btnEliminar.setEnabled(true);
-                btnLimpiar.setEnabled(true);
-                break;
-            case "AGREGAR":
-                btnConsultar.setEnabled(true);
-                btnEliminar.setEnabled(true);
-                btnLimpiar.setEnabled(true);
-                btnModificar.setEnabled(true);
-            
         }
     }
     public boolean unicoCodigo(){
@@ -98,19 +81,12 @@ public class coleccionProductos extends javax.swing.JFrame {
     public boolean estaVacio(){
         return modelo.getRowCount() == 0;
     }
-    public void desactivarTextos(){
+    public void estadoTextos(boolean valor){
         
-        txtPrecio.setEditable(false);
-        txtStock.setEditable(false);
-        txtcodigo.setEditable(false);
-        txtdescripcion.setEditable(false);
-    }
-    public void activarTextos(){
-        
-        txtPrecio.setEditable(true);
-        txtStock.setEditable(true);
-        txtcodigo.setEditable(true);
-        txtdescripcion.setEditable(true);
+        txtPrecio.setEditable(valor);
+        txtStock.setEditable(valor);
+        txtcodigo.setEditable(valor);
+        txtdescripcion.setEditable(valor);
     }
     public void limpiarTextos(){
         txtPrecio.setText("");
@@ -305,8 +281,8 @@ public class coleccionProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if ( btnAgregar.getText().equals("AGREGAR")){
-            activarTextos();
-            desactivarBotones(btnAgregar.getText());
+            estadoTextos(true);
+            estadoBotones(btnAgregar.getText(), false);
             btnAgregar.setText("GUARDAR");
         } else {
             
@@ -333,8 +309,8 @@ public class coleccionProductos extends javax.swing.JFrame {
             
             btnAgregar.setText("AGREGAR");
             
-            desactivarTextos();
-            activarBotones(btnAgregar.getText());
+            estadoTextos(false);
+            estadoBotones(btnAgregar.getText(), true);
         }
         
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -358,7 +334,7 @@ public class coleccionProductos extends javax.swing.JFrame {
             return;
         }
         if( btnModificar.getText().equals("MODIFICAR")){
-            activarTextos();
+            estadoTextos(true);
             fila = Integer.parseInt(JOptionPane.showInputDialog("inserte la fila a modificar")) - 1;
             producto = lista.consultar(fila);
         
@@ -367,7 +343,7 @@ public class coleccionProductos extends javax.swing.JFrame {
             txtcodigo.setText(producto.getCodigo());
             txtdescripcion.setText(producto.getDescripcion());
             
-            desactivarBotones(btnModificar.getText());
+            estadoBotones(btnModificar.getText(), false);
             btnModificar.setText("GUARDAR");
             
         } else {
@@ -385,12 +361,12 @@ public class coleccionProductos extends javax.swing.JFrame {
             modelo.setValueAt(datos[2], fila, 2);
             modelo.setValueAt(datos[3], fila, 3);
             
-            desactivarTextos();
+            estadoTextos(false);
             limpiarTextos();
             
             btnModificar.setText("MODIFICAR");
             
-            activarBotones(btnModificar.getText());
+            estadoBotones(btnModificar.getText(), true);
         }
         
     }//GEN-LAST:event_btnModificarActionPerformed
