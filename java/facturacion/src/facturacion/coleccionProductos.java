@@ -334,8 +334,10 @@ public class coleccionProductos extends javax.swing.JFrame {
             return;
         }
         if( btnModificar.getText().equals("MODIFICAR")){
-            estadoTextos(true);
+            
+            estadoBotones(btnModificar.getText(), false);
             fila = Integer.parseInt(JOptionPane.showInputDialog("inserte la fila a modificar")) - 1;
+            estadoTextos(true);
             producto = lista.consultar(fila);
         
             txtPrecio.setText(Float.toString(producto.getPrecio()));
@@ -343,7 +345,6 @@ public class coleccionProductos extends javax.swing.JFrame {
             txtcodigo.setText(producto.getCodigo());
             txtdescripcion.setText(producto.getDescripcion());
             
-            estadoBotones(btnModificar.getText(), false);
             btnModificar.setText("GUARDAR");
             
         } else {
