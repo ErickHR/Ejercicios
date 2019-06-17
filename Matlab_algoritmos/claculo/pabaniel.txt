@@ -1,0 +1,15 @@
+modelar mediante un diagrama la siguietne especificacion relacionada con los
+ alquileres de camaras en una tienda de fotografia:
+-La tienda alquila camaras fotograficas analogicas 
+-Las camaras se caraterizan por sus marca modelo y soporte flash
+-cada camara es compatible con uno o mas tipos de peliculas 
+-Las peliculas se caracterizan por su marca ,nombre,sensibilidad ISO (50 10 
+200 400 800 1600) y formato (35mm 110mm 120mm)
+-para cada marca con la que trabaja la tienda se conoce la direccion de 
+servicio de reparacion mas cercano
+_la tienda dispone con varios items de cada modelo de camara 
+-cada item tiene una pegantina con una referencia y puede estar en la tienda 
+, alquilado , con retraso o en reparacion
+-Los clientes pueden tener un maximo de camaras en alquiler 
+-cada camara se alquila con un maximo de 7dias , popr cada dia de retraso se 
+impone una multa de un mes sin posibilidad de coger una camara 

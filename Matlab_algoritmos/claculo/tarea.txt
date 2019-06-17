@@ -1,0 +1,11 @@
+hacer aplicacion q lea 
+nombre 
+dni 
+nacimiento
+monto pagado
+clase persoan
+boton calcular : "señor nombre DNI cuya edad es edad tiene un descuento de  desc
+descuento
+1-100)10%
+100-1000)12%
+1000)15% 

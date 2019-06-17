@@ -1,0 +1,61 @@
+tener los :
+backups
+archivelog
+autobackup
+
+#######################################
+bajar la base de datos
+$ . oraenv
+	PRD
+	sqlplus / as sysdba
+SQL> shutdown immediate;
+
+#######################################
+eliminar el CONTROLFILE Y DATAFILE DEL +ASM
+$ . oraenv 
+	+ASM
+$ asmcmd -p
+ASMCMD [+] > cd DG_DATA_PRD/
+ASMCMD [+DG_DATA_PRD] > cd PRD/
+ASMCMD [+DG_DATA_PRD/PRD] > rm -rf CONTROLFILE/
+ASMCMD [+DG_DATA_PRD/PRD] > mkdir CONTROLFILE/
+ASMCMD [+DG_DATA_PRD/PRD] > rm -rf DATAFILE/
+ASMCMD [+DG_DATA_PRD/PRD] > mkdir DATAFILE/
+
+##############################################
+
+levantar la base de datos a nomount desde el RMAM
+
+$ . oraenv
+	PRD
+$ rman target/
+RMAN> startup nomount
+
+##############################################
+
+restauras el controlfile desde el autobackup
+
+RMAN> restore controlfile from 'ubicacion del autobackup';
+RMAN> alter database mount
+
+RMAN> restore dabase;
+SQL> recover automatic database using backup controlfile until cancel;
+
+SQL> alter database open resetlogs;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
