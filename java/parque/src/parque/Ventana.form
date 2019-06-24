@@ -116,6 +116,7 @@
                           <Component id="btnListar" max="32767" attributes="0"/>
                           <Component id="btnModificar" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnCerrar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnPases" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -170,14 +171,15 @@
                       <Component id="btnCerrar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPases" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="224" max="-2" attributes="0"/>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -296,6 +298,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="CERRAR"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPases">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PASES"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPasesActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
