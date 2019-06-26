@@ -55,6 +55,4 @@ public class ZonaTematica {
         this.color = color;
     }
     
-    
-    
 }
