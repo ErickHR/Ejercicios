@@ -8,6 +8,7 @@ package parque;
 import Lista.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import zonaTematica.Pases.VentanaPases;
 
 /**
  *
@@ -77,6 +78,7 @@ public class Ventana extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         btnTicket = new javax.swing.JButton();
+        btnPases = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,6 +176,13 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        btnPases.setText("PASES");
+        btnPases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPasesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,7 +190,7 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -217,7 +226,9 @@ public class Ventana extends javax.swing.JFrame {
                             .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(202, Short.MAX_VALUE))))
+                        .addGap(61, 61, 61)
+                        .addComponent(btnPases)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +259,9 @@ public class Ventana extends javax.swing.JFrame {
                             .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(btnAgregar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregar)
+                            .addComponent(btnPases))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnListar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,6 +364,13 @@ public class Ventana extends javax.swing.JFrame {
         vtnTicket.setVisible(true);
     }//GEN-LAST:event_btnTicketActionPerformed
 
+    private void btnPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasesActionPerformed
+        // TODO add your handling code here:
+        VentanaPases vtnPases = new VentanaPases(lista);
+        vtnPases.setLocationRelativeTo(null);
+        vtnPases.setVisible(true);
+    }//GEN-LAST:event_btnPasesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -361,6 +381,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnPases;
     private javax.swing.JButton btnTicket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
