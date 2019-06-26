@@ -14,7 +14,7 @@ import zonaTematica.Pases.VentanaPases;
  *
  * @author JuanPablo
  */
-public class Ventana extends javax.swing.JFrame {
+public class VentanaCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form ventana
@@ -23,7 +23,7 @@ public class Ventana extends javax.swing.JFrame {
     private String arreglo[] = new String[8];
     private DefaultTableModel modelo;
     private String dni;
-    public Ventana() {
+    public VentanaCliente() {
         initComponents();
         lista = new Lista();
         rbMasculino.setSelected(true);

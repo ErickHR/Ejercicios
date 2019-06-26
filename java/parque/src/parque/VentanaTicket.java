@@ -24,6 +24,7 @@ public class VentanaTicket extends javax.swing.JFrame {
         
         for(Nodo aux = lista.getInicio(); aux != null; aux = aux.getSiguiente())
             cbClienteTicket.addItem(aux.getCliente().getDni());
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
