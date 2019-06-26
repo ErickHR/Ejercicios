@@ -69,11 +69,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" min="-2" pref="375" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="jScrollPane3" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -116,11 +116,11 @@
                           <Component id="btnListar" max="32767" attributes="0"/>
                           <Component id="btnModificar" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnCerrar" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnPases" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnTicket" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="202" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -175,7 +175,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnPases" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTicket" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="224" max="-2" attributes="0"/>
@@ -299,12 +299,12 @@
         <Property name="text" type="java.lang.String" value="CERRAR"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnPases">
+    <Component class="javax.swing.JButton" name="btnTicket">
       <Properties>
-        <Property name="text" type="java.lang.String" value="PASES"/>
+        <Property name="text" type="java.lang.String" value="TICKET"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPasesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTicketActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

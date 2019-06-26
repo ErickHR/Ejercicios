@@ -6,6 +6,7 @@
 package Lista;
 
 import parque.Cliente;
+import parque.Ticket;
 
 /**
  *
@@ -13,13 +14,24 @@ import parque.Cliente;
  */
 public class Nodo {
     private Cliente cliente;
+    private Ticket ticket;
     private Nodo siguiente;
 
-    public Nodo(Cliente cliente) {
+    public Nodo(Cliente cliente, Ticket ticket) {
         this.cliente = cliente;
+        this.ticket = ticket;
         this.siguiente = null;
     }
 
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+    
+    
     public Cliente getCliente() {
         return cliente;
     }

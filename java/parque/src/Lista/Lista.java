@@ -6,6 +6,7 @@
 package Lista;
 
 import parque.Cliente;
+import parque.Ticket;
 
 /**
  *
@@ -36,9 +37,9 @@ public class Lista {
         this.cantidad = cantidad;
     }
     
-    public void agregarAdelante(Cliente cliente){
+    public void agregarAdelante(Cliente cliente, Ticket ticket){
         
-        Nodo nuevo = new Nodo(cliente);
+        Nodo nuevo = new Nodo(cliente, ticket);
         
         if(inicio == null) inicio = nuevo;
         else{

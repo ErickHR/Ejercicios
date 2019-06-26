@@ -147,19 +147,19 @@ public class botonComboBox extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         boolean exists = false;
-        for (int i = 0; i < this.jcbLista.getItemCount() && !exists; i++) {
-            if (this.jcbLista.getItemAt(i).equals(this.txtNuevaCarrera.getText()))  {
-                this.txtNuevaCarrera.setText("");
-                JOptionPane.showMessageDialog(null, "esta repetido");
-                this.txtNuevaCarrera.requestFocus();
-                return;
-            }
-        }
+        //for (int i = 0; i < this.jcbLista.getItemCount() && !exists; i++) {
+          //  if (this.jcbLista.getItemAt(i).equals(this.txtNuevaCarrera.getText()))  {
+            //    this.txtNuevaCarrera.setText("");
+              //  JOptionPane.showMessageDialog(null, "esta repetido");
+                //this.txtNuevaCarrera.requestFocus();
+               // return;
+            //}
+        //}
         this.jcbLista.addItem(this.txtNuevaCarrera.getText());
-        String nombres[] = {"1","2","3","4","5","6"};
-        this.jcbLista = new JComboBox(nombres);
-        jcbLista.setMaximumRowCount(6);
-        add(this.jcbLista);
+        //String nombres[] = {"1","2","3","4","5","6"};
+        //this.jcbLista = new JComboBox(nombres);
+        //jcbLista.setMaximumRowCount(6);
+        //add(this.jcbLista);
         
         this.txtNuevaCarrera.setText("");
         this.txtNuevaCarrera.requestFocus();

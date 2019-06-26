@@ -18,11 +18,13 @@ public class ComboBox {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        usandoComboBox combo = new usandoComboBox();
+        //usandoComboBox combo = new usandoComboBox();
         
-        combo.setBounds(350, 100, 500, 500);
-        combo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        combo.setVisible(true);
+        //combo.setBounds(350, 100, 500, 500);
+        //combo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //combo.setVisible(true);
+        botonComboBox btn = new botonComboBox();
+        btn.setVisible(true);
     }
     
 }

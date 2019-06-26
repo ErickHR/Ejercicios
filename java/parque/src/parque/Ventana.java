@@ -5,6 +5,7 @@
  */
 package parque;
 
+import Lista.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,12 +18,13 @@ public class Ventana extends javax.swing.JFrame {
     /**
      * Creates new form ventana
      */
-    Lista.Lista lista = new Lista.Lista();
-    String arreglo[] = new String[7];
-    DefaultTableModel modelo;
-    String dni;
+    private Lista lista;
+    private String arreglo[] = new String[8];
+    private DefaultTableModel modelo;
+    private String dni;
     public Ventana() {
         initComponents();
+        lista = new Lista();
         rbMasculino.setSelected(true);
         modelo = new DefaultTableModel();
         modelo.addColumn("ID");
@@ -32,9 +34,14 @@ public class Ventana extends javax.swing.JFrame {
         modelo.addColumn("SEXO");
         modelo.addColumn("DIRECCION");
         modelo.addColumn("TELEFONO");
+        modelo.addColumn("TICKET");
         tabla.setModel(modelo);
     }
 
+    public Lista getLista() {
+        return lista;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,7 +76,7 @@ public class Ventana extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        btnPases = new javax.swing.JButton();
+        btnTicket = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,10 +167,10 @@ public class Ventana extends javax.swing.JFrame {
 
         btnCerrar.setText("CERRAR");
 
-        btnPases.setText("PASES");
-        btnPases.addActionListener(new java.awt.event.ActionListener() {
+        btnTicket.setText("TICKET");
+        btnTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPasesActionPerformed(evt);
+                btnTicketActionPerformed(evt);
             }
         });
 
@@ -174,7 +181,7 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -209,8 +216,8 @@ public class Ventana extends javax.swing.JFrame {
                             .addComponent(btnListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(btnTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(202, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +261,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPases))
+                    .addComponent(btnTicket))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -267,15 +274,15 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Cliente cliente = new Cliente(txtDni.getText(), txtNombre.getText(), txtApellido.getText(), rbMasculino.isSelected()? rbMasculino.getText() : rbFemenino.getText(), txtDireccion.getText(), txtTelefono.getText());
-        
-        lista.agregarAdelante(cliente);
+        Ticket ticket = new Ticket();
+        lista.agregarAdelante(cliente, ticket);
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
         int cantidad = 1;
-        Lista.Nodo aux = lista.getInicio();
+        Nodo aux = lista.getInicio();
         
         modelo.setRowCount(0);
         
@@ -288,6 +295,7 @@ public class Ventana extends javax.swing.JFrame {
             arreglo[4] = aux.getCliente().getSexo();
             arreglo[5] = aux.getCliente().getDireccion();
             arreglo[6] = aux.getCliente().getTelefono();
+            arreglo[7] = aux.getTicket().getFecha();
             
             modelo.addRow(arreglo);
             
@@ -305,7 +313,7 @@ public class Ventana extends javax.swing.JFrame {
         if(btnModificar.getText().equals("MODIFICAR")){
             
             dni = JOptionPane.showInputDialog("inserte DNI:");
-            Lista.Nodo aux = lista.buscar(dni);
+            Nodo aux = lista.buscar(dni);
             
             txtApellido.setText(aux.getCliente().getApellido());
             txtDireccion.setText(aux.getCliente().getDireccion());
@@ -336,10 +344,12 @@ public class Ventana extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasesActionPerformed
+    private void btnTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTicketActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnPasesActionPerformed
+        VentanaTicket vtnTicket = new VentanaTicket();
+        vtnTicket.setLocationRelativeTo(null);
+        vtnTicket.setVisible(true);
+    }//GEN-LAST:event_btnTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,7 +361,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnPases;
+    private javax.swing.JButton btnTicket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
