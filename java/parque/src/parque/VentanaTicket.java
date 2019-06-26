@@ -6,6 +6,7 @@
 package parque;
 
 import Lista.*;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,13 +17,13 @@ public class VentanaTicket extends javax.swing.JFrame {
     /**
      * Creates new form VentanaTicket
      */
-    public VentanaTicket() {
+    Lista lista;
+    public VentanaTicket(Lista lista) {
         initComponents();
-        Ventana vtn = new Ventana();
+        this.lista = lista;
         
-        Nodo aux = vtn.getLista().getInicio();
-        
-        cbClienteTicket.addItem(aux.getCliente().getDni());
+        for(Nodo aux = lista.getInicio(); aux != null; aux = aux.getSiguiente())
+            cbClienteTicket.addItem(aux.getCliente().getDni());
     }
 
     /**
@@ -124,6 +125,13 @@ public class VentanaTicket extends javax.swing.JFrame {
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         // TODO add your handling code here:
         
+        for(Nodo aux = lista.getInicio(); aux != null; aux = aux.getSiguiente()){
+            if(aux.getCliente().getDni().equals(cbClienteTicket.getSelectedItem())){
+                aux.getTicket().setFecha(txtFechaTicket.getText());
+                aux.getTicket().setPrecio(Float.parseFloat(txtPrecioTicket.getText()));
+            }
+        }
+        this.setVisible(false);
     }//GEN-LAST:event_btnComprarActionPerformed
 
     /**

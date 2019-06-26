@@ -18,7 +18,7 @@ public class Ventana extends javax.swing.JFrame {
     /**
      * Creates new form ventana
      */
-    private Lista lista;
+    private static Lista lista;
     private String arreglo[] = new String[8];
     private DefaultTableModel modelo;
     private String dni;
@@ -346,7 +346,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTicketActionPerformed
         // TODO add your handling code here:
-        VentanaTicket vtnTicket = new VentanaTicket();
+        VentanaTicket vtnTicket = new VentanaTicket(lista);
         vtnTicket.setLocationRelativeTo(null);
         vtnTicket.setVisible(true);
     }//GEN-LAST:event_btnTicketActionPerformed
