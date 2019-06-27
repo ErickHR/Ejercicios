@@ -81,11 +81,7 @@ public class VentanaCliente extends javax.swing.JFrame {
         btnNuevo.setEnabled(booleano);
     }
     
-    public boolean validandoDni(String dni){
-        if(Integer.parseInt(dni) < 10000000 || Integer.parseInt(dni) > 100000000){
-            JOptionPane.showMessageDialog(null, "dni invalido(10000000-100000000)");
-            return false;
-        }
+    public boolean unicoDni(String dni){
         for(Nodo aux = lista.getInicio(); aux != null; aux = aux.getSiguiente()){
             if(aux.getCliente().getDni().equals(dni)) {
                 JOptionPane.showMessageDialog(null, "inserte otro dni");
@@ -95,15 +91,62 @@ public class VentanaCliente extends javax.swing.JFrame {
         return true;
     }
     
+    public boolean validandoDni(String dni){
+        if(Integer.parseInt(dni) < 10000000 || Integer.parseInt(dni) > 100000000){
+            JOptionPane.showMessageDialog(null, "dni invalido(10000000-100000000)");
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean validarDniEditar(String dni, int fila){
+        int orden = 0;
+        for(Nodo aux = lista.getInicio(); aux != null; aux = aux.getSiguiente()){
+            if(aux.getCliente().getDni().equals(dni) && orden != fila){
+                JOptionPane.showMessageDialog(null, "inserte otro dni");
+                return false;
+            }
+            orden++;
+        }
+        return true;
+    }
+    public boolean validarTelefono(String telefono){
+        if(Integer.parseInt(telefono) > 999999999 || Integer.parseInt(telefono) < 900000000){
+            JOptionPane.showMessageDialog(null, "telefono invalido");
+            return false;
+        }
+        return true;
+    }
     public void soloNumeros(java.awt.event.KeyEvent evt){
         char validar = evt.getKeyChar();
         if(Character.isLetter(validar)) evt.consume();
+    }
+    public void Dni_cantidad(java.awt.event.KeyEvent evt){
+        if(txtDni.getText().length() > 7)
+            evt.consume();
+    }
+    public void Telefono_cantidad(java.awt.event.KeyEvent evt){
+        if(txtTelefono.getText().length() > 8)
+            evt.consume();
     }
     public void soloLetras(java.awt.event.KeyEvent evt){
         char validar = evt.getKeyChar();
         if(Character.isDigit(validar)) evt.consume();
     }
-    
+    public boolean campoObligatorios(){
+        if(txtApellido.getText().isEmpty() || txtNombre.getText().isEmpty() || txtDni.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "rellene los campos obligatorios");
+            if(txtDni.getText().isEmpty())
+                txtDni.requestFocus();
+            else if(txtNombre.getText().isEmpty())
+                txtNombre.requestFocus();
+            else if(txtApellido.getText().isEmpty())
+                txtApellido.requestFocus();
+            return false;
+        }
+            
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,11 +234,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         radioGrupo.add(rbFemenino);
         rbFemenino.setText("Femenino");
 
-        jLabel1.setText("DNI:");
+        jLabel1.setText("DNI*:");
 
-        jLabel2.setText("NOMBRE:");
+        jLabel2.setText("NOMBRE*:");
 
-        jLabel3.setText("APELLIDO:");
+        jLabel3.setText("APELLIDO*:");
 
         jLabel4.setText("SEXO:");
 
@@ -281,7 +324,7 @@ public class VentanaCliente extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -361,7 +404,6 @@ public class VentanaCliente extends javax.swing.JFrame {
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTicket)
                         .addGap(9, 9, 9)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,7 +433,7 @@ public class VentanaCliente extends javax.swing.JFrame {
             estadoBtn(false);
             estadosTxt(true);  
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "selecione un elemento de la fila que quiere eliminar");
+            JOptionPane.showMessageDialog(null, "selecione un elemento de la fila que quiere editar");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -416,17 +458,21 @@ public class VentanaCliente extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
-        if(!validandoDni(txtDni.getText())) return;
-        Cliente cliente = new Cliente(txtDni.getText(), txtNombre.getText(), txtApellido.getText(), rbMasculino.isSelected()? rbMasculino.getText() : rbFemenino.getText(), txtDireccion.getText(), txtTelefono.getText());
-                
+        Cliente cliente;
+        if(!campoObligatorios()) return;
         switch(boton){
             case("NUEVO"):
+                if(!validandoDni(txtDni.getText()) || !unicoDni(txtDni.getText())) return;
+                if(!txtTelefono.getText().equals("") && !validarTelefono(txtTelefono.getText()))return;
+                cliente = new Cliente(txtDni.getText(), txtNombre.getText(), txtApellido.getText(), rbFemenino.isSelected()? rbFemenino.getText() : rbMasculino.getText(), txtDireccion.getText(), txtTelefono.getText());
+          
                 Ticket ticket = new Ticket();
                 lista.agregarAdelante(cliente, ticket);
                 break;
             case("EDITAR"):
                 Nodo aux = lista.buscar(tabla.getValueAt(filaModificar, 1).toString());
+                if(!validarDniEditar(txtDni.getText(), filaModificar) || !validandoDni(txtDni.getText())) return;
+                cliente = new Cliente(txtDni.getText(), txtNombre.getText(), txtApellido.getText(), rbMasculino.isSelected()? rbMasculino.getText() : rbFemenino.getText(), txtDireccion.getText(), txtTelefono.getText());
                 aux.setCliente(cliente);
                 break;
         }
@@ -455,7 +501,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
         // TODO add your handling code here:
         soloNumeros(evt);
-        
+        Dni_cantidad(evt);
     }//GEN-LAST:event_txtDniKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -471,6 +517,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         // TODO add your handling code here:
         soloNumeros(evt);
+        Telefono_cantidad(evt);
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     /**

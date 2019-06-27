@@ -46,7 +46,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtDniCliente = new javax.swing.JTextField();
         btnBuscarCliente = new javax.swing.JButton();
         jpCantidadEntradas = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         btnComprarEntradas = new javax.swing.JButton();
         jpZonaTematica = new javax.swing.JPanel();
@@ -103,8 +102,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
-        jLabel2.setText("CANTIDAD DE ENTRADAS");
-
         btnComprarEntradas.setText("COMPRAR");
 
         javax.swing.GroupLayout jpCantidadEntradasLayout = new javax.swing.GroupLayout(jpCantidadEntradas);
@@ -112,22 +109,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jpCantidadEntradasLayout.setHorizontalGroup(
             jpCantidadEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCantidadEntradasLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jpCantidadEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jpCantidadEntradasLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jpCantidadEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnComprarEntradas)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(btnComprarEntradas)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jpCantidadEntradasLayout.setVerticalGroup(
             jpCantidadEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCantidadEntradasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(31, 31, 31)
                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnComprarEntradas)
@@ -363,7 +354,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbRestaurante;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
