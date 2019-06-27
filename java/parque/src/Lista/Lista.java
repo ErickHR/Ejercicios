@@ -39,32 +39,24 @@ public class Lista {
     
     public void agregarAdelante(Cliente cliente, Ticket ticket){
         
+        cantidad++;
+        
         Nodo nuevo = new Nodo(cliente, ticket);
         
-        if(inicio == null) inicio = nuevo;
-        else{
-            
-            Nodo aux = inicio;
-            
-            while(aux.getSiguiente() != null){
-                aux = aux.getSiguiente();
-            }
-            
-            aux.setSiguiente(nuevo);
-            
+        if(inicio == null) {
+            inicio = nuevo;
+            return;
         }
         
-        cantidad++;
+        Nodo aux;
+        
+        for(aux = inicio; aux.getSiguiente() != null; aux = aux.getSiguiente()) {}
+
+        aux.setSiguiente(nuevo);
         
     }
     
     public void modificar(String dni, Cliente cliente){
-        
-        //for(Nodo aux = inicio; aux != null; aux = aux.getSiguiente()){
-            
-          //  if(aux.getCliente().getDni().equals(dni)) aux.setCliente(cliente);
-            
-        //}
         
         Nodo aux = buscar(dni);
         aux.setCliente(cliente);
@@ -73,16 +65,15 @@ public class Lista {
     
     public void eliminar(String dni){
         
-        if(inicio.getCliente().getDni().equals(dni)) inicio = inicio.getSiguiente();
-        else{
-            
-            for(Nodo aux = inicio; aux != null; aux = aux.getSiguiente())
-                if(aux.getSiguiente().getCliente().getDni().equals(dni)){
-                    aux.setSiguiente(aux.getSiguiente().getSiguiente());
-                    return;
-                }
-            
+        if(inicio.getCliente().getDni().equals(dni)) {
+            inicio = inicio.getSiguiente();
+            return;
         }
+        for(Nodo aux = inicio; aux != null; aux = aux.getSiguiente())
+            if(aux.getSiguiente().getCliente().getDni().equals(dni)){
+                aux.setSiguiente(aux.getSiguiente().getSiguiente());
+                return;
+            }
         
     }
     

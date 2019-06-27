@@ -5,6 +5,9 @@
  */
 package parque;
 
+import Lista.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PROPIETARIO
@@ -14,8 +17,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
+    private Lista lista;
+    
     public VentanaPrincipal() {
         initComponents();
+        
+        lista = new Lista();
+        
         this.jpCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("CLIENTE"));
         this.jpCantidadEntradas.setBorder(javax.swing.BorderFactory.createTitledBorder("CANTIDAD DE ENTRADAS"));
         this.jpEspectaculo.setBorder(javax.swing.BorderFactory.createTitledBorder("ESPECTACULO"));
@@ -65,6 +73,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("DNI:");
 
         btnBuscarCliente.setText("BUSCAR");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpClienteLayout = new javax.swing.GroupLayout(jpCliente);
         jpCliente.setLayout(jpClienteLayout);
@@ -290,6 +303,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        for(Nodo aux = lista.getInicio(); aux != null; aux = aux.getSiguiente())
+            if(aux.getCliente().getDni().equals(txtDniCliente.getText())){
+                JOptionPane.showMessageDialog(null, "si existe");
+                return;
+            }
+        
+        VentanaCliente vtnCliente = new VentanaCliente(lista);
+        vtnCliente.setVisible(true);
+        vtnCliente.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     /**
      * @param args the command line arguments
