@@ -25,14 +25,16 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     String arregloEspectaculo[] = new String[6]; 
     String btn;
     int fila;
-    public VentanaEspectaculo() {
+    public VentanaEspectaculo(ListaEspectaculo lista) {
         initComponents();
         modelo = new DefaultTableModel();
-        lista = new ListaEspectaculo();
+        this.lista = lista;
         modelo = (DefaultTableModel) tbEspectaculo.getModel();
         btnGuardar.setEnabled(false);
         estadosTxt(false);
         estadoTxtAgregarTipo(false);
+        listarTabla();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     public void listarTabla(){
@@ -432,13 +434,13 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         btn = "ELIMINAR";
         estadosBtn(false);
     }//GEN-LAST:event_btnEliminarActionPerformed
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+/*        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -457,7 +459,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+     /*   java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 VentanaEspectaculo vtn= new VentanaEspectaculo();
                 vtn.setVisible(true);
@@ -465,6 +467,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
             }
         });
     }
+    */
     /**
      * @param args the command line arguments
      */
