@@ -5,7 +5,7 @@
  */
 package zonaTematica.Pases;
 
-import Lista.Lista;
+import Lista.ListaCliente;
 
 /**
  *
@@ -16,8 +16,8 @@ public class VentanaPases extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPases
      */
-    Lista lista;
-    public VentanaPases(Lista lista) {
+    ListaCliente lista;
+    public VentanaPases(ListaCliente lista) {
         initComponents();
         this.lista = lista;
     }
