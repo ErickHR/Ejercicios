@@ -14,8 +14,8 @@ import zonaTematica.Espectaculo;
 public class ListaEspectaculo {
     private NodoEspectaculo inicio;
 
-    public ListaEspectaculo(NodoEspectaculo inicio) {
-        this.inicio = inicio;
+    public ListaEspectaculo() {
+        this.inicio = null;
     }
 
     public NodoEspectaculo getInicio() {
@@ -41,6 +41,13 @@ public class ListaEspectaculo {
             aux.setSiguiente(nuevo);
             
         }
+    }
+    
+    public NodoEspectaculo modificar(String codigo){
+        for(NodoEspectaculo aux = inicio; aux != null; aux = aux.getSiguiente()){
+            if(aux.getEspectaculo().getIdEspectaculo().equals(codigo)) return aux;
+        }
+        return null;
     }
     
 }
