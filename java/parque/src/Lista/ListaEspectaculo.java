@@ -5,10 +5,42 @@
  */
 package Lista;
 
+import zonaTematica.Espectaculo;
+
 /**
  *
  * @author PROPIETARIO
  */
 public class ListaEspectaculo {
+    private NodoEspectaculo inicio;
+
+    public ListaEspectaculo(NodoEspectaculo inicio) {
+        this.inicio = inicio;
+    }
+
+    public NodoEspectaculo getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(NodoEspectaculo inicio) {
+        this.inicio = inicio;
+    }
+    
+    public void agregarAdelante(Espectaculo espectaculo){
+        
+        NodoEspectaculo nuevo = new NodoEspectaculo(espectaculo);
+        
+        if(inicio == null) inicio = nuevo;
+        else{
+            
+            NodoEspectaculo aux = inicio;
+            
+            while(aux.getSiguiente() != null)
+                aux = aux.getSiguiente();
+            
+            aux.setSiguiente(nuevo);
+            
+        }
+    }
     
 }

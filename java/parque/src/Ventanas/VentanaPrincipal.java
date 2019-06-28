@@ -17,12 +17,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    private ListaCliente lista;
+    private ListaCliente listaCliente;
     
     public VentanaPrincipal() {
         initComponents();
         
-        lista = new ListaCliente();
+        listaCliente = new ListaCliente();
         
         this.jpCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("CLIENTE"));
         this.jpCantidadEntradas.setBorder(javax.swing.BorderFactory.createTitledBorder("CANTIDAD DE ENTRADAS"));
@@ -297,13 +297,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         // TODO add your handling code here:
-        for(NodoCliente aux = lista.getInicio(); aux != null; aux = aux.getSiguiente())
+        for(NodoCliente aux = listaCliente.getInicio(); aux != null; aux = aux.getSiguiente())
             if(aux.getCliente().getDni().equals(txtDniCliente.getText())){
                 JOptionPane.showMessageDialog(null, "si existe");
                 return;
             }
         
-        VentanaCliente vtnCliente = new VentanaCliente(lista);
+        VentanaCliente vtnCliente = new VentanaCliente(listaCliente);
         vtnCliente.setVisible(true);
         vtnCliente.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
