@@ -14,13 +14,23 @@ import zonaTematica.ZonaTematica;
 public class NodoZonaTematica {
     
     private ZonaTematica zonaTematica;
+    private ListaRestaurante restaurante;
     private NodoZonaTematica siguiente;
 
     public NodoZonaTematica(ZonaTematica zonaTematica) {
         this.zonaTematica = zonaTematica;
+        this.restaurante = null;
         this.siguiente = null;
     }
 
+    public ListaRestaurante getRestaurante() {
+        return restaurante;
+    }
+
+    public void setRestaurante(ListaRestaurante restaurante) {
+        this.restaurante = restaurante;
+    }
+    
     public ZonaTematica getZonaTematica() {
         return zonaTematica;
     }
