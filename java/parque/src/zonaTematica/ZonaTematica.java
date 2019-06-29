@@ -14,7 +14,6 @@ public class ZonaTematica {
     private String nombre;
     private String descripcion;
     private String color;
-    private String tipo;
 
     public ZonaTematica(String idZonatematica, String nombre, String descripcion, String color) {
         this.idZonatematica = idZonatematica;
