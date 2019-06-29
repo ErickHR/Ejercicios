@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Lista.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,12 +18,38 @@ public class VentanaAtraccion extends javax.swing.JFrame {
      * Creates new form VentanaAtraccion
      */
     ListaZonaTematica listaZonaTematica;
+    String arregloAtraccion[] = new String[6];
+    DefaultTableModel modelo;
     public VentanaAtraccion(ListaZonaTematica listaZonaTematica) {
         initComponents();
         this.listaZonaTematica = listaZonaTematica;
+        listarCbZonaTematica();
+        modelo = (DefaultTableModel) tablaAtraccion.getModel();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-
+    
+    public void listarCbZonaTematica(){
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            cbZonaTematica.addItem(auxZonaTematica.getZonaTematica().getNombre());
+        }
+    }
+    
+    public void listarTabla(){
+        int cantidad = 1;
+        modelo.setRowCount(0);
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
+                arregloAtraccion[0] = Integer.toString(cantidad);
+                arregloAtraccion[1] = auxEspectaculo.getEspectaculo().getIdEspectaculo();
+                arregloAtraccion[2] = auxEspectaculo.getEspectaculo().getNombre();
+                arregloAtraccion[3] = auxEspectaculo.getEspectaculo().getTipo();
+                arregloAtraccion[4] = Integer.toString(auxEspectaculo.getEspectaculo().getMinutos());
+                arregloAtraccion[5] = Integer.toString(auxEspectaculo.getEspectaculo().getAforoMaximo());
+                modelo.addRow(arregloAtraccion);
+                cantidad++; 
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +64,7 @@ public class VentanaAtraccion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaAtraccion = new javax.swing.JTable();
         txtDuracion = new javax.swing.JTextField();
         txtCapacidad = new javax.swing.JTextField();
         txtEstatura = new javax.swing.JTextField();
@@ -48,6 +75,8 @@ public class VentanaAtraccion extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,7 +88,7 @@ public class VentanaAtraccion extends javax.swing.JFrame {
 
         jLabel4.setText("DURACION:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAtraccion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,7 +96,7 @@ public class VentanaAtraccion extends javax.swing.JFrame {
                 "#", "CODIGO", "NOMBRE", "ESTATURA", "CAPACIDAD", "DURACION"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaAtraccion);
 
         jLabel5.setText("ZONA TEMATICA");
 
@@ -83,6 +112,8 @@ public class VentanaAtraccion extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,17 +136,25 @@ public class VentanaAtraccion extends javax.swing.JFrame {
                         .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addGap(18, 18, 18)
-                            .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jLabel6)
+                                    .addGap(60, 60, 60)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                                .addComponent(txtId)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEliminar)
@@ -132,8 +171,12 @@ public class VentanaAtraccion extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,11 +228,13 @@ public class VentanaAtraccion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaAtraccion;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtDuracion;
     private javax.swing.JTextField txtEstatura;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
