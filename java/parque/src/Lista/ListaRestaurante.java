@@ -5,6 +5,8 @@
  */
 package Lista;
 
+import zonaTematica.Restaurante;
+
 /**
  *
  * @author PROPIETARIO
@@ -12,8 +14,8 @@ package Lista;
 public class ListaRestaurante {
     private NodoRestaurante inicio;
 
-    public ListaRestaurante(NodoRestaurante inicio) {
-        this.inicio = inicio;
+    public ListaRestaurante() {
+        this.inicio = null;
     }
 
     public NodoRestaurante getInicio() {
@@ -22,6 +24,23 @@ public class ListaRestaurante {
 
     public void setInicio(NodoRestaurante inicio) {
         this.inicio = inicio;
+    }
+    
+    public void agregarAdelante(Restaurante restaurante){
+        
+        NodoRestaurante nuevo = new NodoRestaurante(restaurante);
+        
+        if(inicio == null) {
+            inicio = nuevo;
+            return;
+        }
+        
+        NodoRestaurante aux;
+        
+        for(aux = inicio; aux.getSiguiente() != null; aux = aux.getSiguiente()) {}
+
+        aux.setSiguiente(nuevo);
+        
     }
     
     public NodoRestaurante modificar(String id){

@@ -5,7 +5,7 @@
  */
 package Ventanas;
 
-import Lista.ListaEspectaculo;
+import Lista.*;
 import Lista.NodoEspectaculo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,35 +20,45 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     /**
      * Creates new form VentanaEspectaculo
      */
-    ListaEspectaculo lista;
+    ListaZonaTematica listaZonaTematica;
+    ListaEspectaculo listaEspectaculo;
     DefaultTableModel modelo;
-    String arregloEspectaculo[] = new String[6]; 
+    String arregloEspectaculo[] = new String[7]; 
     String btn;
     int fila;
-    public VentanaEspectaculo(ListaEspectaculo lista) {
+    public VentanaEspectaculo(ListaZonaTematica lista) {
         initComponents();
-        modelo = new DefaultTableModel();
-        this.lista = lista;
+        this.listaZonaTematica = lista;
         modelo = (DefaultTableModel) tbEspectaculo.getModel();
-        btnGuardar.setEnabled(false);
-        estadosTxt(false);
-        estadoTxtAgregarTipo(false);
-        listarTabla();
+        //btnGuardar.setEnabled(false);
+        //estadosTxt(false);
+        //estadoTxtAgregarTipo(false);
+        //listarTabla();
+        listarCbZonaTematica();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+    
+    public void listarCbZonaTematica(){
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            cbZonaTematica.addItem(auxZonaTematica.getZonaTematica().getNombre());
+        }
     }
     
     public void listarTabla(){
         int cantidad = 1;
         modelo.setRowCount(0);
-        for(NodoEspectaculo aux = lista.getInicio(); aux != null; aux = aux.getSiguiente()){
-            arregloEspectaculo[0] = Integer.toString(cantidad);
-            arregloEspectaculo[1] = aux.getEspectaculo().getIdEspectaculo();
-            arregloEspectaculo[2] = aux.getEspectaculo().getNombre();
-            arregloEspectaculo[3] = aux.getEspectaculo().getTipo();
-            arregloEspectaculo[4] = Integer.toString(aux.getEspectaculo().getMinutos());
-            arregloEspectaculo[5] = Integer.toString(aux.getEspectaculo().getAforoMaximo());
-            modelo.addRow(arregloEspectaculo);
-            cantidad++;
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
+                arregloEspectaculo[0] = Integer.toString(cantidad);
+                arregloEspectaculo[1] = auxEspectaculo.getEspectaculo().getIdEspectaculo();
+                arregloEspectaculo[2] = auxEspectaculo.getEspectaculo().getNombre();
+                arregloEspectaculo[3] = auxEspectaculo.getEspectaculo().getTipo();
+                arregloEspectaculo[4] = Integer.toString(auxEspectaculo.getEspectaculo().getMinutos());
+                arregloEspectaculo[5] = Integer.toString(auxEspectaculo.getEspectaculo().getAforoMaximo());
+                arregloEspectaculo[6] = auxZonaTematica.getZonaTematica().getNombre();
+                modelo.addRow(arregloEspectaculo);
+                cantidad++; 
+            }
         }
     }
     public void estadosTxt(boolean booleano){
@@ -113,13 +123,13 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         }
     }
     
-    public boolean tablaVacia(){
+   /* public boolean tablaVacia(){
         if(lista.getInicio() == null){
             JOptionPane.showMessageDialog(null, "TABLA VACIA!!");
             return true;
         }
         return false;
-    }
+    }*/
     
     public boolean noSeleccionoFila(){
         if(fila == -1){
@@ -161,6 +171,8 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         spAforoMaximo = new javax.swing.JSpinner();
         spMinutos = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        cbZonaTematica = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -227,11 +239,11 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "CODIGO", "NOMBRE", "TIPO", "MINUTOS", "AFORO"
+                "#", "CODIGO", "NOMBRE", "TIPO", "MINUTOS", "AFORO", "ZONA TEMATICA"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -263,64 +275,72 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("ZonaTematica");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel3)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCodigo)
-                        .addGap(60, 60, 60)
-                        .addComponent(btnNuevo)
-                        .addGap(50, 50, 50))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cbTipoEspectaculo, 0, 99, Short.MAX_VALUE)
-                                .addComponent(txtNombreEspectaculo))
+                            .addComponent(cbTipoEspectaculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNombreEspectaculo)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(txtAgregarTipoEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(spMinutos)
+                                .addComponent(spMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnAgregarTipoEspectaculo)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnGuardar)))
-                                .addGap(24, 24, 24))
+                                        .addComponent(btnGuardar))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnEliminar)
                                     .addComponent(btnEditar))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addContainerGap(12, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(spAforoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(159, 188, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cbZonaTematica, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCodigo))
+                        .addGap(60, 60, 60)
+                        .addComponent(btnNuevo)
+                        .addGap(26, 26, 26))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,9 +370,9 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtAgregarTipoEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -360,32 +380,36 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        switch(btn){
+                for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+                    if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem())){
+                        listaEspectaculo = auxZonaTematica.getEspectaculo();
+                        listaEspectaculo.agregarAdelante(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(spAforoMaximo.getValue().toString())));
+                        break;
+                    }
+                }
+        /*switch(btn){
             case("NUEVO"):
+                
+                /*
                 if(camposObligatoriosVacios()) return;
                 lista.agregarAdelante(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(spAforoMaximo.getValue().toString())));
-                
-                break;
-            case("EDITAR"):
+                */
+               /* break;
+            case("EDITAR"):*/
+                /*
                 if(camposObligatoriosVacios()) return;
                 NodoEspectaculo aux = lista.modificar(tbEspectaculo.getValueAt(fila, 1).toString());
                 aux.setEspectaculo(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(spAforoMaximo.getValue().toString())));
-                break;
-        }
-        modificarTxt("", "", "musica", 0, 0);
-        estadosTxt(false);
+                */
+                /*break;
+        }*/
+        
+        //modificarTxt("", "", "musica", 0, 0);
+        //estadosTxt(false);
         listarTabla();
-        estadosBtn(true);
-        /*
-        int cantidad = 1;
-        arregloEspectaculo[0] = Integer.toString(cantidad);
-        arregloEspectaculo[1] = txtCodigo.getText();
-        arregloEspectaculo[2] = txtNombreEspectaculo.getText();
-        arregloEspectaculo[3] = txtMinutosEspectaculo.getText();
-        arregloEspectaculo[4] = cbTipoEspectaculo.getSelectedItem().toString();
-        arregloEspectaculo[5] = spAforoMaximo.getValue().toString();
-        modelo.addRow(arregloEspectaculo);
-        */
+        //estadosBtn(true);
+        
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnAgregarTipoEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipoEspectaculoActionPerformed
@@ -401,15 +425,16 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        txtCodigo.requestFocus();
+        /*txtCodigo.requestFocus();
         estadosTxt(true);
         estadosBtn(false);
         btn = "NUEVO";
+        */
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        if(tablaVacia())return;
+        /*if(tablaVacia())return;
         
         fila = tbEspectaculo.getSelectedRow(); 
         
@@ -419,6 +444,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         estadosBtn(false);
         modificarTxt(tbEspectaculo.getValueAt(fila, 1).toString(),tbEspectaculo.getValueAt(fila, 2).toString(),tbEspectaculo.getValueAt(fila, 3).toString(),Integer.parseInt(tbEspectaculo.getValueAt(fila, 4).toString()),Integer.parseInt(tbEspectaculo.getValueAt(fila, 5).toString()));
         btn = "EDITAR";
+        */
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtNombreEspectaculoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEspectaculoKeyTyped
@@ -428,11 +454,12 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        if(tablaVacia()) return;
+        /*if(tablaVacia()) return;
         fila = tbEspectaculo.getSelectedRow();
         if(noSeleccionoFila()) return;
         btn = "ELIMINAR";
         estadosBtn(false);
+        */
     }//GEN-LAST:event_btnEliminarActionPerformed
     /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -479,12 +506,14 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cbTipoEspectaculo;
+    private javax.swing.JComboBox<String> cbZonaTematica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

@@ -84,6 +84,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -329,6 +330,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
+        jMenuItem2.setText("Agregar Atraccion");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -381,15 +390,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEspectaculoActionPerformed
         // TODO add your handling code here:
-        VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaEspectaculo);
+       /* VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaEspectaculo);
         vtnEspectaculo.setTitle("Espectaculo");
         vtnEspectaculo.setLocationRelativeTo(null);
         vtnEspectaculo.setVisible(true);
+        */
     }//GEN-LAST:event_btnAgregarEspectaculoActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
-        VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaEspectaculo);
+        VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaZonaTematica);
         vtnEspectaculo.setTitle("Espectaculo");
         vtnEspectaculo.setLocationRelativeTo(null);
         vtnEspectaculo.setVisible(true);
@@ -405,7 +415,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         VentanaZonaTematica vtnZonaTematica = new VentanaZonaTematica(listaZonaTematica);
         vtnZonaTematica.setVisible(true);
-        //vtnZonaTematica.setLocationRelativeTo(null);
+        vtnZonaTematica.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -414,6 +424,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vtnRestaurante.setVisible(true);
         vtnRestaurante.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        VentanaAtraccion vtnAtraccion = new VentanaAtraccion(listaZonaTematica);
+        vtnAtraccion.setVisible(true);
+        vtnAtraccion.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,6 +486,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

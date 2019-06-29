@@ -15,12 +15,22 @@ public class NodoZonaTematica {
     
     private ZonaTematica zonaTematica;
     private ListaRestaurante restaurante;
+    private ListaEspectaculo espectaculo;
     private NodoZonaTematica siguiente;
 
     public NodoZonaTematica(ZonaTematica zonaTematica) {
         this.zonaTematica = zonaTematica;
-        this.restaurante = null;
+        this.restaurante = new ListaRestaurante();
+        this.espectaculo = new ListaEspectaculo();
         this.siguiente = null;
+    }
+
+    public ListaEspectaculo getEspectaculo() {
+        return espectaculo;
+    }
+
+    public void setEspectaculo(ListaEspectaculo espectaculo) {
+        this.espectaculo = espectaculo;
     }
 
     public ListaRestaurante getRestaurante() {
