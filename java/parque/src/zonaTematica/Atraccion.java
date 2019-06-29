@@ -15,9 +15,9 @@ public class Atraccion {
     private String nombre;
     private float estaturaMinima;
     private int capacidad;//peso;
-    private double duracion;
+    private float duracion;
 
-    public Atraccion(String idAtraccion, String nombre, float estaturaMinima, int capacidad, double duracion) {
+    public Atraccion(String idAtraccion, String nombre, float estaturaMinima, int capacidad, float duracion) {
         this.idAtraccion = idAtraccion;
         this.nombre = nombre;
         this.estaturaMinima = estaturaMinima;
@@ -57,11 +57,11 @@ public class Atraccion {
         this.capacidad = capacidad;
     }
 
-    public double getDuracion() {
+    public float getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(double duracion) {
+    public void setDuracion(float duracion) {
         this.duracion = duracion;
     }
     

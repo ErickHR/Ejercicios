@@ -38,13 +38,13 @@ public class VentanaAtraccion extends javax.swing.JFrame {
         int cantidad = 1;
         modelo.setRowCount(0);
         for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
+            for(NodoAtraccion auxAtraccion = auxZonaTematica.getAtraccion().getInicio(); auxAtraccion != null; auxAtraccion = auxAtraccion.getSiguiente()){
                 arregloAtraccion[0] = Integer.toString(cantidad);
-                arregloAtraccion[1] = auxEspectaculo.getEspectaculo().getIdEspectaculo();
-                arregloAtraccion[2] = auxEspectaculo.getEspectaculo().getNombre();
-                arregloAtraccion[3] = auxEspectaculo.getEspectaculo().getTipo();
-                arregloAtraccion[4] = Integer.toString(auxEspectaculo.getEspectaculo().getMinutos());
-                arregloAtraccion[5] = Integer.toString(auxEspectaculo.getEspectaculo().getAforoMaximo());
+                arregloAtraccion[1] = auxAtraccion.getAtraccion().getIdAtraccion();
+                arregloAtraccion[2] = auxAtraccion.getAtraccion().getNombre();
+                arregloAtraccion[3] = Float.toString(auxAtraccion.getAtraccion().getEstaturaMinima());
+                arregloAtraccion[4] = Integer.toString(auxAtraccion.getAtraccion().getCapacidad());
+                arregloAtraccion[5] = Float.toString(auxAtraccion.getAtraccion().getDuracion());
                 modelo.addRow(arregloAtraccion);
                 cantidad++; 
             }
