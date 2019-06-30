@@ -27,12 +27,12 @@ public class VentanaZonaTematica extends javax.swing.JFrame {
     public VentanaZonaTematica(ListaZonaTematica lista) {
         initComponents();
         listaZonaTematica = lista;
-        listaZonaTematica.agregarAdelante(new ZonaTematica("a", "a", "a", "a"));
-        listaZonaTematica.agregarAdelante(new ZonaTematica("b", "b", "b", "b"));
-        listaZonaTematica.agregarAdelante(new ZonaTematica("c", "c", "c", "c"));
-        listaZonaTematica.agregarAdelante(new ZonaTematica("d", "d", "d", "d"));
-        listaZonaTematica.agregarAdelante(new ZonaTematica("e", "e", "e", "e"));
-        listaZonaTematica.agregarAdelante(new ZonaTematica("f", "f", "f", "f"));
+        listaZonaTematica.agregarAdelante(new ZonaTematica("a", "Erick", "a", "a"));
+        listaZonaTematica.agregarAdelante(new ZonaTematica("b", "Angelica", "b", "b"));
+        listaZonaTematica.agregarAdelante(new ZonaTematica("c", "Isaac", "c", "c"));
+        listaZonaTematica.agregarAdelante(new ZonaTematica("d", "Angie", "d", "d"));
+        listaZonaTematica.agregarAdelante(new ZonaTematica("e", "Ericka", "e", "e"));
+        listaZonaTematica.agregarAdelante(new ZonaTematica("f", "Angel", "f", "f"));
               
         modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tablaZonaTematica.getModel();

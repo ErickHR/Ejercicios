@@ -18,9 +18,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    private ListaCliente listaCliente;
-    private ListaEspectaculo listaEspectaculo;
-    private ListaZonaTematica listaZonaTematica;
+    ListaCliente listaCliente;
+    ListaEspectaculo listaEspectaculo;
+    ListaZonaTematica listaZonaTematica;
     public VentanaPrincipal() {
         initComponents();
         
@@ -36,7 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jpZonaTematica.setBorder(javax.swing.BorderFactory.createTitledBorder("ZONA TEMATICA"));
         this.jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("ATRACCION"));
         
-        AutoCompleteDecorator.decorate(cbAtraccion);
+        AutoCompleteDecorator.decorate(cbZonaTematica);
         
     }
 
@@ -67,24 +67,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnAgregarEspectaculo = new javax.swing.JButton();
         cbEspectaculo = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jpRestaurante = new javax.swing.JPanel();
         cbRestaurante = new javax.swing.JComboBox<>();
         btnAgregarRestaurante = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         spCantidadRestaurante = new javax.swing.JSpinner();
         jpZonaTematica = new javax.swing.JPanel();
-        cbAtraccion = new javax.swing.JComboBox<>();
+        cbZonaTematica = new javax.swing.JComboBox<>();
+        btnActualizar = new javax.swing.JButton();
+        btnZona = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        cbAtraccion = new javax.swing.JComboBox<>();
+        spAtraccion = new javax.swing.JSpinner();
+        btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuAgregarZonaTematica = new javax.swing.JMenuItem();
+        menuAgregar = new javax.swing.JMenu();
+        menuAtraccion = new javax.swing.JMenuItem();
+        menuRestaurante = new javax.swing.JMenuItem();
+        menuEspectaculo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,13 +160,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("ACTUALIZAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jpEspectaculoLayout = new javax.swing.GroupLayout(jpEspectaculo);
         jpEspectaculo.setLayout(jpEspectaculoLayout);
         jpEspectaculoLayout.setHorizontalGroup(
@@ -179,10 +177,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAgregarEspectaculo)))
                 .addContainerGap())
-            .addGroup(jpEspectaculoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpEspectaculoLayout.setVerticalGroup(
             jpEspectaculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,8 +189,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addComponent(btnAgregarEspectaculo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         btnAgregarRestaurante.setText("AGREGAR");
@@ -232,32 +225,75 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnZona.setText("ZONA");
+        btnZona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZonaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpZonaTematicaLayout = new javax.swing.GroupLayout(jpZonaTematica);
         jpZonaTematica.setLayout(jpZonaTematicaLayout);
         jpZonaTematicaLayout.setHorizontalGroup(
             jpZonaTematicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpZonaTematicaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cbAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpZonaTematicaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpZonaTematicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnZona)
+                    .addComponent(btnActualizar))
+                .addContainerGap())
         );
         jpZonaTematicaLayout.setVerticalGroup(
             jpZonaTematicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpZonaTematicaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(cbAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnActualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnZona)
+                .addContainerGap())
         );
+
+        btnAgregar.setText("AGREGAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 176, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(cbAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregar)
+                            .addComponent(spAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(cbAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(spAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAgregar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpPasesLayout = new javax.swing.GroupLayout(jpPases);
@@ -265,7 +301,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jpPasesLayout.setHorizontalGroup(
             jpPasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPasesLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jpZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jpRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +309,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jpEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jpPasesLayout.setVerticalGroup(
             jpPasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,37 +342,41 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Agregar");
 
-        jMenu3.setText("Agregar Espectaculo");
-        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu3MouseClicked(evt);
-            }
-        });
-        jMenu2.add(jMenu3);
-
-        jMenuItem4.setText("Agregar Zona Tematica");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        menuAgregarZonaTematica.setText("Agregar Zona Tematica");
+        menuAgregarZonaTematica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                menuAgregarZonaTematicaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(menuAgregarZonaTematica);
 
-        jMenuItem1.setText("Agregar Restaurante");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
+        menuAgregar.setText("Agregar");
 
-        jMenuItem2.setText("Agregar Atraccion");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuAtraccion.setText("Agregar Atraccion");
+        menuAtraccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuAtraccionActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        menuAgregar.add(menuAtraccion);
+
+        menuRestaurante.setText("Agregar Restaurante");
+        menuRestaurante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRestauranteActionPerformed(evt);
+            }
+        });
+        menuAgregar.add(menuRestaurante);
+
+        menuEspectaculo.setText("Agregar Espectaculo");
+        menuEspectaculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEspectaculoActionPerformed(evt);
+            }
+        });
+        menuAgregar.add(menuEspectaculo);
+
+        jMenu2.add(menuAgregar);
 
         jMenuBar1.add(jMenu2);
 
@@ -354,7 +394,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jpCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addComponent(jpCantidadEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -397,40 +437,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         */
     }//GEN-LAST:event_btnAgregarEspectaculoActionPerformed
 
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaZonaTematica);
-        vtnEspectaculo.setTitle("Espectaculo");
-        vtnEspectaculo.setLocationRelativeTo(null);
-        vtnEspectaculo.setVisible(true);
-    }//GEN-LAST:event_jMenu3MouseClicked
+        cbAtraccion.removeAllItems();
+        cbRestaurante.removeAllItems();
+        cbEspectaculo.removeAllItems();
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem())){
+                for(NodoAtraccion auxNodoAtraccion = auxZonaTematica.getAtraccion().getInicio(); auxNodoAtraccion != null; auxNodoAtraccion = auxNodoAtraccion.getSiguiente()){
+                    cbAtraccion.addItem(auxNodoAtraccion.getAtraccion().getNombre());
+                }
+                for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
+                    cbEspectaculo.addItem(auxEspectaculo.getEspectaculo().getNombre());
+                }
+                for(NodoRestaurante auxRestaurante = auxZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
+                    cbRestaurante.addItem(auxRestaurante.getRestaurante().getNombre());
+                }
+                break;
+            }
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        listarCbEspectaculo();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void menuAgregarZonaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarZonaTematicaActionPerformed
         // TODO add your handling code here:
         
         VentanaZonaTematica vtnZonaTematica = new VentanaZonaTematica(listaZonaTematica);
         vtnZonaTematica.setVisible(true);
         vtnZonaTematica.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_menuAgregarZonaTematicaActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRestauranteActionPerformed
         // TODO add your handling code here:
         VentanaRestaurante vtnRestaurante = new VentanaRestaurante(listaZonaTematica);
         vtnRestaurante.setVisible(true);
         vtnRestaurante.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuRestauranteActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuAtraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAtraccionActionPerformed
         // TODO add your handling code here:
         VentanaAtraccion vtnAtraccion = new VentanaAtraccion(listaZonaTematica);
         vtnAtraccion.setVisible(true);
         vtnAtraccion.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menuAtraccionActionPerformed
+
+    private void btnZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZonaActionPerformed
+        // TODO add your handling code here:
+        cbZonaTematica.removeAllItems();
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            cbZonaTematica.addItem(auxZonaTematica.getZonaTematica().getNombre());
+        }
+    }//GEN-LAST:event_btnZonaActionPerformed
+
+    private void menuEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEspectaculoActionPerformed
+        // TODO add your handling code here:
+        VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaZonaTematica);
+        vtnEspectaculo.setTitle("Espectaculo");
+        vtnEspectaculo.setLocationRelativeTo(null);
+        vtnEspectaculo.setVisible(true);
+    }//GEN-LAST:event_menuEspectaculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,24 +534,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregarEspectaculo;
     private javax.swing.JButton btnAgregarRestaurante;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnComprarEntradas;
+    private javax.swing.JButton btnZona;
     private javax.swing.JComboBox<String> cbAtraccion;
     private javax.swing.JComboBox<String> cbEspectaculo;
     private javax.swing.JComboBox<String> cbRestaurante;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> cbZonaTematica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
@@ -498,6 +561,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpPases;
     private javax.swing.JPanel jpRestaurante;
     private javax.swing.JPanel jpZonaTematica;
+    private javax.swing.JMenu menuAgregar;
+    private javax.swing.JMenuItem menuAgregarZonaTematica;
+    private javax.swing.JMenuItem menuAtraccion;
+    private javax.swing.JMenuItem menuEspectaculo;
+    private javax.swing.JMenuItem menuRestaurante;
+    private javax.swing.JSpinner spAtraccion;
     private javax.swing.JSpinner spCantidadEspectaculo;
     private javax.swing.JSpinner spCantidadRestaurante;
     private javax.swing.JTextField txtDniCliente;

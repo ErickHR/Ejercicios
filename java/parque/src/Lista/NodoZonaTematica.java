@@ -27,7 +27,7 @@ public class NodoZonaTematica {
         this.atraccion = new ListaAtraccion();
         this.siguiente = null;
     }
-
+    
     public ListaAtraccion getAtraccion() {
         return atraccion;
     }

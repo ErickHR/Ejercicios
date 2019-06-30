@@ -7,6 +7,7 @@ package Ventanas;
 
 import Lista.*;
 import javax.swing.table.DefaultTableModel;
+import zonaTematica.Atraccion;
 
 /**
  *
@@ -18,7 +19,8 @@ public class VentanaAtraccion extends javax.swing.JFrame {
      * Creates new form VentanaAtraccion
      */
     ListaZonaTematica listaZonaTematica;
-    String arregloAtraccion[] = new String[6];
+    ListaAtraccion listaAtraccion;
+    String arregloAtraccion[] = new String[7];
     DefaultTableModel modelo;
     public VentanaAtraccion(ListaZonaTematica listaZonaTematica) {
         initComponents();
@@ -45,6 +47,7 @@ public class VentanaAtraccion extends javax.swing.JFrame {
                 arregloAtraccion[3] = Float.toString(auxAtraccion.getAtraccion().getEstaturaMinima());
                 arregloAtraccion[4] = Integer.toString(auxAtraccion.getAtraccion().getCapacidad());
                 arregloAtraccion[5] = Float.toString(auxAtraccion.getAtraccion().getDuracion());
+                arregloAtraccion[6] = auxZonaTematica.getZonaTematica().getNombre();
                 modelo.addRow(arregloAtraccion);
                 cantidad++; 
             }
@@ -93,7 +96,7 @@ public class VentanaAtraccion extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "CODIGO", "NOMBRE", "ESTATURA", "CAPACIDAD", "DURACION"
+                "#", "CODIGO", "NOMBRE", "ESTATURA", "CAPACIDAD", "DURACION", "ZONA TEMATICA"
             }
         ));
         jScrollPane1.setViewportView(tablaAtraccion);
@@ -210,7 +213,13 @@ public class VentanaAtraccion extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem())){
+                listaAtraccion = auxZonaTematica.getAtraccion();
+                listaAtraccion.agregarAdelante(new Atraccion(txtId.getText(), txtNombre.getText(), Float.parseFloat(txtEstatura.getText()), Integer.parseInt(txtCapacidad.getText()), Float.parseFloat(txtDuracion.getText())));
+            }
+        }
+        listarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
