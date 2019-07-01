@@ -14,15 +14,25 @@ public class Atraccion {
     private String idAtraccion;
     private String nombre;
     private float estaturaMinima;
+    private float precio;
     private int capacidad;//peso;
     private float duracion;
 
-    public Atraccion(String idAtraccion, String nombre, float estaturaMinima, int capacidad, float duracion) {
+    public Atraccion(String idAtraccion, String nombre, float estaturaMinima,float precio, int capacidad, float duracion) {
         this.idAtraccion = idAtraccion;
         this.nombre = nombre;
         this.estaturaMinima = estaturaMinima;
+        this.precio = precio;
         this.capacidad = capacidad;
         this.duracion = duracion;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 
     public String getIdAtraccion() {
