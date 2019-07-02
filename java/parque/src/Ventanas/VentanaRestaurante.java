@@ -66,6 +66,12 @@ public class VentanaRestaurante extends javax.swing.JFrame {
         txtNombreRestaurante.setEnabled(booleano);
         txtPrecioMEdio.setEnabled(booleano);
     }
+    public void modificarTxt(String id, String nombre, String horario, String precio){
+        txtHorarioRestaurante.setText(horario);
+        txtIdRestaurante.setText(id);
+        txtNombreRestaurante.setText(nombre);
+        txtPrecioMEdio.setText(precio);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -237,6 +243,7 @@ public class VentanaRestaurante extends javax.swing.JFrame {
                 break;
         }
         
+        modificarTxt("", "", "", "");
         estadoTxt(false);
         estadoBtnGuardar(false);
         listarTabla();
