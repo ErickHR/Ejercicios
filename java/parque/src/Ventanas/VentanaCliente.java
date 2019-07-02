@@ -5,7 +5,7 @@ import Lista.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import parque.Cliente;
-import parque.Ticket;
+import zonaTematica.Pases.Entrada;
 
 public class VentanaCliente extends javax.swing.JFrame {
 
@@ -436,7 +436,7 @@ public class VentanaCliente extends javax.swing.JFrame {
                 if(!txtTelefono.getText().equals("") && !validarTelefono(txtTelefono.getText()))return;
                 cliente = new Cliente(txtDni.getText(), txtNombre.getText(), txtApellido.getText(), rbFemenino.isSelected()? rbFemenino.getText() : rbMasculino.getText(), txtDireccion.getText(), txtTelefono.getText());
           
-                Ticket ticket = new Ticket();
+                Entrada ticket = new Entrada();
                 lista.agregarAdelante(cliente, ticket);
                 break;
             case("EDITAR"):

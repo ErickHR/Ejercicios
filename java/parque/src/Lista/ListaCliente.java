@@ -2,7 +2,7 @@
 package Lista;
 
 import parque.Cliente;
-import parque.Ticket;
+import zonaTematica.Pases.Entrada;
 
 public class ListaCliente { 
     
@@ -29,7 +29,7 @@ public class ListaCliente {
         this.cantidad = cantidad;
     }
     
-    public void agregarAdelante(Cliente cliente, Ticket ticket){
+    public void agregarAdelante(Cliente cliente, Entrada ticket){
         
         cantidad++;
         

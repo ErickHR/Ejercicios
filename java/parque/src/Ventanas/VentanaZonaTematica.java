@@ -117,6 +117,17 @@ public class VentanaZonaTematica extends javax.swing.JFrame {
             }
         return true;
     }
+    public boolean unicoIdEditar(){
+        int contador = 0;
+        for(NodoZonaTematica aux = listaZonaTematica.getInicio(); aux != null; aux = aux.getSiguiente()){
+            if(aux.getZonaTematica().getIdZonatematica().equals(txtIdZonaTematica.getText()) && fila != contador){
+                JOptionPane.showMessageDialog(null, "ID ya existe");
+                return false;
+            }
+            contador ++;
+        }
+        return true;
+    }
     public boolean unicoNombre(){
         for(NodoZonaTematica aux = listaZonaTematica.getInicio(); aux != null; aux = aux.getSiguiente())
             if(aux.getZonaTematica().getNombre().equalsIgnoreCase(txtNombreZonaTematica.getText())){
@@ -297,12 +308,14 @@ public class VentanaZonaTematica extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
         if(camposObligatoriosVacios()) return;
-        if(!unicoId() || !unicoNombre()) return;
+        
         switch(btn){
             case "NUEVO":
+                if(!unicoId() || !unicoNombre()) return;
                 listaZonaTematica.agregarAdelante(new ZonaTematica(txtIdZonaTematica.getText(), txtNombreZonaTematica.getText(), txtDescripcionZonaTematica.getText(), txtColorZonaTematica.getText()));
                 break;
             case "EDITAR":
+                if(!unicoIdEditar()) return;
                 NodoZonaTematica aux = listaZonaTematica.modificar(tablaZonaTematica.getValueAt(fila, 1).toString());
                 aux.setZonaTematica(new ZonaTematica(txtIdZonaTematica.getText(), txtNombreZonaTematica.getText(), txtDescripcionZonaTematica.getText(), txtColorZonaTematica.getText()));
                 break;

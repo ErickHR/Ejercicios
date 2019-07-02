@@ -4,12 +4,14 @@ package Ventanas;
 import Lista.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-
+import zonaTematica.Pases.Entrada;
+//import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     ListaCliente listaCliente;
     ListaZonaTematica listaZonaTematica;
+    //ListaPase listaPase;
+    Entrada ticket;
     DefaultTableModel modelo;
     DefaultTableModel modelopago;
     String venta[] = new String[4];
@@ -17,7 +19,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         listaCliente = new ListaCliente();
+        //listaPase = new ListaPase();
         listaZonaTematica = new ListaZonaTematica();
+        ticket = new Entrada();
         modelo = new DefaultTableModel();
         modelopago = new DefaultTableModel();
         modelo = (DefaultTableModel) tablaVenta.getModel();
@@ -57,7 +61,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public NodoEspectaculo buscarEspectaculo(){
         NodoZonaTematica auxNodoZonaTematica = buscarZonaTematica();
         for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente())
-            if(auxEspectaculo.getEspectaculo().getNombre().equals(cbAtraccion.getSelectedItem()))
+            if(auxEspectaculo.getEspectaculo().getNombre().equals(cbEspectaculo.getSelectedItem()))
                 return auxEspectaculo;
         return null;
     }
@@ -80,6 +84,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     public void listarTablaPago(){
+        modelopago.setRowCount(0);
         float total = totalApagar();
         float igv = (float) 0.18;
         pagoCliente[0] = Float.toString(total);
@@ -90,10 +95,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         modelopago.addRow(pagoCliente);
     }
     
+    public boolean cbVacio(int cb){
+        if(cb == -1) {
+            JOptionPane.showMessageDialog(null, "Combo box vacio");
+            return true;
+        }
+        return false;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jpCliente = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtDniCliente = new javax.swing.JTextField();
@@ -103,7 +119,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jlNombre = new javax.swing.JLabel();
         jlApellido = new javax.swing.JLabel();
         jpCantidadEntradas = new javax.swing.JPanel();
-        jSpinner1 = new javax.swing.JSpinner();
+        spPases = new javax.swing.JSpinner();
         btnComprarEntradas = new javax.swing.JButton();
         jpPases = new javax.swing.JPanel();
         jpEspectaculo = new javax.swing.JPanel();
@@ -129,8 +145,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnPagar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVenta = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jlPasesRestaurante = new javax.swing.JLabel();
+        jlPasesEspectaculo = new javax.swing.JLabel();
+        jlPasesAtraccion = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         menuAgregarZonaTematica = new javax.swing.JMenuItem();
         menuAgregar = new javax.swing.JMenu();
@@ -138,8 +160,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuEspectaculo = new javax.swing.JMenuItem();
         menuAtraccion = new javax.swing.JMenuItem();
         menuAgregarCliente = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        menuPases = new javax.swing.JMenuItem();
+
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu3.setText("Edit");
+        jMenuBar2.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jpCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -190,10 +221,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtDniCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jlNombre))
+                    .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -204,6 +235,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jpCantidadEntradas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pases", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         btnComprarEntradas.setText("AGREGAR");
+        btnComprarEntradas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarEntradasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpCantidadEntradasLayout = new javax.swing.GroupLayout(jpCantidadEntradas);
         jpCantidadEntradas.setLayout(jpCantidadEntradasLayout);
@@ -215,14 +251,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCantidadEntradasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spPases, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jpCantidadEntradasLayout.setVerticalGroup(
             jpCantidadEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCantidadEntradasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spPases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnComprarEntradas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -339,7 +375,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jpZonaTematicaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Atraccion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
@@ -358,15 +394,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cbAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cbAtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -406,11 +440,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jpPasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPasesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpPasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpEspectaculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpPasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpPasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jpRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpEspectaculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
@@ -448,8 +483,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaVenta);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jLabel4.setText("Restaurante");
+
+        jLabel8.setText("Espectaculo");
+
+        jLabel9.setText("Atraccion");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlPasesRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(jlPasesEspectaculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlPasesAtraccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jlPasesRestaurante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jlPasesEspectaculo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jlPasesAtraccion))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
 
         jMenu2.setText("Agregar");
 
@@ -499,6 +572,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("Modificar");
+
+        menuPases.setText("Pases");
+        menuPases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPasesActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuPases);
+
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -513,15 +598,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jpCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jpCantidadEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jpCantidadEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jpPases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(461, 461, 461)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addComponent(btnPagar)
                 .addGap(36, 36, 36))
         );
@@ -529,20 +616,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpCantidadEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jpCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpCantidadEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpPases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnPagar)
-                    .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancelar)))
         );
 
         pack();
@@ -561,10 +649,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnAgregarEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEspectaculoActionPerformed
+        if(cbVacio(cbEspectaculo.getSelectedIndex())) return;
         NodoEspectaculo auxEspectaculo = buscarEspectaculo();
-        agregarTabla(auxEspectaculo.getEspectaculo().getNombre(),
-                auxEspectaculo.getEspectaculo().getPrecio(), 
-                spCantidadEspectaculo.getValue().toString());
+        agregarTabla(auxEspectaculo.getEspectaculo().getNombre(), auxEspectaculo.getEspectaculo().getPrecio(), spCantidadEspectaculo.getValue().toString());
     }//GEN-LAST:event_btnAgregarEspectaculoActionPerformed
 
     private void menuAgregarZonaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarZonaTematicaActionPerformed
@@ -620,7 +707,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cbZonaTematicaMouseClicked
 
     private void btnAñadirRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirRestauranteActionPerformed
-        // TODO add your handling code here:
+        if(cbVacio(cbRestaurante.getSelectedIndex())) return;
+        
         NodoRestaurante auxRestaurante = buscarRestaurante();
         agregarTabla(auxRestaurante.getRestaurante().getNombre(), 
                 auxRestaurante.getRestaurante().getPrecioMedio(), 
@@ -629,12 +717,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAñadirRestauranteActionPerformed
 
     private void btnAgregarAtraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAtraccionActionPerformed
-        // TODO add your handling code here:
+        if(cbVacio(cbAtraccion.getSelectedIndex())) return;
+        
         NodoAtraccion auxAtraccion = buscarAtraccion();
         agregarTabla(auxAtraccion.getAtraccion().getNombre(), auxAtraccion.getAtraccion().getPrecio(), spAtraccion.getValue().toString());
     }//GEN-LAST:event_btnAgregarAtraccionActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        if(jlNombre.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "AGREGE CLIENTE");
+            return;
+        }
         listarTablaPago();
     }//GEN-LAST:event_btnPagarActionPerformed
 
@@ -642,6 +735,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(null, tablaVenta.getRowCount());
        JOptionPane.showMessageDialog(null, tablaVenta.getSelectedColumn());
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnComprarEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarEntradasActionPerformed
+        
+        agregarTabla("Pases", ticket.getPrecio(), spPases.getValue().toString());
+    }//GEN-LAST:event_btnComprarEntradasActionPerformed
+
+    private void menuPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPasesActionPerformed
+       ticket.setPrecio(Float.parseFloat(JOptionPane.showInputDialog(null, "nuevo precio de pases")));
+    }//GEN-LAST:event_menuPasesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -695,18 +797,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel jlApellido;
     private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlPasesAtraccion;
+    private javax.swing.JLabel jlPasesEspectaculo;
+    private javax.swing.JLabel jlPasesRestaurante;
     private javax.swing.JPanel jpCantidadEntradas;
     private javax.swing.JPanel jpCliente;
     private javax.swing.JPanel jpEspectaculo;
@@ -718,10 +829,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuAgregarZonaTematica;
     private javax.swing.JMenuItem menuAtraccion;
     private javax.swing.JMenuItem menuEspectaculo;
+    private javax.swing.JMenuItem menuPases;
     private javax.swing.JMenuItem menuRestaurante;
     private javax.swing.JSpinner spAtraccion;
     private javax.swing.JSpinner spCantidadEspectaculo;
     private javax.swing.JSpinner spCantidadRestaurante;
+    private javax.swing.JSpinner spPases;
     private javax.swing.JTable tablaPago;
     private javax.swing.JTable tablaVenta;
     private javax.swing.JTextField txtDniCliente;

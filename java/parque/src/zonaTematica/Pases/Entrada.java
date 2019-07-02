@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parque;
+package zonaTematica.Pases;
 
 /**
  * ticket para que el cliente ingrese al parque
  * @author PROPIETARIO
  */
-public class Ticket {
+public class Entrada {
     private String fecha;
     private float precio;
 
-    public Ticket(String fecha, float precio) {
+    public Entrada(String fecha, float precio) {
         this.fecha = fecha;
         this.precio = precio;
     }
     
-    public Ticket() {
+    public Entrada() {
         this.fecha = "No comprado";
-        this.precio = (float) 0;
+        this.precio = (float) 10.0;
     }
 
     public String getFecha() {

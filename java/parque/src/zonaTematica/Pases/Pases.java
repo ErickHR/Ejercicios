@@ -10,17 +10,17 @@ package zonaTematica.Pases;
  * @author PROPIETARIO
  */
 public class Pases {
-    private String fecha; 
-    private String hora;
+    /*private String fecha; 
+    private String hora;*/
     private String aforo;
 
-    public Pases(String fecha, String hora, String aforo) {
-        this.fecha = fecha;
-        this.hora = hora;
+    public Pases(/*String fecha, String hora, */String aforo) {
+        /*this.fecha = fecha;
+        this.hora = hora;*/
         this.aforo = aforo;
     }
 
-    public String getFecha() {
+    /*public String getFecha() {
         return fecha;
     }
 
@@ -35,7 +35,7 @@ public class Pases {
     public void setHora(String hora) {
         this.hora = hora;
     }
-
+    */
     public String getAforo() {
         return aforo;
     }

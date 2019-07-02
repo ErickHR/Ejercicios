@@ -2,24 +2,24 @@
 package Lista;
 
 import parque.Cliente;
-import parque.Ticket;
+import zonaTematica.Pases.Entrada;
 
 public class NodoCliente {
     private Cliente cliente;
-    private Ticket ticket;
+    private Entrada ticket;
     private NodoCliente siguiente;
 
-    public NodoCliente(Cliente cliente, Ticket ticket) {
+    public NodoCliente(Cliente cliente, Entrada ticket) {
         this.cliente = cliente;
         this.ticket = ticket;
         this.siguiente = null;
     }
 
-    public Ticket getTicket() {
+    public Entrada getTicket() {
         return ticket;
     }
 
-    public void setTicket(Ticket ticket) {
+    public void setTicket(Entrada ticket) {
         this.ticket = ticket;
     }
     
