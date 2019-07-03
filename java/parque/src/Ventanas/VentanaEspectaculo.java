@@ -1,8 +1,10 @@
 
 package Ventanas;
 
-import Lista.*;
+import Lista.ListaZonaTematica;
+import Lista.ListaEspectaculo;
 import Lista.NodoEspectaculo;
+import Lista.NodoZonaTematica;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import zonaTematica.Espectaculo;
@@ -57,18 +59,18 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         txtNombreEspectaculo.setEnabled(booleano);
         txtPrecio.setEnabled(booleano);
         spMinutos.setEnabled(booleano);
-        jSpinner1.setEnabled(booleano);
+        spAforoMaximo.setEnabled(booleano);
     }
     public void estadoTxtAgregarTipo(boolean booleano){
         txtAgregarTipoEspectaculo.setEnabled(booleano);
     }
-    public void modificarTxt(String codigo, String nombre, String tipo,String precio, int minutos, int aforo){
+    public void modificarTxt(String codigo, String nombre,String precio, int minutos, int aforo){
         txtCodigo.setText(codigo);
         txtNombreEspectaculo.setText(nombre);
         txtPrecio.setText(precio);
-        cbTipoEspectaculo.setSelectedItem(tipo);
-        spMinutos.setValue(minutos);
-        jSpinner1.setValue(aforo);
+        //cbTipoEspectaculo.setSelectedItem(tipo);
+        spMinutos.setValue(0);
+        spAforoMaximo.setValue(aforo);
     }
     public boolean camposObligatoriosVacios(){
         if(txtCodigo.getText().isEmpty()){
@@ -87,9 +89,9 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
             return true;
         }
         
-        if(Integer.parseInt(jSpinner1.getValue().toString()) < 5){
+        if(Integer.parseInt(spAforoMaximo.getValue().toString()) < 5){
             JOptionPane.showMessageDialog(null, "AFORO MAYOR A 5");
-            jSpinner1.setValue(5);
+            spAforoMaximo.setValue(5);
             return true;
         }
         return false;
@@ -114,8 +116,8 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     public boolean unicoIdEditar(){
         int filaSeleccionada = 0;
         for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
-            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
-                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtCodigo.getText()) && fila != filaSeleccionada ){
+            for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
+                if(auxEspectaculo.getEspectaculo().getIdEspectaculo().equals(txtCodigo.getText()) && fila != filaSeleccionada ){
                     JOptionPane.showMessageDialog(null, "inserte otro Id");
                     return false;
                 }
@@ -125,14 +127,14 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         return true;
     }
     public boolean unicoNombreEditar(){
-        int cont = 0;
+        int filaSeleccionada = 0;
         for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
-            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
-                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtNombreEspectaculo.getText()) && fila != cont ){
-                    JOptionPane.showMessageDialog(null, "inserte otro nombre");
+            for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
+                if(auxEspectaculo.getEspectaculo().getIdEspectaculo().equals(txtNombreEspectaculo.getText()) && fila != filaSeleccionada ){
+                    JOptionPane.showMessageDialog(null, "inserte otro Id");
                     return false;
                 }
-                cont++;
+                filaSeleccionada++;
             }
         }
         return true;
@@ -156,7 +158,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         return true;
     }
     public boolean listaVacia(){
-        if(listaZonaTematica.getInicio().getRestaurante().getInicio() == null){
+        if(listaZonaTematica.getInicio().getEspectaculo().getInicio() == null){
             JOptionPane.showMessageDialog(null, "Lista vacia");
             return true;
         }
@@ -208,7 +210,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         cbZonaTematica = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        spAforoMaximo = new javax.swing.JSpinner();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -370,7 +372,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
                                                     .addComponent(txtAgregarTipoEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(spAforoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(22, 22, 22))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel8)
@@ -423,7 +425,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
                         .addGap(20, 20, 20)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spAforoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAgregarTipoEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -438,20 +440,22 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
         if(camposObligatoriosVacios()) return;
         switch(btn){
-            case "NUEVO":
+            case ("NUEVO"):
                 if(!unicoId() || !unicoNombre()) return;
                 listaEspectaculo = listaZonaTematica.listaEspectaculo(cbZonaTematica.getSelectedItem().toString());
-                listaEspectaculo.agregarAdelante(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(jSpinner1.getValue().toString())));
+                listaEspectaculo.agregarAdelante(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(spAforoMaximo.getValue().toString())));
                 break;
-            case "EDITAR":
+            case ("EDITAR"):
                 if(!unicoIdEditar() || !unicoNombreEditar()) return;
                 NodoEspectaculo auxesEspectaculo = listaZonaTematica.listaEspectaculo(cbZonaTematica.getSelectedItem().toString()).modificar(tbEspectaculo.getValueAt(fila, 1).toString());
-                auxesEspectaculo.setEspectaculo(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(jSpinner1.getValue().toString())));
+                auxesEspectaculo.setEspectaculo(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(spAforoMaximo.getValue().toString())));
+                break;
         }
         
-        modificarTxt("", "", "musica","", 0, 0);
+        modificarTxt("", "","", 0, 0);
         estadosTxt(false);
         listarTabla();
         estadosBtn(true);
@@ -470,17 +474,23 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarTipoEspectaculoActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        estadosTxt(true);
-        estadosBtn(false);
         btn = "NUEVO";
+        estadosTxt(true);
+        estadosBtn(false);       
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(listaVacia()) return;
         if(filaEsMenoUno())return;
-        btn = "EDITAR";
-        modificarTxt(tbEspectaculo.getValueAt(fila, 1).toString(),tbEspectaculo.getValueAt(fila, 2).toString(),tbEspectaculo.getValueAt(fila, 3).toString(),tbEspectaculo.getValueAt(fila, 4).toString(), Integer.parseInt(tbEspectaculo.getValueAt(fila, 4).toString()),Integer.parseInt(tbEspectaculo.getValueAt(fila, 5).toString()));
         
+        btn = "EDITAR";
+        /*
+        modificarTxt(tbEspectaculo.getValueAt(fila, 1).toString(),
+                tbEspectaculo.getValueAt(fila, 2).toString() , 
+                tbEspectaculo.getValueAt(fila, 3).toString(), 
+                Integer.parseInt(tbEspectaculo.getValueAt(fila, 4).toString()), 
+                Integer.parseInt(tbEspectaculo.getValueAt(fila, 5).toString()));
+                */
         estadosTxt(true);
         estadosBtn(false);
         
@@ -494,7 +504,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(listaVacia()) return;
         if(filaEsMenoUno()) return;
-        listaEspectaculo = listaZonaTematica.getInicio().getEspectaculo();
+        listaEspectaculo = listaZonaTematica.listaEspectaculo(cbZonaTematica.getSelectedItem().toString());
         listaEspectaculo.eliminar(tbEspectaculo.getValueAt(fila, 1).toString());
         listarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -530,9 +540,9 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JSpinner spAforoMaximo;
     private javax.swing.JSpinner spMinutos;
     private javax.swing.JTable tbEspectaculo;
     private javax.swing.JTextField txtAgregarTipoEspectaculo;

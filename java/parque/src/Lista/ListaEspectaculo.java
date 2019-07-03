@@ -22,17 +22,17 @@ public class ListaEspectaculo {
         
         NodoEspectaculo nuevo = new NodoEspectaculo(espectaculo);
         
-        if(inicio == null) inicio = nuevo;
-        else{
-            
-            NodoEspectaculo aux = inicio;
-            
-            while(aux.getSiguiente() != null)
-                aux = aux.getSiguiente();
-            
-            aux.setSiguiente(nuevo);
-            
+        if(inicio == null){
+            inicio = nuevo;
+            return;
         }
+        
+        NodoEspectaculo auxEspectaculo;
+
+        for(auxEspectaculo = inicio; auxEspectaculo.getSiguiente() != null; auxEspectaculo = auxEspectaculo.getSiguiente()) {}
+
+        auxEspectaculo.setSiguiente(nuevo);
+        
     }
     
     public NodoEspectaculo modificar(String codigo){

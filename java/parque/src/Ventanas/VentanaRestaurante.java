@@ -409,8 +409,11 @@ public class VentanaRestaurante extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(listaVacia()) return;
         if(filaEsMenoUno()) return;
-        listaRestaurante = listaZonaTematica.getInicio().getRestaurante();
+        listaRestaurante = listaZonaTematica.listaRestaurante(cbZonaTematica.getSelectedItem().toString());
         listaRestaurante.eliminar(tbRestaurante.getValueAt(fila, 1).toString());
+        
+        //listaRestaurante = listaZonaTematica.getInicio().getRestaurante();
+        //listaRestaurante.eliminar(tbRestaurante.getValueAt(fila, 1).toString());
         listarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
