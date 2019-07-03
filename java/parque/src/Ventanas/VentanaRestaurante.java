@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Lista.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import zonaTematica.Restaurante;
 
@@ -18,20 +19,86 @@ public class VentanaRestaurante extends javax.swing.JFrame {
     /**
      * Creates new form VentanaRestaurante
      */
+    VentanaPrincipal ventanaPrincipal;
     ListaZonaTematica listaZonaTematica;
     ListaRestaurante listaRestaurante;
     String arregloResaturante[] = new String[6];
     String btn;
+    int fila;
     DefaultTableModel modelo;
-    public VentanaRestaurante(ListaZonaTematica lista) {
+    public VentanaRestaurante(ListaZonaTematica lista, VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        this.ventanaPrincipal = ventanaPrincipal;
         listaZonaTematica = lista;
         
         modelo = (DefaultTableModel) tbRestaurante.getModel();
         estadoTxt(false);
         listarCb();
+        listarTabla();
         estadoBtnGuardar(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+/*
+    public boolean unicoNombreDniEditar(){
+        int cont = 0;
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
+            cont = 0;
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
+                if((auxRestaurante.getRestaurante().getIdRestaurante().equals(txtIdRestaurante.getText()) || auxRestaurante.getRestaurante().getIdRestaurante().equals(txtNombreRestaurante.getText()))&& fila != cont ){
+                    JOptionPane.showMessageDialog(null, "inserte otro Id");
+                    return false;
+                }
+                cont++;
+            }
+        }
+        return true;
+    }
+*/
+    public boolean unicoIdEditar(){
+        int filaSeleccionada = 0;
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtIdRestaurante.getText()) && fila != filaSeleccionada ){
+                    JOptionPane.showMessageDialog(null, "inserte otro Id");
+                    return false;
+                }
+                filaSeleccionada++;
+            }
+        }
+        return true;
+    }
+    
+    public boolean unicoNombreEditar(){
+        int cont = 0;
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtNombreRestaurante.getText()) && fila != cont ){
+                    JOptionPane.showMessageDialog(null, "inserte otro nombre");
+                    return false;
+                }
+                cont++;
+            }
+        }
+        return true;
+    }
+
+    public boolean unicoId(){
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente())
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtIdRestaurante.getText())){
+                    JOptionPane.showMessageDialog(null, "inserte otro Id");
+                    return false;
+                }
+        return true;
+    }
+    public boolean unicoNombre(){
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente())
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtNombreRestaurante.getText())){
+                    JOptionPane.showMessageDialog(null, "inserte otro Nombre");
+                    return false;
+                }
+        return true;
     }
     public void listarCb(){
         for(NodoZonaTematica aux = listaZonaTematica.getInicio(); aux != null; aux = aux.getSiguiente()){
@@ -61,6 +128,7 @@ public class VentanaRestaurante extends javax.swing.JFrame {
         btnNuevo.setEnabled(!booleano);
     }
     public void estadoTxt(boolean booleano){
+        txtIdRestaurante.requestFocus();
         txtHorarioRestaurante.setEnabled(booleano);
         txtIdRestaurante.setEnabled(booleano);
         txtNombreRestaurante.setEnabled(booleano);
@@ -72,6 +140,55 @@ public class VentanaRestaurante extends javax.swing.JFrame {
         txtNombreRestaurante.setText(nombre);
         txtPrecioMEdio.setText(precio);
     }
+    public void soloLetras(java.awt.event.KeyEvent evt){
+        char validar = evt.getKeyChar();
+        if(Character.isDigit(validar))
+            evt.consume();
+    }
+    public void soloNumeros(java.awt.event.KeyEvent evt){
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar))
+            evt.consume();
+    }
+    public boolean listaVacia(){
+        if(listaZonaTematica.getInicio().getRestaurante().getInicio() == null){
+            JOptionPane.showMessageDialog(null, "Lista vacia");
+            return true;
+        }
+        return false;
+    }
+    public boolean filaEsMenoUno(){
+        fila = tbRestaurante.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(null, "seleccion un elemento de la fila");
+            return true;
+        }
+        return false;
+    }
+    public boolean txtsObligatoriosVacio(){
+        if(txtIdRestaurante.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "inserte id");
+            txtIdRestaurante.requestFocus();
+            return true;
+        }
+        if(txtNombreRestaurante.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "inserte Nombre");
+            txtNombreRestaurante.requestFocus();
+            return true;
+        }
+        if(txtHorarioRestaurante.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "inserte horario");
+            txtHorarioRestaurante.requestFocus();
+            return true;
+        }
+        if(txtPrecioMEdio.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "inserte precio");
+            txtPrecioMEdio.requestFocus();
+            return true;
+        }
+        return false;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -95,6 +212,11 @@ public class VentanaRestaurante extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("NOMBRE:");
 
@@ -103,6 +225,18 @@ public class VentanaRestaurante extends javax.swing.JFrame {
         jLabel3.setText("PRECIO MEDIO:");
 
         jLabel4.setText("ID:");
+
+        txtNombreRestaurante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreRestauranteKeyTyped(evt);
+            }
+        });
+
+        txtPrecioMEdio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioMEdioKeyTyped(evt);
+            }
+        });
 
         btnNuevo.setText("NUEVO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -126,8 +260,18 @@ public class VentanaRestaurante extends javax.swing.JFrame {
         }
 
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -174,15 +318,15 @@ public class VentanaRestaurante extends javax.swing.JFrame {
                                         .addComponent(btnGuardar)
                                         .addComponent(btnEliminar))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtIdRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(98, 98, 98))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(48, 48, 48)))
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(48, 48, 48))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtIdRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbZonaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(67, 67, 67))
         );
@@ -231,16 +375,17 @@ public class VentanaRestaurante extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        if(txtsObligatoriosVacio()) return;
         switch(btn){
             case "NUEVO":
-                for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-                    if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem())){
-                        listaRestaurante = auxZonaTematica.getRestaurante();
-                        listaRestaurante.agregarAdelante(new Restaurante(txtIdRestaurante.getText(), txtNombreRestaurante.getText(), txtHorarioRestaurante.getText(), Float.parseFloat(txtPrecioMEdio.getText())));
-                        break;
-                    }
-                }
+                if(!unicoId() || !unicoNombre()) return;
+                listaRestaurante = listaZonaTematica.listaRestaurante(cbZonaTematica.getSelectedItem().toString());
+                listaRestaurante.agregarAdelante(new Restaurante(txtIdRestaurante.getText(), txtNombreRestaurante.getText(), txtHorarioRestaurante.getText(), Float.parseFloat(txtPrecioMEdio.getText())));
                 break;
+            case "EDITAR":
+                if(!unicoIdEditar() || !unicoNombreEditar()) return;
+                NodoRestaurante auxRestaurante = listaZonaTematica.listaRestaurante(cbZonaTematica.getSelectedItem().toString()).modificar(tbRestaurante.getValueAt(fila, 1).toString());
+                auxRestaurante.setRestaurante(new Restaurante(txtIdRestaurante.getText(), txtNombreRestaurante.getText(), txtHorarioRestaurante.getText(), Float.parseFloat(txtPrecioMEdio.getText())));
         }
         
         modificarTxt("", "", "", "");
@@ -250,9 +395,40 @@ public class VentanaRestaurante extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        if(listaZonaTematica.getInicio().getRestaurante() == null) return;
+        
+        ventanaPrincipal.listarCbRestauranteEspectaculoAtraccion();
+        ventanaPrincipal.estadoMenuAgregarCliente(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void txtNombreRestauranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRestauranteKeyTyped
+        soloLetras(evt);
+    }//GEN-LAST:event_txtNombreRestauranteKeyTyped
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if(listaVacia()) return;
+        if(filaEsMenoUno()) return;
+        listaRestaurante = listaZonaTematica.getInicio().getRestaurante();
+        listaRestaurante.eliminar(tbRestaurante.getValueAt(fila, 1).toString());
+        listarTabla();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        if(listaVacia()) return;
+        if(filaEsMenoUno())return;
+        btn = "EDITAR";
+        modificarTxt(tbRestaurante.getValueAt(fila, 1).toString(),
+                tbRestaurante.getValueAt(fila, 2).toString(),
+                tbRestaurante.getValueAt(fila, 3).toString(),
+                tbRestaurante.getValueAt(fila, 4).toString());
+        estadoTxt(true);
+        estadoBtnGuardar(true);
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void txtPrecioMEdioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioMEdioKeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_txtPrecioMEdioKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;

@@ -22,6 +22,7 @@ public class VentanaZonaTematica extends javax.swing.JFrame {
         modelo = (DefaultTableModel) tablaZonaTematica.getModel();
         estadoTxt(false);
         estadoBtn(true);
+        listarTabla();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     public boolean camposObligatoriosVacios(){
@@ -360,6 +361,9 @@ public class VentanaZonaTematica extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         ventanaPrincipal.listarCbZonaTematica();
+        if(ventanaPrincipal.listaZonaTematicaEsVacia1())return;
+        
+        ventanaPrincipal.estadoMenuAgregar(true);
     }//GEN-LAST:event_formWindowClosed
 
     /**

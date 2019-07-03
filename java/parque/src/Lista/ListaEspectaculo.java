@@ -37,9 +37,22 @@ public class ListaEspectaculo {
     
     public NodoEspectaculo modificar(String codigo){
         for(NodoEspectaculo aux = inicio; aux != null; aux = aux.getSiguiente()){
-            if(aux.getEspectaculo().getIdEspectaculo().equals(codigo)) return aux;
+            if(aux.getEspectaculo().getIdEspectaculo().equals(codigo))
+                return aux;
         }
         return null;
+    }
+    
+    public void eliminar(String id){
+        if(inicio.getEspectaculo().getIdEspectaculo().equals(id)){
+            inicio = inicio.getSiguiente();
+            return;
+        }
+        for(NodoEspectaculo aux = inicio; aux != null; aux = aux.getSiguiente())
+            if(aux.getSiguiente().getEspectaculo().getIdEspectaculo().equals(id)){
+                aux.setSiguiente(aux.getSiguiente().getSiguiente());
+                return;
+            }
     }
     
 }

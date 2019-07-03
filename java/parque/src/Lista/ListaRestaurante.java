@@ -36,9 +36,9 @@ public class ListaRestaurante {
     }
     
     public NodoRestaurante modificar(String id){
-        for(NodoRestaurante aux = inicio; aux != null; aux = aux.getSiguiente())
-            if(aux.getRestaurante().getIdRestaurante().equals(id))
-                return aux;
+        for(NodoRestaurante auxRestaurante = inicio; auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente())
+            if(auxRestaurante.getRestaurante().getIdRestaurante().equals(id))
+                return auxRestaurante;
         return null;
     }
     

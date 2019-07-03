@@ -9,13 +9,15 @@ import zonaTematica.Pases.Entrada;
 
 public class VentanaCliente extends javax.swing.JFrame {
 
+    private VentanaPrincipal ventanaPrincipal;
     private ListaCliente lista;
     private String arreglo[] = new String[8];
     private DefaultTableModel modelo;
     private String boton;//para saber que boton se presiono
     private int filaModificar;
-    public VentanaCliente(ListaCliente lista) {
+    public VentanaCliente(ListaCliente lista, VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        this.ventanaPrincipal = ventanaPrincipal;
         this.lista = lista;
         modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tabla.getModel();
@@ -197,6 +199,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -478,6 +485,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         soloNumeros(evt);
         Telefono_cantidad(evt);
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        if(lista.getInicio() ==  null) return;
+        ventanaPrincipal.estadoTxtCliente(true);
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;

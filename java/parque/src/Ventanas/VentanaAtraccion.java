@@ -2,23 +2,73 @@
 package Ventanas;
 
 import Lista.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import zonaTematica.Atraccion;
 
 public class VentanaAtraccion extends javax.swing.JFrame {
 
+    VentanaPrincipal ventanaPrincipal;
     ListaZonaTematica listaZonaTematica;
     ListaAtraccion listaAtraccion;
     String arregloAtraccion[] = new String[8];
     DefaultTableModel modelo;
-    public VentanaAtraccion(ListaZonaTematica listaZonaTematica) {
+    int fila;
+    public VentanaAtraccion(ListaZonaTematica listaZonaTematica, VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        this.ventanaPrincipal = ventanaPrincipal;
         this.listaZonaTematica = listaZonaTematica;
         listarCbZonaTematica();
         modelo = (DefaultTableModel) tablaAtraccion.getModel();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+    public boolean unicoIdEditar(){
+        int filaSeleccionada = 0;
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtId.getText()) && fila != filaSeleccionada ){
+                    JOptionPane.showMessageDialog(null, "inserte otro Id");
+                    return false;
+                }
+                filaSeleccionada++;
+            }
+        }
+        return true;
+    }
     
+    public boolean unicoNombreEditar(){
+        int cont = 0;
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtNombre.getText()) && fila != cont ){
+                    
+                    JOptionPane.showMessageDialog(null, "inserte otro nombre");
+                    return false;
+                }
+                cont++;
+            }
+        }
+        return true;
+    }
+
+    public boolean unicoId(){
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente())
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtId.getText())){
+                    JOptionPane.showMessageDialog(null, "inserte otro Id");
+                    return false;
+                }
+        return true;
+    }
+    public boolean unicoNombre(){
+        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
+            for(NodoRestaurante auxRestaurante = auxNodoZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente())
+                if(auxRestaurante.getRestaurante().getIdRestaurante().equals(txtNombre.getText())){
+                    JOptionPane.showMessageDialog(null, "inserte otro Nombre");
+                    return false;
+                }
+        return true;
+    }
     public void listarCbZonaTematica(){
         for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
             cbZonaTematica.addItem(auxZonaTematica.getZonaTematica().getNombre());
@@ -69,6 +119,11 @@ public class VentanaAtraccion extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("NOMBRE:");
 
@@ -91,8 +146,18 @@ public class VentanaAtraccion extends javax.swing.JFrame {
         jLabel5.setText("ZONA TEMATICA");
 
         btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
 
@@ -223,6 +288,22 @@ public class VentanaAtraccion extends javax.swing.JFrame {
         }
         listarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(listaZonaTematica.getInicio().getAtraccion().getInicio() == null) return;
+        
+        ventanaPrincipal.listarCbRestauranteEspectaculoAtraccion();
+        ventanaPrincipal.estadoMenuAgregarCliente(true);
+        
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     /**
      * @param args the command line arguments

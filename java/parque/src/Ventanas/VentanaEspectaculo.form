@@ -52,6 +52,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -117,11 +120,18 @@
                                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="spAforoMaximo" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                          <Component id="spMinutos" min="-2" pref="79" max="-2" attributes="0"/>
-                                          <Component id="txtAgregarTipoEspectaculo" min="-2" pref="114" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="spMinutos" min="-2" pref="79" max="-2" attributes="0"/>
+                                                  <Component id="txtAgregarTipoEspectaculo" min="-2" pref="114" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jSpinner1" min="-2" pref="80" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
@@ -194,7 +204,7 @@
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="spAforoMaximo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -290,8 +300,8 @@
                 <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                 <Column editable="true" title="TIPO" type="java.lang.Object"/>
                 <Column editable="true" title="PRECIO" type="java.lang.Object"/>
-                <Column editable="true" title="MINUTOS" type="java.lang.Integer"/>
-                <Column editable="true" title="AFORO" type="java.lang.Integer"/>
+                <Column editable="true" title="MINUTOS" type="java.lang.Object"/>
+                <Column editable="true" title="AFORO" type="java.lang.Object"/>
                 <Column editable="true" title="ZONA TEMATICA" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -375,8 +385,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSpinner" name="spAforoMaximo">
-    </Component>
     <Component class="javax.swing.JSpinner" name="spMinutos">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -400,6 +408,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrecio">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPrecioKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner1">
     </Component>
   </SubComponents>
 </Form>

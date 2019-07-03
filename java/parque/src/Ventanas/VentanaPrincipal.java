@@ -5,11 +5,12 @@ import Lista.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import zonaTematica.Pases.Entrada;
-//import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     ListaCliente listaCliente;
     ListaZonaTematica listaZonaTematica;
+    ListaZonaTematica listaPase;
     //ListaPase listaPase;
     Entrada ticket;
     DefaultTableModel modelo;
@@ -18,6 +19,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     String pagoCliente[] = new String[5];
     public VentanaPrincipal() {
         initComponents();
+        
+        estadoMenuAgregar(false);
+        estadoMenuAgregarCliente(false);
+        estadoTxtCliente(false);
         listaCliente = new ListaCliente();
         //listaPase = new ListaPase();
         listaZonaTematica = new ListaZonaTematica();
@@ -26,7 +31,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         modelopago = new DefaultTableModel();
         modelo = (DefaultTableModel) tablaVenta.getModel();
         modelopago = (DefaultTableModel) tablaPago.getModel();
-        //AutoCompleteDecorator.decorate(cbZonaTematica);
+        //AutoCompleteDecorator.decorate(txtDniCliente);
+    }
+    
+    public void estadoTxtCliente(boolean booleano){
+        txtDniCliente.setEnabled(booleano);
+    }
+    public void estadoMenuAgregar(boolean booleano){
+        menuAgregar.setEnabled(booleano);
+    }
+    
+    public void estadoMenuAgregarCliente(boolean booleano){
+        menuAgregarCliente.setEnabled(booleano);
+    }
+    
+    public boolean listaZonaTematicaEsVacia1(){
+        return listaZonaTematica.getInicio() == null;
+    }
+    public boolean listaZonaTematicaEsVacia(){
+        if(listaZonaTematica.getInicio() == null){
+            JOptionPane.showMessageDialog(null, "Agrege Zona Tematica");
+            return true;
+        }
+        return false;
     }
     
     public void listarCbZonaTematica(){
@@ -95,12 +122,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         modelopago.addRow(pagoCliente);
     }
     
-    public boolean cbVacio(int cb){
-        if(cb == -1) {
-            JOptionPane.showMessageDialog(null, "Combo box vacio");
+    public boolean listaClienteVacio(){
+        if(listaCliente.getInicio() == null){
+            JOptionPane.showMessageDialog(null, "Agrega Cliente");
             return true;
         }
         return false;
+    }
+    
+    public boolean cbVacio(int cb){
+        if(cb == -1) {
+            JOptionPane.showMessageDialog(null, "Agrege. Combo box vacio");
+            return true;
+        }
+        return false;
+    }
+    
+    public void listarCbRestauranteEspectaculoAtraccion(){
+        cbAtraccion.removeAllItems();
+        cbRestaurante.removeAllItems();
+        cbEspectaculo.removeAllItems();
+        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
+            if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem())){
+                for(NodoAtraccion auxNodoAtraccion = auxZonaTematica.getAtraccion().getInicio(); auxNodoAtraccion != null; auxNodoAtraccion = auxNodoAtraccion.getSiguiente()){
+                    cbAtraccion.addItem(auxNodoAtraccion.getAtraccion().getNombre());
+                }
+                for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
+                    cbEspectaculo.addItem(auxEspectaculo.getEspectaculo().getNombre());
+                }
+                for(NodoRestaurante auxRestaurante = auxZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
+                    cbRestaurante.addItem(auxRestaurante.getRestaurante().getNombre());
+                }
+                break;
+            }
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -112,12 +167,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jpCliente = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtDniCliente = new javax.swing.JTextField();
         btnBuscarCliente = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jlNombre = new javax.swing.JLabel();
         jlApellido = new javax.swing.JLabel();
+        txtDniCliente = new javax.swing.JTextField();
         jpCantidadEntradas = new javax.swing.JPanel();
         spPases = new javax.swing.JSpinner();
         btnComprarEntradas = new javax.swing.JButton();
@@ -197,8 +252,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jpClienteLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDniCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addComponent(txtDniCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBuscarCliente))
                     .addGroup(jpClienteLayout.createSequentialGroup()
                         .addGroup(jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -210,7 +265,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 116, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpClienteLayout.setVerticalGroup(
@@ -219,8 +274,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtDniCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCliente))
+                    .addComponent(btnBuscarCliente)
+                    .addComponent(txtDniCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -501,7 +556,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlPasesRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(jlPasesRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                     .addComponent(jlPasesEspectaculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlPasesAtraccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -637,19 +692,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        if(listaZonaTematicaEsVacia()) return;
+        if(listaClienteVacio()) return;
         for(NodoCliente aux = listaCliente.getInicio(); aux != null; aux = aux.getSiguiente())
             if(aux.getCliente().getDni().equals(txtDniCliente.getText())){
                 jlNombre.setText(aux.getCliente().getNombre());
                 jlApellido.setText(aux.getCliente().getApellido());
                 return;
             }
-        VentanaCliente vtnCliente = new VentanaCliente(listaCliente);
+        VentanaCliente vtnCliente = new VentanaCliente(listaCliente, this);
         vtnCliente.setVisible(true);
         vtnCliente.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnAgregarEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEspectaculoActionPerformed
         if(cbVacio(cbEspectaculo.getSelectedIndex())) return;
+        if(listaClienteVacio()) return;
         NodoEspectaculo auxEspectaculo = buscarEspectaculo();
         agregarTabla(auxEspectaculo.getEspectaculo().getNombre(), auxEspectaculo.getEspectaculo().getPrecio(), spCantidadEspectaculo.getValue().toString());
     }//GEN-LAST:event_btnAgregarEspectaculoActionPerformed
@@ -661,54 +719,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAgregarZonaTematicaActionPerformed
 
     private void menuRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRestauranteActionPerformed
-        VentanaRestaurante vtnRestaurante = new VentanaRestaurante(listaZonaTematica);
+        VentanaRestaurante vtnRestaurante = new VentanaRestaurante(listaZonaTematica, this);
         vtnRestaurante.setVisible(true);
         vtnRestaurante.setLocationRelativeTo(null);
     }//GEN-LAST:event_menuRestauranteActionPerformed
 
     private void menuAtraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAtraccionActionPerformed
-        VentanaAtraccion vtnAtraccion = new VentanaAtraccion(listaZonaTematica);
+        VentanaAtraccion vtnAtraccion = new VentanaAtraccion(listaZonaTematica, this);
         vtnAtraccion.setVisible(true);
         vtnAtraccion.setLocationRelativeTo(null);
     }//GEN-LAST:event_menuAtraccionActionPerformed
 
     private void menuEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEspectaculoActionPerformed
-        VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaZonaTematica);
+        VentanaEspectaculo vtnEspectaculo = new VentanaEspectaculo(listaZonaTematica, this);
         vtnEspectaculo.setTitle("Espectaculo");
         vtnEspectaculo.setLocationRelativeTo(null);
         vtnEspectaculo.setVisible(true);
     }//GEN-LAST:event_menuEspectaculoActionPerformed
 
     private void menuAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarClienteActionPerformed
-        VentanaCliente vtnCliente = new VentanaCliente(listaCliente);
+        VentanaCliente vtnCliente = new VentanaCliente(listaCliente, this);
         vtnCliente.setVisible(true);
         vtnCliente.setLocationRelativeTo(null);
     }//GEN-LAST:event_menuAgregarClienteActionPerformed
 
     private void cbZonaTematicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbZonaTematicaMouseClicked
         // TODO add your handling code here:
-        cbAtraccion.removeAllItems();
-        cbRestaurante.removeAllItems();
-        cbEspectaculo.removeAllItems();
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem())){
-                for(NodoAtraccion auxNodoAtraccion = auxZonaTematica.getAtraccion().getInicio(); auxNodoAtraccion != null; auxNodoAtraccion = auxNodoAtraccion.getSiguiente()){
-                    cbAtraccion.addItem(auxNodoAtraccion.getAtraccion().getNombre());
-                }
-                for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
-                    cbEspectaculo.addItem(auxEspectaculo.getEspectaculo().getNombre());
-                }
-                for(NodoRestaurante auxRestaurante = auxZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
-                    cbRestaurante.addItem(auxRestaurante.getRestaurante().getNombre());
-                }
-                break;
-            }
-        }
+        listarCbRestauranteEspectaculoAtraccion();
     }//GEN-LAST:event_cbZonaTematicaMouseClicked
 
     private void btnAñadirRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirRestauranteActionPerformed
         if(cbVacio(cbRestaurante.getSelectedIndex())) return;
-        
+        if(listaClienteVacio()) return;
         NodoRestaurante auxRestaurante = buscarRestaurante();
         agregarTabla(auxRestaurante.getRestaurante().getNombre(), 
                 auxRestaurante.getRestaurante().getPrecioMedio(), 
@@ -718,7 +760,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarAtraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAtraccionActionPerformed
         if(cbVacio(cbAtraccion.getSelectedIndex())) return;
-        
+        if(listaClienteVacio()) return;
         NodoAtraccion auxAtraccion = buscarAtraccion();
         agregarTabla(auxAtraccion.getAtraccion().getNombre(), auxAtraccion.getAtraccion().getPrecio(), spAtraccion.getValue().toString());
     }//GEN-LAST:event_btnAgregarAtraccionActionPerformed
@@ -737,7 +779,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnComprarEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarEntradasActionPerformed
-        
+        if(listaClienteVacio()) return;
         agregarTabla("Pases", ticket.getPrecio(), spPases.getValue().toString());
     }//GEN-LAST:event_btnComprarEntradasActionPerformed
 

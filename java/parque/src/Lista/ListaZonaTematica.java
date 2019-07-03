@@ -51,4 +51,23 @@ public class ListaZonaTematica {
             }
     }
     
+    public NodoZonaTematica nodoZonaTematica(String nombreListaZonaTematica){
+        for(NodoZonaTematica auxZonaTematica = inicio; auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente())
+            if(auxZonaTematica.getZonaTematica().getNombre().equals(nombreListaZonaTematica))
+                return auxZonaTematica;
+        return null;
+    } 
+    
+    public ListaRestaurante listaRestaurante(String nombreListaZonaTematica){
+        return nodoZonaTematica(nombreListaZonaTematica).getRestaurante();
+    }
+    
+    public ListaEspectaculo listaEspectaculo(String nombreListaZonaTematica){
+        return nodoZonaTematica(nombreListaZonaTematica).getEspectaculo();
+    }
+    
+    public ListaAtraccion listaAtraccion(String nombreListaZonaTematica){
+        return nodoZonaTematica(nombreListaZonaTematica).getAtraccion();
+    }
+    
 }
