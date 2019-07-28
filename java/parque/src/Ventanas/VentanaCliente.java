@@ -21,127 +21,10 @@ public class VentanaCliente extends javax.swing.JFrame {
         this.lista = lista;
         modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tabla.getModel();
-        estadosTxt(false);
-        listarTabla();
-        estadoBtn(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
-    public void modificarTxt(String apellido, String direccion, String dni, String nombre, String telefono){
-        txtApellido.setText(apellido);
-        txtDireccion.setText(direccion);
-        txtDni.setText(dni);
-        txtNombre.setText(nombre);
-        txtTelefono.setText(telefono);
-    }
     
-    public void estadosTxt(boolean booleano){
-        txtApellido.setEditable(booleano);
-        txtDireccion.setEditable(booleano);
-        txtDni.setEditable(booleano);
-        txtNombre.setEditable(booleano);
-        txtTelefono.setEditable(booleano);
-    }
-    
-    public void listarTabla(){
-        int cantidad = 1;
-        
-        modelo.setRowCount(0);
-        for(NodoCliente aux = lista.getInicio(); aux != null; aux = aux.getSiguiente()){
-            arreglo[0] = Integer.toString(cantidad);
-            arreglo[1] = aux.getCliente().getDni();
-            arreglo[2] = aux.getCliente().getNombre();
-            arreglo[3] = aux.getCliente().getApellido();
-            arreglo[4] = aux.getCliente().getSexo();
-            arreglo[5] = aux.getCliente().getDireccion();
-            arreglo[6] = aux.getCliente().getTelefono();
-            arreglo[7] = aux.getTicket().getFecha();
-            
-            modelo.addRow(arreglo);
-            
-            cantidad ++;
-        }
-    }
-    
-    public void estadoBtn(boolean booleano){
-        btnEliminar.setEnabled(booleano);
-        btnGuardar.setEnabled(!booleano);
-        btnEditar.setEnabled(booleano);
-        btnNuevo.setEnabled(booleano);
-    }
-    
-    public boolean unicoDni(String dni){
-        for(NodoCliente aux = lista.getInicio(); aux != null; aux = aux.getSiguiente()){
-            if(aux.getCliente().getDni().equals(dni)) {
-                JOptionPane.showMessageDialog(null, "inserte otro dni");
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    public boolean validandoDni(String dni){
-        if(Integer.parseInt(dni) < 10000000 || Integer.parseInt(dni) > 100000000){
-            JOptionPane.showMessageDialog(null, "dni invalido(10000000-100000000)");
-            return false;
-        }
-        return true;
-    }
-    
-    public boolean validarDniEditar(String dni, int fila){
-        int orden = 0;
-        for(NodoCliente aux = lista.getInicio(); aux != null; aux = aux.getSiguiente()){
-            if(aux.getCliente().getDni().equals(dni) && orden != fila){
-                JOptionPane.showMessageDialog(null, "inserte otro dni");
-                return false;
-            }
-            orden++;
-        }
-        return true;
-    }
-    
-    public boolean validarTelefono(String telefono){
-        if(Integer.parseInt(telefono) > 999999999 || Integer.parseInt(telefono) < 900000000){
-            JOptionPane.showMessageDialog(null, "telefono invalido");
-            return false;
-        }
-        return true;
-    }
-    
-    public void soloNumeros(java.awt.event.KeyEvent evt){
-        char validar = evt.getKeyChar();
-        if(Character.isLetter(validar)) evt.consume();
-    }
-    
-    public void Dni_cantidad(java.awt.event.KeyEvent evt){
-        if(txtDni.getText().length() > 7)
-            evt.consume();
-    }
-    
-    public void Telefono_cantidad(java.awt.event.KeyEvent evt){
-        if(txtTelefono.getText().length() > 8)
-            evt.consume();
-    }
-    
-    public void soloLetras(java.awt.event.KeyEvent evt){
-        char validar = evt.getKeyChar();
-        if(Character.isDigit(validar)) evt.consume();
-    }
-    
-    public boolean campoObligatorios(){
-        if(txtApellido.getText().isEmpty() || txtNombre.getText().isEmpty() || txtDni.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "rellene los campos obligatorios");
-            if(txtDni.getText().isEmpty())
-                txtDni.requestFocus();
-            else if(txtNombre.getText().isEmpty())
-                txtNombre.requestFocus();
-            else if(txtApellido.getText().isEmpty())
-                txtApellido.requestFocus();
-            return false;
-        }
-            
-        return true;
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -392,98 +275,40 @@ public class VentanaCliente extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-        if(lista.getInicio() == null){
-            JOptionPane.showMessageDialog(null, "tabla vacia");
-            return;
-        }
-        try{
-            boton = "EDITAR";
-            filaModificar = tabla.getSelectedRow();
-            modificarTxt(tabla.getValueAt(filaModificar, 3).toString(),
-                    tabla.getValueAt(filaModificar, 5).toString(), 
-                    tabla.getValueAt(filaModificar, 1).toString(), 
-                    tabla.getValueAt(filaModificar, 2).toString(), 
-                    tabla.getValueAt(filaModificar, 6).toString());
-            if(tabla.getValueAt(filaModificar, 4).toString().equals("Masculino"))
-                rbMasculino.setSelected(true);
-            else rbFemenino.setSelected(true);
-            estadoBtn(false);
-            estadosTxt(true);  
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "selecione un elemento de la fila que quiere editar");
-        }
+        
         
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         
-        if(lista.getInicio() == null){
-            JOptionPane.showMessageDialog(null, "tabla vacia");
-            return;
-        }
-        try{
-            filaModificar = tabla.getSelectedRow();
-            boton = "ELIMINAR";
-            lista.eliminar(tabla.getValueAt(filaModificar, 1).toString());
-            listarTabla();
-            
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "seleccione un elemento de la fila que quiere eliminar");
-        }
+        
         
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
-        Cliente cliente;
-        if(!campoObligatorios()) return;
-        switch(boton){
-            case("NUEVO"):
-                if(!validandoDni(txtDni.getText()) || !unicoDni(txtDni.getText())) return;
-                if(!txtTelefono.getText().equals("") && !validarTelefono(txtTelefono.getText()))return;
-                cliente = new Cliente(txtDni.getText(), txtNombre.getText(), txtApellido.getText(), rbFemenino.isSelected()? rbFemenino.getText() : rbMasculino.getText(), txtDireccion.getText(), txtTelefono.getText());
-          
-                Entrada ticket = new Entrada();
-                lista.agregarAdelante(cliente, ticket);
-                break;
-            case("EDITAR"):
-                NodoCliente aux = lista.buscar(tabla.getValueAt(filaModificar, 1).toString());
-                if(!validarDniEditar(txtDni.getText(), filaModificar) || !validandoDni(txtDni.getText())) return;
-                cliente = new Cliente(txtDni.getText(), txtNombre.getText(), txtApellido.getText(), rbMasculino.isSelected()? rbMasculino.getText() : rbFemenino.getText(), txtDireccion.getText(), txtTelefono.getText());
-                aux.setCliente(cliente);
-                break;
-        }
         
-        listarTabla();
-        modificarTxt("", "", "", "", "");
-        estadoBtn(true);
-        estadosTxt(false);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         
-        boton = "NUEVO";
-        estadosTxt(true);
-        estadoBtn(false);
-        txtDni.requestFocus();
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
-        soloNumeros(evt);
-        Dni_cantidad(evt);
+        
     }//GEN-LAST:event_txtDniKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        soloLetras(evt);
+        
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-        soloLetras(evt);
+        
     }//GEN-LAST:event_txtApellidoKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        soloNumeros(evt);
-        Telefono_cantidad(evt);
+        
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

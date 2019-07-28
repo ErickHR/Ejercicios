@@ -24,161 +24,10 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
         
         this.listaZonaTematica = lista;
         modelo = (DefaultTableModel) tbEspectaculo.getModel();
-        estadosTxt(false);
-        estadoTxtAgregarTipo(false);
-        listarCbZonaTematica();
-        listarTabla();
+        
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    public void listarCbZonaTematica(){
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            cbZonaTematica.addItem(auxZonaTematica.getZonaTematica().getNombre());
-        }
-    }
-    public void listarTabla(){
-        int cantidad = 1;
-        modelo.setRowCount(0);
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
-                arregloEspectaculo[0] = Integer.toString(cantidad);
-                arregloEspectaculo[1] = auxEspectaculo.getEspectaculo().getIdEspectaculo();
-                arregloEspectaculo[2] = auxEspectaculo.getEspectaculo().getNombre();
-                arregloEspectaculo[3] = auxEspectaculo.getEspectaculo().getTipo();
-                arregloEspectaculo[4] = Float.toString(auxEspectaculo.getEspectaculo().getPrecio());
-                arregloEspectaculo[5] = Integer.toString(auxEspectaculo.getEspectaculo().getMinutos());
-                arregloEspectaculo[6] = Integer.toString(auxEspectaculo.getEspectaculo().getAforoMaximo());
-                arregloEspectaculo[7] = auxZonaTematica.getZonaTematica().getNombre();
-                modelo.addRow(arregloEspectaculo);
-                cantidad++; 
-            }
-        }
-    }
-    public void estadosTxt(boolean booleano){
-        txtCodigo.requestFocus();
-        txtCodigo.setEnabled(booleano);
-        txtNombreEspectaculo.setEnabled(booleano);
-        txtPrecio.setEnabled(booleano);
-        spMinutos.setEnabled(booleano);
-        spAforoMaximo.setEnabled(booleano);
-    }
-    public void estadoTxtAgregarTipo(boolean booleano){
-        txtAgregarTipoEspectaculo.setEnabled(booleano);
-    }
-    public void modificarTxt(String codigo, String nombre,String precio, int minutos, int aforo){
-        txtCodigo.setText(codigo);
-        txtNombreEspectaculo.setText(nombre);
-        txtPrecio.setText(precio);
-        //cbTipoEspectaculo.setSelectedItem(tipo);
-        spMinutos.setValue(0);
-        spAforoMaximo.setValue(aforo);
-    }
-    public boolean camposObligatoriosVacios(){
-        if(txtCodigo.getText().isEmpty()){
-            txtCodigo.requestFocus();
-            JOptionPane.showMessageDialog(null, "FALTA RELLENAR CAMPO CODIGO");
-            return true;
-        }
-        if(txtNombreEspectaculo.getText().isEmpty()){
-            txtNombreEspectaculo.requestFocus();
-            JOptionPane.showMessageDialog(null, "FALTA RELLENAR CAMPO NOMBRE");
-            return true;
-        }
-        if(Integer.parseInt(spMinutos.getValue().toString()) < 30){
-            JOptionPane.showMessageDialog(null, "MINUTOS MAYOR A 30");
-            spMinutos.setValue(30);
-            return true;
-        }
-        
-        if(Integer.parseInt(spAforoMaximo.getValue().toString()) < 5){
-            JOptionPane.showMessageDialog(null, "AFORO MAYOR A 5");
-            spAforoMaximo.setValue(5);
-            return true;
-        }
-        return false;
-    }
-    public void estadosBtn(boolean boolenao){
-        btnGuardar.setEnabled(!boolenao);
-        btnEditar.setEnabled(boolenao);
-        btnEliminar.setEnabled(boolenao);
-        btnNuevo.setEnabled(boolenao);
-    }
-    public void soloLetras(java.awt.event.KeyEvent evt){
-        char validar = evt.getKeyChar();
-        if(Character.isDigit(validar))
-            evt.consume();
-    }
-    public void soloNumeros(java.awt.event.KeyEvent evt){
-        char validar = evt.getKeyChar();
-        if(Character.isLetter(validar)){
-            evt.consume();
-        }
-    }
-    public boolean unicoIdEditar(){
-        int filaSeleccionada = 0;
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
-            for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
-                if(auxEspectaculo.getEspectaculo().getIdEspectaculo().equals(txtCodigo.getText()) && fila != filaSeleccionada ){
-                    JOptionPane.showMessageDialog(null, "inserte otro Id");
-                    return false;
-                }
-                filaSeleccionada++;
-            }
-        }
-        return true;
-    }
-    public boolean unicoNombreEditar(){
-        int filaSeleccionada = 0;
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
-            for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
-                if(auxEspectaculo.getEspectaculo().getIdEspectaculo().equals(txtNombreEspectaculo.getText()) && fila != filaSeleccionada ){
-                    JOptionPane.showMessageDialog(null, "inserte otro Id");
-                    return false;
-                }
-                filaSeleccionada++;
-            }
-        }
-        return true;
-    }
-    public boolean unicoId(){
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
-            for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente())
-                if(auxEspectaculo.getEspectaculo().getIdEspectaculo().equals(txtCodigo.getText())){
-                    JOptionPane.showMessageDialog(null, "inserte otro codigo");
-                    return false;
-                }
-        return true;
-    }
-    public boolean unicoNombre(){
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
-            for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente())
-                if(auxEspectaculo.getEspectaculo().getIdEspectaculo().equals(txtNombreEspectaculo.getText())){
-                    JOptionPane.showMessageDialog(null, "inserte otro nombre");
-                    return false;
-                }
-        return true;
-    }
-    public boolean listaVacia(){
-        if(listaZonaTematica.getInicio().getEspectaculo().getInicio() == null){
-            JOptionPane.showMessageDialog(null, "Lista vacia");
-            return true;
-        }
-        return false;
-    }
-    public boolean filaEsMenoUno(){
-        fila = tbEspectaculo.getSelectedRow();
-        if(fila == -1){
-            JOptionPane.showMessageDialog(null, "seleccion un elemento de la fila");
-            return true;
-        }
-        return false;
-    }
-    public boolean noSeleccionoFila(){
-        if(fila == -1){
-            JOptionPane.showMessageDialog(null, "seleccione un elemento de la fila");
-            return true;
-        }
-        return false;
-    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -441,72 +290,30 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
-        if(camposObligatoriosVacios()) return;
-        switch(btn){
-            case ("NUEVO"):
-                if(!unicoId() || !unicoNombre()) return;
-                listaEspectaculo = listaZonaTematica.listaEspectaculo(cbZonaTematica.getSelectedItem().toString());
-                listaEspectaculo.agregarAdelante(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(spAforoMaximo.getValue().toString())));
-                break;
-            case ("EDITAR"):
-                if(!unicoIdEditar() || !unicoNombreEditar()) return;
-                NodoEspectaculo auxesEspectaculo = listaZonaTematica.listaEspectaculo(cbZonaTematica.getSelectedItem().toString()).modificar(tbEspectaculo.getValueAt(fila, 1).toString());
-                auxesEspectaculo.setEspectaculo(new Espectaculo(txtCodigo.getText(), txtNombreEspectaculo.getText(), cbTipoEspectaculo.getSelectedItem().toString(), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(spMinutos.getValue().toString()), Integer.parseInt(spAforoMaximo.getValue().toString())));
-                break;
-        }
         
-        modificarTxt("", "","", 0, 0);
-        estadosTxt(false);
-        listarTabla();
-        estadosBtn(true);
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnAgregarTipoEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipoEspectaculoActionPerformed
-        // TODO add your handling code here:
-        btnAgregarTipoEspectaculo.setText("GUARDAR TIPO");
-        estadoTxtAgregarTipo(true);
-        if(txtAgregarTipoEspectaculo.getText().isEmpty()) return;
-        cbTipoEspectaculo.addItem(txtAgregarTipoEspectaculo.getText());
-        txtAgregarTipoEspectaculo.setText("");
-        estadoTxtAgregarTipo(false);
-        btnAgregarTipoEspectaculo.setText("AGREGAR TIPO");
+        
     }//GEN-LAST:event_btnAgregarTipoEspectaculoActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        btn = "NUEVO";
-        estadosTxt(true);
-        estadosBtn(false);       
+             
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if(listaVacia()) return;
-        if(filaEsMenoUno())return;
         
-        btn = "EDITAR";
-        /*
-        modificarTxt(tbEspectaculo.getValueAt(fila, 1).toString(),
-                tbEspectaculo.getValueAt(fila, 2).toString() , 
-                tbEspectaculo.getValueAt(fila, 3).toString(), 
-                Integer.parseInt(tbEspectaculo.getValueAt(fila, 4).toString()), 
-                Integer.parseInt(tbEspectaculo.getValueAt(fila, 5).toString()));
-                */
-        estadosTxt(true);
-        estadosBtn(false);
         
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtNombreEspectaculoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEspectaculoKeyTyped
         // TODO add your handling code here:
-        soloLetras(evt);
+        
     }//GEN-LAST:event_txtNombreEspectaculoKeyTyped
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(listaVacia()) return;
-        if(filaEsMenoUno()) return;
-        listaEspectaculo = listaZonaTematica.listaEspectaculo(cbZonaTematica.getSelectedItem().toString());
-        listaEspectaculo.eliminar(tbEspectaculo.getValueAt(fila, 1).toString());
-        listarTabla();
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -517,7 +324,7 @@ public class VentanaEspectaculo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
-        soloNumeros(evt);
+        
     }//GEN-LAST:event_txtPrecioKeyTyped
 
 

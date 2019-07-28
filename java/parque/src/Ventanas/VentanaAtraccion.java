@@ -22,120 +22,11 @@ public class VentanaAtraccion extends javax.swing.JFrame {
         initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
         this.listaZonaTematica = listaZonaTematica;
-        estadosTxt(false);
-        listarTabla();
-        listarCbZonaTematica();
+        
         modelo = (DefaultTableModel) tablaAtraccion.getModel();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    public boolean listaVacia(){
-        if(listaZonaTematica.getInicio().getEspectaculo().getInicio() == null){
-            JOptionPane.showMessageDialog(null, "Lista vacia");
-            return true;
-        }
-        return false;
-    }
-    public boolean filaEsMenoUno(){
-        fila = tablaAtraccion.getSelectedRow();
-        if(fila == -1){
-            JOptionPane.showMessageDialog(null, "seleccion un elemento de la fila");
-            return true;
-        }
-        return false;
-    }
-    public boolean unicoIdEditar(){
-        int filaSeleccionada = 0;
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
-            for(NodoAtraccion auxAtraccion = auxNodoZonaTematica.getAtraccion().getInicio(); auxAtraccion != null; auxAtraccion = auxAtraccion.getSiguiente()){
-                if(auxAtraccion.getAtraccion().getIdAtraccion().equals(txtId.getText()) && fila != filaSeleccionada ){
-                    JOptionPane.showMessageDialog(null, "inserte otro Id");
-                    return false;
-                }
-                filaSeleccionada++;
-            }
-        }
-        return true;
-    }
-    public boolean unicoNombreEditar(){
-        int filaSeleccionada = 0;
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente()){
-            for(NodoAtraccion auxAtraccion = auxNodoZonaTematica.getAtraccion().getInicio(); auxAtraccion != null; auxAtraccion = auxAtraccion.getSiguiente()){
-                if(auxAtraccion.getAtraccion().getIdAtraccion().equals(txtNombre.getText()) && fila != filaSeleccionada ){
-                    JOptionPane.showMessageDialog(null, "inserte otro Id");
-                    return false;
-                }
-                filaSeleccionada++;
-            }
-        }
-        return true;
-    }
-    public boolean unicoId(){
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
-            for(NodoAtraccion auxAtraccion = auxNodoZonaTematica.getAtraccion().getInicio(); auxAtraccion != null; auxAtraccion = auxAtraccion.getSiguiente())
-                if(auxAtraccion.getAtraccion().getIdAtraccion().equals(txtId.getText())){
-                    JOptionPane.showMessageDialog(null, "inserte otro Id");
-                    return false;
-                }
-        return true;
-    }
-    public boolean unicoNombre(){
-        for(NodoZonaTematica auxNodoZonaTematica = listaZonaTematica.getInicio(); auxNodoZonaTematica != null; auxNodoZonaTematica = auxNodoZonaTematica.getSiguiente())
-            for(NodoAtraccion auxAtraccion = auxNodoZonaTematica.getAtraccion().getInicio(); auxAtraccion != null; auxAtraccion = auxAtraccion.getSiguiente())
-                if(auxAtraccion.getAtraccion().getIdAtraccion().equals(txtNombre.getText())){
-                    JOptionPane.showMessageDialog(null, "inserte otro Id");
-                    return false;
-                }
-        return true;
-    }
-    public void listarCbZonaTematica(){
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            cbZonaTematica.addItem(auxZonaTematica.getZonaTematica().getNombre());
-        }
-    }
-    public void listarTabla(){
-        int cantidad = 1;
-        modelo.setRowCount(0);
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            for(NodoAtraccion auxAtraccion = auxZonaTematica.getAtraccion().getInicio(); auxAtraccion != null; auxAtraccion = auxAtraccion.getSiguiente()){
-                arregloAtraccion[0] = Integer.toString(cantidad);
-                arregloAtraccion[1] = auxAtraccion.getAtraccion().getIdAtraccion();
-                arregloAtraccion[2] = auxAtraccion.getAtraccion().getNombre();
-                arregloAtraccion[3] = Float.toString(auxAtraccion.getAtraccion().getEstaturaMinima());
-                arregloAtraccion[4] = Float.toString(auxAtraccion.getAtraccion().getPrecio());
-                arregloAtraccion[5] = Integer.toString(auxAtraccion.getAtraccion().getCapacidad());
-                arregloAtraccion[6] = Float.toString(auxAtraccion.getAtraccion().getDuracion());
-                arregloAtraccion[7] = auxZonaTematica.getZonaTematica().getNombre();
-                modelo.addRow(arregloAtraccion);
-                cantidad++; 
-            }
-        }
-    }
-    public void estadosTxt(boolean booleano){
-        txtCapacidad.setEnabled(booleano);
-        txtDuracion.setEnabled(booleano);
-        txtEstatura.setEnabled(booleano);
-        txtId.setEnabled(booleano);
-        txtNombre.setEnabled(booleano);
-        txtPrecio.setEnabled(booleano);
-    }
-    public void estadosBtn(boolean boolenao){
-        btnGuardar.setEnabled(!boolenao);
-        btnEditar.setEnabled(boolenao);
-        btnEliminar.setEnabled(boolenao);
-        btnNuevo.setEnabled(boolenao);
-    }
-    public boolean camposObligatoriosVacios(){
-        if(txtCapacidad.getText().isEmpty() ||
-                txtDuracion.getText().isEmpty() ||
-                txtEstatura.getText().isEmpty() ||
-                txtId.getText().isEmpty() ||
-                txtNombre.getText().isEmpty() ||
-                txtPrecio.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "rellene todos los campos");
-            return true;
-        }
-        return false;
-    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -335,23 +226,7 @@ public class VentanaAtraccion extends javax.swing.JFrame {
             }
         }
         listarTabla();*/
-        if(camposObligatoriosVacios()) return;
-        switch(btn){
-            case ("NUEVO"):
-                if(!unicoId() || !unicoNombre()) return;
-                listaAtraccion = listaZonaTematica.listaAtraccion(cbZonaTematica.getSelectedItem().toString());
-                listaAtraccion.agregarAdelante(new Atraccion(txtId.getText(), txtNombre.getText(), Float.parseFloat(txtEstatura.getText()), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(txtCapacidad.getText()), Float.parseFloat(txtDuracion.getText())));
-                break;
-            case ("EDITAR"):
-                if(!unicoIdEditar() || !unicoNombreEditar()) return;
-                NodoAtraccion auxAtraccion = listaZonaTematica.listaAtraccion(cbZonaTematica.getSelectedItem().toString()).modificar(tablaAtraccion.getValueAt(fila, 1).toString());
-                auxAtraccion.setAtraccion(new Atraccion(txtId.getText(), txtNombre.getText(), Float.parseFloat(txtEstatura.getText()), Float.parseFloat(txtPrecio.getText()), Integer.parseInt(txtCapacidad.getText()), Float.parseFloat(txtDuracion.getText())));
-                break;
-        }
         
-        estadosTxt(false);
-        listarTabla();
-        estadosBtn(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -363,26 +238,15 @@ public class VentanaAtraccion extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if(listaVacia()) return;
-        if(filaEsMenoUno())return;
         
-        btn = "EDITAR";
-        estadosTxt(true);
-        estadosBtn(false);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        btn = "NUEVO";
-        estadosTxt(true);
-        estadosBtn(false); 
+         
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(listaVacia()) return;
-        if(filaEsMenoUno()) return;
-        listaAtraccion = listaZonaTematica.listaAtraccion(cbZonaTematica.getSelectedItem().toString());
-        listaAtraccion.eliminar(tablaAtraccion.getValueAt(fila, 1).toString());
-        listarTabla();
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**

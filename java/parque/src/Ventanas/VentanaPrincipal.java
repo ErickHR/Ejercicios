@@ -20,143 +20,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         
-        estadoMenuAgregar(false);
-        estadoMenuAgregarCliente(false);
-        estadoTxtCliente(false);
+        
         listaCliente = new ListaCliente();
         //listaPase = new ListaPase();
         listaZonaTematica = new ListaZonaTematica();
         ticket = new Entrada();
-        modelo = new DefaultTableModel();
-        modelopago = new DefaultTableModel();
-        modelo = (DefaultTableModel) tablaVenta.getModel();
-        modelopago = (DefaultTableModel) tablaPago.getModel();
+        
         //AutoCompleteDecorator.decorate(txtDniCliente);
     }
     
-    public void estadoTxtCliente(boolean booleano){
-        txtDniCliente.setEnabled(booleano);
-    }
-    public void estadoMenuAgregar(boolean booleano){
-        menuAgregar.setEnabled(booleano);
-    }
-    
-    public void estadoMenuAgregarCliente(boolean booleano){
-        menuAgregarCliente.setEnabled(booleano);
-    }
-    
-    public boolean listaZonaTematicaEsVacia1(){
-        return listaZonaTematica.getInicio() == null;
-    }
-    public boolean listaZonaTematicaEsVacia(){
-        if(listaZonaTematica.getInicio() == null){
-            JOptionPane.showMessageDialog(null, "Agrege Zona Tematica");
-            return true;
-        }
-        return false;
-    }
-    
-    public void listarCbZonaTematica(){
-        cbZonaTematica.removeAllItems();
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            cbZonaTematica.addItem(auxZonaTematica.getZonaTematica().getNombre());
-        }
-    }
-    public NodoZonaTematica buscarZonaTematica(){
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente())
-            if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem()))
-                return auxZonaTematica;
-        return null;
-    } 
-    
-    public NodoRestaurante buscarRestaurante(){
-        NodoZonaTematica auxZonaTematica = buscarZonaTematica();
-        for(NodoRestaurante auxRestaurante = auxZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente())
-            if(auxRestaurante.getRestaurante().getNombre().equals(cbRestaurante.getSelectedItem()))
-                return auxRestaurante;
-        return null;
-    }
-    
-    public NodoAtraccion buscarAtraccion(){
-        NodoZonaTematica auxNodoZonaTematica = buscarZonaTematica();
-        for(NodoAtraccion auxAtraccion = auxNodoZonaTematica.getAtraccion().getInicio(); auxAtraccion != null; auxAtraccion = auxAtraccion.getSiguiente())
-            if(auxAtraccion.getAtraccion().getNombre().equals(cbAtraccion.getSelectedItem()))
-                return auxAtraccion;
-        return null;
-    }
-    
-    public NodoEspectaculo buscarEspectaculo(){
-        NodoZonaTematica auxNodoZonaTematica = buscarZonaTematica();
-        for(NodoEspectaculo auxEspectaculo = auxNodoZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente())
-            if(auxEspectaculo.getEspectaculo().getNombre().equals(cbEspectaculo.getSelectedItem()))
-                return auxEspectaculo;
-        return null;
-    }
-    
-    public void agregarTabla(String nombre, Float precio, String cant){
-        int cantidad = Integer.parseInt(cant);
-        venta[0] = nombre;
-        venta[1] = Float.toString(precio);
-        venta[2] = cant;
-        venta[3] = Float.toString(precio*cantidad);
-        modelo.addRow(venta);
-    }
-    
-    public float totalApagar(){
-        float pagoTotal = 0; 
-        for(int i = 0; i < tablaVenta.getRowCount(); i++){
-            pagoTotal += Float.parseFloat(tablaVenta.getValueAt(i, 3).toString());
-        }
-        return pagoTotal;
-    }
-    
-    public void listarTablaPago(){
-        modelopago.setRowCount(0);
-        float total = totalApagar();
-        float igv = (float) 0.18;
-        pagoCliente[0] = Float.toString(total);
-        pagoCliente[1] = Float.toString(total*igv);
-        pagoCliente[2] = "";
-        pagoCliente[3] = "";
-        pagoCliente[4] = Float.toString(total+igv);
-        modelopago.addRow(pagoCliente);
-    }
-    
-    public boolean listaClienteVacio(){
-        if(listaCliente.getInicio() == null){
-            JOptionPane.showMessageDialog(null, "Agrega Cliente");
-            return true;
-        }
-        return false;
-    }
-    
-    public boolean cbVacio(int cb){
-        if(cb == -1) {
-            JOptionPane.showMessageDialog(null, "Agrege. Combo box vacio");
-            return true;
-        }
-        return false;
-    }
-    
-    public void listarCbRestauranteEspectaculoAtraccion(){
-        cbAtraccion.removeAllItems();
-        cbRestaurante.removeAllItems();
-        cbEspectaculo.removeAllItems();
-        for(NodoZonaTematica auxZonaTematica = listaZonaTematica.getInicio(); auxZonaTematica != null; auxZonaTematica = auxZonaTematica.getSiguiente()){
-            if(auxZonaTematica.getZonaTematica().getNombre().equals(cbZonaTematica.getSelectedItem())){
-                for(NodoAtraccion auxNodoAtraccion = auxZonaTematica.getAtraccion().getInicio(); auxNodoAtraccion != null; auxNodoAtraccion = auxNodoAtraccion.getSiguiente()){
-                    cbAtraccion.addItem(auxNodoAtraccion.getAtraccion().getNombre());
-                }
-                for(NodoEspectaculo auxEspectaculo = auxZonaTematica.getEspectaculo().getInicio(); auxEspectaculo != null; auxEspectaculo = auxEspectaculo.getSiguiente()){
-                    cbEspectaculo.addItem(auxEspectaculo.getEspectaculo().getNombre());
-                }
-                for(NodoRestaurante auxRestaurante = auxZonaTematica.getRestaurante().getInicio(); auxRestaurante != null; auxRestaurante = auxRestaurante.getSiguiente()){
-                    cbRestaurante.addItem(auxRestaurante.getRestaurante().getNombre());
-                }
-                break;
-            }
-        }
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -221,6 +93,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("PAGINA PRINCIPAL");
         setBackground(new java.awt.Color(51, 51, 51));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
 
         jpCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -666,10 +539,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnAgregarEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEspectaculoActionPerformed
-        if(cbVacio(cbEspectaculo.getSelectedIndex())) return;
-        if(listaClienteVacio()) return;
-        NodoEspectaculo auxEspectaculo = buscarEspectaculo();
-        agregarTabla(auxEspectaculo.getEspectaculo().getNombre(), auxEspectaculo.getEspectaculo().getPrecio(), spCantidadEspectaculo.getValue().toString());
+        
     }//GEN-LAST:event_btnAgregarEspectaculoActionPerformed
 
     private void menuAgregarZonaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarZonaTematicaActionPerformed
@@ -699,37 +569,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void cbZonaTematicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbZonaTematicaMouseClicked
         // TODO add your handling code here:
-        listarCbRestauranteEspectaculoAtraccion();
+        
     }//GEN-LAST:event_cbZonaTematicaMouseClicked
 
     private void btnAñadirRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirRestauranteActionPerformed
-        if(cbVacio(cbRestaurante.getSelectedIndex())) return;
-        if(listaClienteVacio()) return;
-        NodoRestaurante auxRestaurante = buscarRestaurante();
-        agregarTabla(auxRestaurante.getRestaurante().getNombre(), 
-                auxRestaurante.getRestaurante().getPrecioMedio(), 
-                spCantidadRestaurante.getValue().toString());
+        
         
     }//GEN-LAST:event_btnAñadirRestauranteActionPerformed
 
     private void btnAgregarAtraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAtraccionActionPerformed
-        if(cbVacio(cbAtraccion.getSelectedIndex())) return;
-        if(listaClienteVacio()) return;
-        NodoAtraccion auxAtraccion = buscarAtraccion();
-        agregarTabla(auxAtraccion.getAtraccion().getNombre(), auxAtraccion.getAtraccion().getPrecio(), spAtraccion.getValue().toString());
+        
     }//GEN-LAST:event_btnAgregarAtraccionActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        if(jlNombre.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "AGREGE CLIENTE");
-            return;
-        }
-        listarTablaPago();
+        
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       JOptionPane.showMessageDialog(null, tablaVenta.getRowCount());
-       JOptionPane.showMessageDialog(null, tablaVenta.getSelectedColumn());
+       
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnComprarEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarEntradasActionPerformed
@@ -745,45 +602,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaAtraccion vtnAtraccion = new VentanaAtraccion(listaZonaTematica, this);
         vtnAtraccion.setVisible(true);
     }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
-    }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
-    }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
-    }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
-    }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
-    }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
-    }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
-    }                                          
-
-    /**
-     * @param args the command line arguments
-        // TODO add your handling code here:
+ /*   
     }//GEN-LAST:event_menuAgregarAtraccionActionPerformed
 */
     private void menuAgregarAtraccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAgregarAtraccionMousePressed
@@ -791,10 +610,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAgregarAtraccionMousePressed
 
     private void tablaVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentaMousePressed
-        int fila = tablaVenta.getSelectedRow();
-        if(fila != -1){
-            modelo.removeRow(fila);
-        }
+        
     }//GEN-LAST:event_tablaVentaMousePressed
 
     /**
